@@ -17,13 +17,13 @@ export function HeroSection() {
           <img className="hero-logo" src="/assets/logo-hero.png" alt="LULINAworks ロゴ" />
           <h1 className="hero-title" id="hero-title">
             AIイラストを<br />
-            作りやすく<br />
-            分かりやすく
+            分かりやすく<br />
+            作りやすく
           </h1>
           <p className="hero-lead">
-            生成イラスト関連の記事とプロンプト辞書をまとめた、<br />
+            生成イラスト関連の記事と<span className="sp-break"><br /></span>プロンプト辞書をまとめた、<br />
             AIイラストのガイドサイトです。<br />
-            ComfyUIの導入から、使い方の基礎まで掲載していきます。
+            ComfyUIの導入から、使い方の基礎まで<span className="sp-break"><br /></span>掲載していきます。
           </p>
           <div className="hero-actions">
             <a className="btn btn-primary" href="#portal"><Icon name="i-book" />記事を見る</a>

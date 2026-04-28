@@ -14,9 +14,31 @@ const zenMaruGothic = Zen_Maru_Gothic({
   variable: "--font-heading",
 });
 
+const title = "LULINAworks｜AIイラストとプロンプトのメモ帳";
+const description =
+  "AIイラスト制作、ComfyUI、プロンプトの考え方や辞書を、制作メモとしてまとめています。";
+const canonicalUrl = "https://lulinaworks.com/";
+
 export const metadata: Metadata = {
-  title: "LULINAworks",
-  description: "生成イラスト関連の記事とプロンプト辞書をまとめたAIイラストのガイドサイトです。",
+  metadataBase: new URL("https://lulinaworks.com"),
+  title,
+  description,
+  alternates: {
+    canonical: canonicalUrl,
+  },
+  openGraph: {
+    title,
+    description,
+    url: canonicalUrl,
+    siteName: "LULINAworks",
+    type: "website",
+    locale: "ja_JP",
+  },
+  twitter: {
+    card: "summary",
+    title,
+    description,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

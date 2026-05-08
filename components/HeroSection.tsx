@@ -26,8 +26,8 @@ export function HeroSection() {
             ComfyUIの導入から、使い方の基礎まで<span className="sp-break"><br /></span>掲載していきます。
           </p>
           <div className="hero-actions">
-            <a className="btn btn-primary" href="#portal"><Icon name="i-book" />記事を見る</a>
-            <a className="btn btn-secondary" href="#portal"><Icon name="i-book" />辞書を見る</a>
+            <a className="btn btn-primary" href="/articles"><Icon name="i-book" />記事を見る</a>
+            <a className="btn btn-secondary" href="/dictionary"><Icon name="i-book" />辞書を見る</a>
           </div>
         </div>
       </div>

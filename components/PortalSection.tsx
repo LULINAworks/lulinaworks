@@ -3,7 +3,30 @@ import { featuredDictionaryItems, latestDictionaryItems } from "@/data/dictionar
 import { Icon } from "./Icons";
 import { LatestCard, LinkCard } from "./LinkCard";
 
+const comfyuiTopThumbnail = "/assets/articles/comfyui-start-guide/comfyui-start-guide-08-workflow-loaded.png";
+const articleDraftThumbnail = "/assets/thumbs/thumb-article-note.png";
+const dictionaryDraftThumbnail = "/assets/thumbs/thumb-dictionary-grid.png";
+
+function withTopArticleThumbnail(item: (typeof featuredArticles)[number]) {
+  return {
+    ...item,
+    thumbnail: item.href === "/articles/comfyui-start-guide" ? comfyuiTopThumbnail : articleDraftThumbnail,
+  };
+}
+
+function withTopDictionaryThumbnail(item: (typeof featuredDictionaryItems)[number]) {
+  return {
+    ...item,
+    thumbnail: dictionaryDraftThumbnail,
+  };
+}
+
 export function PortalSection() {
+  const topFeaturedArticles = featuredArticles.map(withTopArticleThumbnail);
+  const topLatestArticle = latestArticles[0] ? withTopArticleThumbnail(latestArticles[0]) : undefined;
+  const topFeaturedDictionaryItems = featuredDictionaryItems.map(withTopDictionaryThumbnail);
+  const topLatestDictionaryItem = latestDictionaryItems[0] ? withTopDictionaryThumbnail(latestDictionaryItems[0]) : undefined;
+
   return (
     <section className="section" id="portal">
       <div className="section-head">
@@ -26,13 +49,13 @@ export function PortalSection() {
           <p className="column-sub">ComfyUIの導入や基本、プロンプトの考え方などを掲載しています。</p>
 
           <div className="featured-list">
-            {featuredArticles.map((item) => <LinkCard key={item.href} item={item} />)}
+            {topFeaturedArticles.map((item) => <LinkCard key={item.href} item={item} />)}
           </div>
 
           <div className="latest-block">
             <h4 className="latest-title"><Icon name="i-clock" />最新記事はこちら</h4>
             <LatestCard
-              item={latestArticles[0]}
+              item={topLatestArticle}
               fallbackTitle="記事は少しずつ追加予定です"
               fallbackDescription="新しく公開した記事をここに表示します。"
             />
@@ -50,15 +73,15 @@ export function PortalSection() {
           <p className="column-sub">髪型・服装・表情など、カテゴリから探せるプロンプト辞書を準備中です。</p>
 
           <div className="featured-list">
-            {featuredDictionaryItems.map((item) => (
-              <LinkCard key={item.href} item={item} variant="dictionary" />
+            {topFeaturedDictionaryItems.map((item) => (
+              <LinkCard key={`${item.href}-${item.tag}`} item={item} variant="dictionary" />
             ))}
           </div>
 
           <div className="latest-block">
             <h4 className="latest-title"><Icon name="i-save" />最近追加した辞書</h4>
             <LatestCard
-              item={latestDictionaryItems[0]}
+              item={topLatestDictionaryItem}
               fallbackTitle="辞書はこれから順次追加予定です"
               fallbackDescription="追加した項目をここに表示します。"
               variant="dictionary"

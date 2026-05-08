@@ -5,6 +5,10 @@ node_modules/
 .next/
 out/
 
+# TypeScript
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
 # production
 build/
 

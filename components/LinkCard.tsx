@@ -13,8 +13,7 @@ export function LinkCard({ item, variant = "article" }: { item: CardItem; varian
         <h3>{item.title}</h3>
         <p>{item.description}</p>
         <div className="meta">
-          <span>{item.readTime ?? item.status ?? "固定表示"}</span>
-          <span>{item.status ?? "固定表示"}</span>
+          <span>{item.readTime ?? item.status ?? "準備中"}</span>
         </div>
       </div>
     </a>

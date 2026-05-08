@@ -4,8 +4,8 @@ export const dictionaryItems: CardItem[] = [
   {
     title: "髪型",
     description: "長さ、前髪、分け目、髪質などの表現をカテゴリ別に掲載予定です。",
-    href: "/dictionary/hair",
-    thumbnail: "/assets/thumb-dict-hair.png",
+    href: "/dictionary",
+    thumbnail: "/assets/thumbs/thumb-dictionary-grid.png",
     tag: "Hair",
     status: "準備中",
     featured: true,
@@ -14,8 +14,8 @@ export const dictionaryItems: CardItem[] = [
   {
     title: "表情",
     description: "笑顔、困り顔、驚きなど、表情の指定に使う表現を掲載予定です。",
-    href: "/dictionary/expression",
-    thumbnail: "/assets/thumb-dict-expression.png",
+    href: "/dictionary",
+    thumbnail: "/assets/thumbs/thumb-dictionary-grid.png",
     tag: "Expression",
     status: "準備中",
     featured: true,
@@ -24,8 +24,8 @@ export const dictionaryItems: CardItem[] = [
   {
     title: "ポーズ",
     description: "立ち姿や手の動きなど、ポーズ指定に使う表現を掲載予定です。",
-    href: "/dictionary/pose",
-    thumbnail: "/assets/thumb-dict-pose.png",
+    href: "/dictionary",
+    thumbnail: "/assets/thumbs/thumb-dictionary-grid.png",
     tag: "Pose",
     status: "準備中",
     featured: true,

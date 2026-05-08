@@ -3,7 +3,7 @@ export function Header() {
     <header className="site-header">
       <div className="container header-inner">
         <a className="brand" href="/" aria-label="LULINAworks トップへ戻る">
-          <img src="/assets/logo-header.png" alt="LULINAworks ロゴ" />
+          <img src="/assets/logo/logo-header.png" alt="LULINAworks ロゴ" />
         </a>
         <nav className="nav" aria-label="グローバルナビゲーション">
           <a href="/">TOP</a>

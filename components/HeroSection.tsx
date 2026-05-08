@@ -11,10 +11,10 @@ export function HeroSection() {
       <span className="sparkle s4">○</span>
       <div className="hero-inner">
         <div className="hero-figure">
-          <img src="/assets/lulina-guide-pose.png" alt="案内ポーズのルリナ" />
+          <img src="/assets/character/lulina-guide-pose.png" alt="案内ポーズのルリナ" />
         </div>
         <div className="hero-content">
-          <img className="hero-logo" src="/assets/logo-hero.png" alt="LULINAworks ロゴ" />
+          <img className="hero-logo" src="/assets/logo/logo-hero.png" alt="LULINAworks ロゴ" />
           <h1 className="hero-title" id="hero-title">
             AIイラストを<br />
             分かりやすく<br />

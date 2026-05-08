@@ -2,7 +2,7 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-inner">
-        <a className="footer-logo" href="/"><img src="/assets/logo-header.png" alt="LULINAworks ロゴ" /></a>
+        <a className="footer-logo" href="/"><img src="/assets/logo/logo-header.png" alt="LULINAworks ロゴ" /></a>
         <nav className="footer-nav" aria-label="フッターナビゲーション">
           <a href="/">TOP</a>
           <a href="/articles">記事一覧</a>

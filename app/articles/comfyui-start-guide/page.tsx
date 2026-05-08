@@ -64,7 +64,7 @@ function ArticleFigure({ name, alt, caption }: { name: string; alt: string; capt
 }
 
 function LulinaSpeech({ children, tone = "normal" }: { children: React.ReactNode; tone?: "normal" | "reassure" }) {
-  const imageSrc = tone === "reassure" ? "/assets/lulina-chibi-reassure.png" : "/assets/lulina-chibi-normal.png";
+  const imageSrc = tone === "reassure" ? "/assets/character/lulina-chibi-reassure.png" : "/assets/character/lulina-chibi-normal.png";
   const imageAlt = tone === "reassure" ? "安心ポーズのちびルリナ" : "ちびルリナ";
 
   return (

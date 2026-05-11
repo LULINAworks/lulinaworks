@@ -121,11 +121,15 @@
 
       .hero {
         position: relative;
+        isolation: isolate;
         overflow: hidden;
         height: 663px;
         border: 1px solid rgba(236, 217, 199, 0.95);
         border-radius: 30px;
         background:
+          radial-gradient(circle at 29% 73%, rgba(255,255,255,0.78) 0 7px, transparent 8px),
+          radial-gradient(circle at 74% 22%, rgba(255,159,69,0.16) 0 5px, transparent 6px),
+          radial-gradient(circle at 83% 70%, rgba(24,56,103,0.08) 0 4px, transparent 5px),
           radial-gradient(circle at 0% 0%, rgba(255, 159, 69, 0.18), transparent 23%),
           radial-gradient(circle at 95% 38%, rgba(255, 159, 69, 0.14), transparent 24%),
           radial-gradient(circle at 14% 88%, rgba(94, 134, 200, 0.14), transparent 20%),
@@ -140,9 +144,13 @@
         background-image:
           radial-gradient(circle, rgba(255,255,255,0.92) 2px, transparent 2px),
           radial-gradient(circle, rgba(255,159,69,0.32) 1.1px, transparent 1.1px),
-          radial-gradient(circle, rgba(24,56,103,0.12) 1px, transparent 1px);
-        background-size: 18px 18px, 34px 34px, 46px 46px;
-        background-position: left 28px top 26px, right 54px top 40px, center bottom 18px;
+          radial-gradient(circle, rgba(24,56,103,0.12) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.72), rgba(255,255,255,0)),
+          linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.72)),
+          linear-gradient(90deg, rgba(245,180,122,0.22), rgba(245,180,122,0.06));
+        background-size: 18px 18px, 34px 34px, 46px 46px, 84px 2px, 16px 16px, 110px 1px;
+        background-position: left 28px top 26px, right 54px top 40px, center bottom 18px, left 15% top 34%, right 18% top 48%, right 7% bottom 34%;
+        background-repeat: repeat, repeat, repeat, no-repeat, no-repeat, no-repeat;
         opacity: 0.42;
         pointer-events: none;
       }
@@ -175,11 +183,13 @@
 
       .sparkle {
         position: absolute;
+        z-index: 1;
         color: var(--orange);
         font-family: var(--font-heading), var(--font-body), sans-serif;
         font-size: 22px;
-        opacity: 0.8;
+        opacity: 0.68;
         pointer-events: none;
+        text-shadow: 0 1px 0 rgba(255,255,255,0.78);
       }
       .sparkle.s1 { left: 38%; top: 15%; }
       .sparkle.s2 { left: 1%; bottom: 5%; font-size: 17px; }
@@ -206,10 +216,44 @@
         overflow: visible;
       }
 
+      .hero-figure::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 52px;
+        z-index: 0;
+        width: 430px;
+        height: 430px;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 50% 48%, rgba(255,255,255,0.66) 0 26%, rgba(255,196,132,0.22) 42%, rgba(255,159,69,0.10) 58%, transparent 72%),
+          radial-gradient(circle at 50% 50%, rgba(255,247,238,0.72), transparent 64%);
+        box-shadow:
+          inset 0 0 0 1px rgba(255,255,255,0.46),
+          0 28px 72px rgba(255,159,69,0.10);
+        transform: translateX(-51%);
+        pointer-events: none;
+      }
+
+      .hero-figure::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 14px;
+        z-index: 1;
+        width: 370px;
+        height: 88px;
+        border-radius: 50%;
+        background: radial-gradient(ellipse at center, rgba(120,84,47,0.12), rgba(255,159,69,0.08) 42%, transparent 70%);
+        transform: translateX(-52%);
+        pointer-events: none;
+      }
+
       .hero-figure img {
         position: absolute;
         left: 50%;
-        bottom: -10px;
+        bottom: 0;
+        z-index: 2;
         height: 600px;
         max-height: none;
         width: auto;
@@ -1090,6 +1134,22 @@
           display: block;
         }
 
+        .hero-figure::before {
+          bottom: 30px;
+          width: 280px;
+          height: 270px;
+          opacity: 0.74;
+          transform: translateX(-50%);
+        }
+
+        .hero-figure::after {
+          bottom: 6px;
+          width: 240px;
+          height: 52px;
+          opacity: 0.72;
+          transform: translateX(-50%);
+        }
+
         .hero-figure img {
           position: absolute;
           left: 50%;
@@ -1161,6 +1221,22 @@
           display: block;
         }
 
+        .hero-figure::before {
+          bottom: 44px;
+          width: 360px;
+          height: 340px;
+          opacity: 0.78;
+          transform: translateX(-50%);
+        }
+
+        .hero-figure::after {
+          bottom: 9px;
+          width: 310px;
+          height: 70px;
+          opacity: 0.76;
+          transform: translateX(-50%);
+        }
+
         .hero-figure img {
           position: absolute;
           left: 50%;
@@ -1191,6 +1267,18 @@
           bottom: 0;
           height: 270px;
           transform: translateX(-50%);
+        }
+
+        .hero-figure::before {
+          bottom: 38px;
+          width: 245px;
+          height: 225px;
+        }
+
+        .hero-figure::after {
+          bottom: 8px;
+          width: 190px;
+          height: 46px;
         }
       }
 
@@ -1227,6 +1315,18 @@
         .hero-figure img {
           left: 50%;
           height: 180px;
+        }
+
+        .hero-figure::before {
+          bottom: 24px;
+          width: 155px;
+          height: 145px;
+        }
+
+        .hero-figure::after {
+          bottom: 4px;
+          width: 116px;
+          height: 30px;
         }
       }
 

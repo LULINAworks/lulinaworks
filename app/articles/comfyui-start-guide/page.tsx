@@ -63,13 +63,33 @@ function ArticleFigure({ name, alt, caption }: { name: string; alt: string; capt
   );
 }
 
-function LulinaSpeech({ children, tone = "normal" }: { children: React.ReactNode; tone?: "normal" | "reassure" }) {
-  const imageSrc = tone === "reassure" ? "/assets/character/lulina-chibi-reassure.png" : "/assets/character/lulina-chibi-normal.png";
-  const imageAlt = tone === "reassure" ? "安心ポーズのちびルリナ" : "ちびルリナ";
+function LulinaSpeech({
+  children,
+  tone = "point",
+}: {
+  children: React.ReactNode;
+  tone?: "point" | "recommend" | "warning" | "reassure";
+}) {
+  const speechTone = tone === "reassure" ? "recommend" : tone;
+  const imageMap = {
+    point: {
+      src: "/assets/character/lulina-speech-point.png",
+      alt: "ワンポイントを話すルリナ",
+    },
+    recommend: {
+      src: "/assets/character/lulina-speech-recommend.png",
+      alt: "おすすめを話すルリナ",
+    },
+    warning: {
+      src: "/assets/character/lulina-speech-warning.png",
+      alt: "注意をうながすルリナ",
+    },
+  } as const;
+  const image = imageMap[speechTone];
 
   return (
     <aside className="lulina-speech" aria-label="ルリナのメモ">
-      <img src={imageSrc} alt={imageAlt} />
+      <img src={image.src} alt={image.alt} />
       <div className="lulina-bubble">
         <span>ルリナ</span>
         <p>{children}</p>
@@ -107,8 +127,11 @@ export default function ComfyuiStartGuidePage() {
             <p>
               今回は、ComfyUI公式ドキュメントで紹介されている流れに沿って進めます。モデルについても、公式ページで案内されているSD1.5モデルを使って、まずは基本の動作確認をしていきます。
             </p>
-            <LulinaSpeech tone="reassure">
-              最初は「ComfyUIを起動できた」「画像が1枚出た」まで進めれば大丈夫だよ。細かい設定や別のモデルは、慣れてから少しずつ見ていこう。
+            <h2 id="article-summary">この記事でわかること</h2>
+            <LulinaSpeech tone="recommend">
+              ComfyUI Portable版は、必要なファイルを用意して起動できれば、まずはシンプルなワークフローで画像生成まで進められるよ。
+              この記事では、導入・起動・画面の見方・最初の1枚生成までを順番に確認していくよ。
+              読み終えるころには、ComfyUIで画像を出すまでの全体の流れをつかみやすくなるよ。
             </LulinaSpeech>
 
             <nav className="toc-box" aria-labelledby="toc-title">
@@ -240,7 +263,7 @@ export default function ComfyuiStartGuidePage() {
             />
             <p>ブラウザが自動で開かない場合は、黒い画面に表示されているURLを確認します。多くの場合は、以下のようなURLです。</p>
             <pre><code>http://127.0.0.1:8188/</code></pre>
-            <LulinaSpeech>
+            <LulinaSpeech tone="warning">
               黒い画面は閉じないでね。ComfyUI本体が動いている画面だから、閉じるとブラウザ側も使えなくなるよ。
             </LulinaSpeech>
 
@@ -340,7 +363,7 @@ export default function ComfyuiStartGuidePage() {
               caption="生成された画像は、ComfyUIの output フォルダにも保存されます。"
             />
             <p>ComfyUI上で画像が表示され、output フォルダにも保存されていれば、最初の画像生成は成功です。</p>
-            <LulinaSpeech tone="reassure">
+            <LulinaSpeech tone="recommend">
               ここまでできれば、ComfyUIの導入と基本的な動作確認は完了だよ。まずは1枚出せたことを成功ラインにしよう。
             </LulinaSpeech>
 
@@ -360,7 +383,7 @@ export default function ComfyuiStartGuidePage() {
             <p>
               また、ComfyUIが動いている間は、起動時に開いた黒いコンソール画面を閉じないようにします。閉じてしまった場合は、もう一度 <code>run_nvidia_gpu.bat</code> から起動し直します。
             </p>
-            <LulinaSpeech>
+            <LulinaSpeech tone="warning">
               エラーが出たときは、まず黒い画面を見てみよう。どこで止まっているかのヒントが書かれていることが多いよ。
             </LulinaSpeech>
 
@@ -386,7 +409,7 @@ export default function ComfyuiStartGuidePage() {
             <p>
               SDXLやPony系などのモデルもComfyUIで使えますが、推奨設定やプロンプトの考え方が変わる部分があります。そのあたりは、別の記事で整理していく予定です。
             </p>
-            <LulinaSpeech tone="reassure">
+            <LulinaSpeech tone="recommend">
               まずは基本ワークフローで1枚出せれば大丈夫。次は、プロンプトの書き方や設定の意味も少しずつ見ていこう。
             </LulinaSpeech>
           </section>

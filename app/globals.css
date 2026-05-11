@@ -899,14 +899,14 @@
 
       .lulina-speech {
         display: grid;
-        grid-template-columns: 88px 1fr;
+        grid-template-columns: 104px 1fr;
         gap: 16px;
         align-items: end;
         margin: 26px 0 34px;
       }
 
       .lulina-speech > img {
-        width: 88px;
+        width: 104px;
         align-self: end;
         filter: drop-shadow(0 8px 12px rgba(48, 39, 31, 0.12));
       }
@@ -1029,7 +1029,7 @@
           justify-items: center;
         }
         .lulina-speech > img {
-          width: 82px;
+          width: 96px;
         }
         .lulina-bubble {
           width: 100%;

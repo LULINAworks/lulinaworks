@@ -11,7 +11,7 @@ export function HeroSection() {
       <span className="sparkle s4">○</span>
       <div className="hero-inner">
         <div className="hero-figure">
-          <img src="/assets/character/lulina-guide-pose.png" alt="案内ポーズのルリナ" />
+          <img src="/assets/character/lulina-hero-chibi.png" alt="案内ポーズのルリナ" />
         </div>
         <div className="hero-content">
           <img className="hero-logo" src="/assets/logo/logo-hero.png" alt="LULINAworks ロゴ" />

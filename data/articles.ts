@@ -13,6 +13,17 @@ export type CardItem = {
 
 export const articles: CardItem[] = [
   {
+    title: "画像生成AIのモデルとは？SD1.5・SDXLの違いと選び方",
+    description: "画像の雰囲気やプロンプトの効き方に関わる「モデル」の基本を整理します。",
+    href: "/articles/model-basic",
+    thumbnail: "/assets/articles/model-basic/model-basic-thumb.png",
+    tag: "ComfyUI",
+    readTime: "約8分",
+    featured: true,
+    published: true,
+    date: "2026-05-12",
+  },
+  {
     title: "ComfyUIの始め方｜Portable版の導入から画像生成まで",
     description: "ComfyUI Portable版の導入から、公式Text to Image Workflowを使った画像生成までの流れをまとめました。",
     href: "/articles/comfyui-start-guide",
@@ -45,7 +56,15 @@ export const articles: CardItem[] = [
   },
 ];
 
-export const featuredArticles = articles.filter((item) => item.featured).slice(0, 3);
+const featuredArticleHrefs = [
+  "/articles/comfyui-start-guide",
+  "/articles/model-basic",
+  "/articles/prompt-basic",
+];
+
+export const featuredArticles = featuredArticleHrefs
+  .map((href) => articles.find((item) => item.href === href && item.featured))
+  .filter((item): item is CardItem => Boolean(item));
 export const latestArticles = articles
   .filter((item) => item.published)
   .sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""))

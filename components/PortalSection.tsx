@@ -3,14 +3,13 @@ import { featuredDictionaryItems, latestDictionaryItems } from "@/data/dictionar
 import { Icon } from "./Icons";
 import { LatestCard, LinkCard } from "./LinkCard";
 
-const comfyuiTopThumbnail = "/assets/articles/comfyui-start-guide/comfyui-start-guide-08-workflow-loaded.png";
 const articleDraftThumbnail = "/assets/thumbs/thumb-article-note.png";
 const dictionaryDraftThumbnail = "/assets/thumbs/thumb-dictionary-grid.png";
 
 function withTopArticleThumbnail(item: (typeof featuredArticles)[number]) {
   return {
     ...item,
-    thumbnail: item.href === "/articles/comfyui-start-guide" ? comfyuiTopThumbnail : articleDraftThumbnail,
+    thumbnail: item.thumbnail ?? articleDraftThumbnail,
   };
 }
 

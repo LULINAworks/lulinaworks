@@ -19,11 +19,13 @@ export const metadata: Metadata = {
     siteName: "LULINAworks",
     type: "website",
     locale: "ja_JP",
+    images: ["/assets/og/og-dictionary.png"],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title,
     description,
+    images: ["/assets/og/og-dictionary.png"],
   },
 };
 

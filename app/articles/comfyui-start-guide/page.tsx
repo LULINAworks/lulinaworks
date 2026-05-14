@@ -8,6 +8,7 @@ const description =
   "ComfyUI Portable版の導入から、公式Text to Image Workflowを使った画像生成までの流れをまとめました。SD1.5モデルの用意、ワークフローの読み込み、最初の1枚を生成するまでを順番に確認できます。";
 const canonicalUrl = "https://lulinaworks.com/articles/comfyui-start-guide";
 const imageBase = "/assets/articles/comfyui-start-guide/";
+const ogImage = "/assets/og/og-comfyui-start-guide.png";
 
 const toc = [
   "ComfyUI Portable版をダウンロードする",
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
     locale: "ja_JP",
     images: [
       {
-        url: "/assets/thumbs/thumb-comfyui-node.png",
+        url: ogImage,
         width: 1200,
         height: 630,
         alt: title,
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/assets/thumbs/thumb-comfyui-node.png"],
+    images: [ogImage],
   },
 };
 

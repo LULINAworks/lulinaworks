@@ -10,6 +10,7 @@ const description =
 const canonicalUrl = "https://lulinaworks.com/articles/prompt-basic";
 const imageBase = "/assets/articles/prompt-basic/";
 const eyecatchImage = "/assets/eyecatch/eyecatch-article-note.png";
+const ogImage = "/assets/og/og-prompt-basic.png";
 
 const toc = [
   "プロンプトとは何か",
@@ -62,7 +63,7 @@ export const metadata: Metadata = {
     locale: "ja_JP",
     images: [
       {
-        url: eyecatchImage,
+        url: ogImage,
         width: 1200,
         height: 630,
         alt: title,
@@ -73,7 +74,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: [eyecatchImage],
+    images: [ogImage],
   },
 };
 

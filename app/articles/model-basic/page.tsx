@@ -10,7 +10,7 @@ const description =
 const heroDescription = "画像生成AIで使うモデルの基本と、SD1.5系・SDXL系の違いを整理します。";
 const canonicalUrl = "https://lulinaworks.com/articles/model-basic";
 const imageBase = "/assets/articles/model-basic/";
-const ogImage = `${imageBase}model-basic-07-sdxl-output.png`;
+const ogImage = "/assets/og/og-model-basic.png";
 
 const toc = [
   "画像生成AIの「モデル」とは",
@@ -43,8 +43,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: ogImage,
-        width: 1024,
-        height: 1024,
+        width: 1200,
+        height: 630,
         alt: title,
       },
     ],

@@ -4,8 +4,8 @@ export function HeroSection() {
   return (
     <section className="hero" aria-labelledby="hero-title">
       <picture className="hero-visual">
-        <source media="(max-width: 760px)" srcSet="/assets/hero/lulina-top-hero-mobile.png" />
-        <img src="/assets/hero/lulina-top-hero-desktop.png" alt="" />
+        <source media="(max-width: 760px)" srcSet="/assets/hero/lulina-top-hero-mobile.webp" />
+        <img src="/assets/hero/lulina-top-hero-desktop.webp" alt="" />
       </picture>
       <div className="hero-inner">
         <div className="hero-content">

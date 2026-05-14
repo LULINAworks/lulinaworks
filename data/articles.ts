@@ -35,14 +35,16 @@ export const articles: CardItem[] = [
     date: "2026-05-08",
   },
   {
-    title: "プロンプトの基本と考え方",
-    description: "プロンプトの基本的な見方や考え方を掲載予定です。",
+    title: "AIイラストのプロンプトとは？基本の考え方と書き方を整理する",
+    description: "AIイラストで使うプロンプトの基本と、要素ごとに分けて考える書き方を整理します。",
     href: "/articles/prompt-basic",
-    thumbnail: "/assets/thumbs/thumb-article-note.png",
+    thumbnail: "/assets/articles/prompt-basic/prompt-basic-thumb.png",
     tag: "Prompt",
-    status: "公開予定",
+    readTime: "約12分",
+    status: "公開中",
     featured: true,
-    published: false,
+    published: true,
+    date: "2026-05-14",
   },
   {
     title: "サンプラー・ステップ数・CFGの違い",
@@ -56,15 +58,20 @@ export const articles: CardItem[] = [
   },
 ];
 
-const featuredArticleHrefs = [
+export const articleGuideOrderHrefs = [
   "/articles/comfyui-start-guide",
   "/articles/model-basic",
   "/articles/prompt-basic",
 ];
 
+const featuredArticleHrefs = articleGuideOrderHrefs;
+
 export const featuredArticles = featuredArticleHrefs
   .map((href) => articles.find((item) => item.href === href && item.featured))
   .filter((item): item is CardItem => Boolean(item));
+export const publishedArticles = articles
+  .filter((item) => item.published)
+  .sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
 export const latestArticles = articles
   .filter((item) => item.published)
   .sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""))

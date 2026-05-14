@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { ArticleNavigation } from "@/components/ArticleNavigation";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
@@ -123,7 +124,7 @@ export default function ModelBasicPage() {
     <>
       <Header />
       <main className="article-main model-basic-page">
-        <article className="article-shell">
+        <article className="article-shell" id="article-top">
           <header className="article-header">
             <div className="article-header-copy">
               <a className="back-link" href="/articles">記事一覧へ戻る</a>
@@ -424,6 +425,7 @@ photorealistic, realistic, photo, photography, low quality, bad anatomy, bad han
               <li><a href="https://comfyanonymous.github.io/ComfyUI_examples/sdxl/" target="_blank" rel="noopener noreferrer">ComfyUI SDXL Examples</a></li>
             </ul>
           </section>
+          <ArticleNavigation currentHref="/articles/model-basic" />
         </article>
       </main>
       <Footer />

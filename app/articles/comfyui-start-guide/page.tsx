@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ArticleNavigation } from "@/components/ArticleNavigation";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
@@ -103,7 +104,7 @@ export default function ComfyuiStartGuidePage() {
     <>
       <Header />
       <main className="article-main">
-        <article className="article-shell">
+        <article className="article-shell" id="article-top">
           <header className="article-header">
             <div className="article-header-copy">
               <a className="back-link" href="/articles">記事一覧へ戻る</a>
@@ -413,6 +414,7 @@ export default function ComfyuiStartGuidePage() {
               まずは基本ワークフローで1枚出せれば大丈夫。次は、プロンプトの書き方や設定の意味も少しずつ見ていこう。
             </LulinaSpeech>
           </section>
+          <ArticleNavigation currentHref="/articles/comfyui-start-guide" />
         </article>
       </main>
       <Footer />

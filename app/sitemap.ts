@@ -27,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: "https://lulinaworks.com/articles/prompt-basic",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: "https://lulinaworks.com/dictionary",
       lastModified: new Date(),
       changeFrequency: "weekly",

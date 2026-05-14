@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { LinkCard } from "@/components/LinkCard";
-import { articles } from "@/data/articles";
+import { publishedArticles } from "@/data/articles";
 
 const title = "記事一覧｜LULINAworks";
 const description = "ComfyUIやAIイラスト制作に関する記事をまとめています。";
@@ -45,7 +45,7 @@ export default function ArticlesPage() {
 
         <section className="container list-section" aria-label="記事一覧">
           <div className="article-list-grid">
-            {articles.map((item) => (
+            {publishedArticles.map((item) => (
               <LinkCard key={item.href} item={item} />
             ))}
           </div>

@@ -11,8 +11,8 @@ export default function Home() {
       <Icons />
       <Header />
       <main id="top">
+        <HeroSection />
         <div className="container">
-          <HeroSection />
           <PortalSection />
           <AboutLulinaSection />
         </div>

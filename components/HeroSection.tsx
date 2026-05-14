@@ -3,28 +3,18 @@ import { Icon } from "./Icons";
 export function HeroSection() {
   return (
     <section className="hero" aria-labelledby="hero-title">
-      <span className="hero-arc-left" />
-      <span className="hero-arc-right" />
-      <span className="sparkle s1">✦</span>
-      <span className="sparkle s2">✧</span>
-      <span className="sparkle s3">✦</span>
-      <span className="sparkle s4">○</span>
+      <picture className="hero-visual">
+        <source media="(max-width: 760px)" srcSet="/assets/hero/lulina-top-hero-mobile.png" />
+        <img src="/assets/hero/lulina-top-hero-desktop.png" alt="" />
+      </picture>
       <div className="hero-inner">
-        <div className="hero-figure">
-          <img src="/assets/character/lulina-hero-chibi.png" alt="案内ポーズのルリナ" />
-        </div>
         <div className="hero-content">
-          <img className="hero-logo" src="/assets/logo/logo-hero.png" alt="LULINAworks ロゴ" />
           <h1 className="hero-title" id="hero-title">
+            <span>LULINAworks</span>
             AIイラストを<br />
-            分かりやすく<br />
-            作りやすく
+            作りやすく、<br />
+            わかりやすく。
           </h1>
-          <p className="hero-lead">
-            生成イラスト関連の記事と<span className="sp-break"><br /></span>プロンプト辞書をまとめた、<br />
-            AIイラストのガイドサイトです。<br />
-            ComfyUIの導入から、使い方の基礎まで<span className="sp-break"><br /></span>掲載していきます。
-          </p>
           <div className="hero-actions">
             <a className="btn btn-primary" href="/articles"><Icon name="i-book" />記事を見る</a>
             <a className="btn btn-secondary" href="/dictionary"><Icon name="i-book" />辞書を見る</a>

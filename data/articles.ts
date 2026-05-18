@@ -13,6 +13,18 @@ export type CardItem = {
 
 export const articles: CardItem[] = [
   {
+    title: "Animaとは？ComfyUIで試して感じた特徴と注意点",
+    description: "AnimaをComfyUIで試し、タグ形式・自然文形式の違いや注意点を整理します。",
+    href: "/articles/anima-basic",
+    thumbnail: "/assets/articles/anima-basic/anima-basic-thumb.webp",
+    tag: "Model",
+    readTime: "約10分",
+    status: "公開中",
+    featured: true,
+    published: true,
+    date: "2026-05-18",
+  },
+  {
     title: "画像生成AIのモデルとは？SD1.5・SDXLの違いと選び方",
     description: "画像の雰囲気やプロンプトの効き方に関わる「モデル」の基本を整理します。",
     href: "/articles/model-basic",
@@ -64,7 +76,11 @@ export const articleGuideOrderHrefs = [
   "/articles/prompt-basic",
 ];
 
-const featuredArticleHrefs = articleGuideOrderHrefs;
+const featuredArticleHrefs = [
+  "/articles/comfyui-start-guide",
+  "/articles/prompt-basic",
+  "/articles/anima-basic",
+];
 
 export const featuredArticles = featuredArticleHrefs
   .map((href) => articles.find((item) => item.href === href && item.featured))

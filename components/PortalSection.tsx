@@ -16,7 +16,7 @@ function withTopArticleThumbnail(item: (typeof featuredArticles)[number]) {
 function withTopDictionaryThumbnail(item: (typeof featuredDictionaryItems)[number]) {
   return {
     ...item,
-    thumbnail: dictionaryDraftThumbnail,
+    thumbnail: item.thumbnail ?? dictionaryDraftThumbnail,
   };
 }
 

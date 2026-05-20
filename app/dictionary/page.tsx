@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { LinkCard } from "@/components/LinkCard";
+import { dictionaryItems } from "@/data/dictionary";
 
 const title = "辞書一覧｜LULINAworks";
 const description = "AIイラスト制作に使うプロンプト辞書ページです。現在準備中です。";
@@ -30,6 +32,8 @@ export const metadata: Metadata = {
 };
 
 export default function DictionaryPage() {
+  const publishedDictionaryItems = dictionaryItems.filter((item) => item.published);
+
   return (
     <>
       <Header />
@@ -41,6 +45,14 @@ export default function DictionaryPage() {
             <p>髪型、表情、ポーズなど、AIイラスト制作に使いやすいプロンプト表現を整理していく予定です。</p>
           </div>
           <img src="/assets/eyecatch/dictionary-list-eyecatch.png" alt="LULINAworksの辞書ページは準備中です" />
+        </section>
+
+        <section className="container list-section dictionary-list-section" aria-label="辞書一覧">
+          <div className="article-list-grid dictionary-list-grid">
+            {publishedDictionaryItems.map((item) => (
+              <LinkCard key={item.href} item={item} variant="dictionary" />
+            ))}
+          </div>
         </section>
       </main>
       <Footer />

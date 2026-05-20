@@ -2,14 +2,14 @@ import type { CardItem } from "./articles";
 
 export const dictionaryItems: CardItem[] = [
   {
-    title: "髪型",
-    description: "長さ、前髪、分け目、髪質などの表現をカテゴリ別に掲載予定です。",
-    href: "/dictionary",
-    thumbnail: "/assets/thumbs/thumb-dictionary-grid.png",
-    tag: "Hair",
-    status: "準備中",
+    title: "髪型辞書",
+    description: "AIイラスト制作で使いやすい髪型プロンプトを、長さ・シルエット・前髪・顔まわりなどのカテゴリ別に整理しています。",
+    href: "/dictionary/hairstyle",
+    thumbnail: "/assets/dictionary/hairstyle/female/hairstyle-long-hair.webp",
+    tag: "Prompt Dictionary",
+    status: "86項目",
     featured: true,
-    published: false,
+    published: true,
   },
   {
     title: "表情",

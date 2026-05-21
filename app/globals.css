@@ -763,6 +763,11 @@
         text-underline-offset: 4px;
       }
 
+      .static-page-main .article-content a {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
       .article-content ol,
       .article-content ul {
         margin: 0 0 22px;
@@ -1007,6 +1012,13 @@
         }
         .article-header p {
           font-size: .95rem;
+        }
+        .static-page-main .article-header {
+          min-height: 280px;
+          padding: 22px 20px;
+          background:
+            linear-gradient(180deg, rgba(255, 253, 249, 0.38) 0%, rgba(255, 247, 238, 0.84) 42%, rgba(255, 253, 249, 0.98) 100%),
+            url("/assets/eyecatch/eyecatch-comfyui-node.png") center 32% / cover no-repeat;
         }
         .article-content p,
         .article-content li {

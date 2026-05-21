@@ -7,8 +7,10 @@ export function Footer() {
           <a href="/">TOP</a>
           <a href="/articles">記事一覧</a>
           <a href="/dictionary">辞書一覧</a>
+          <a href="/about">LULINAworksについて</a>
+          <a href="/contact">お問い合わせ</a>
+          <a href="/privacy-policy">プライバシーポリシー</a>
         </nav>
-        <div className="sns"><a href="https://x.com/LULINAworks" target="_blank" rel="noopener noreferrer" aria-label="LULINAworksのXアカウント">X</a></div>
         <div className="copyright">© LULINAworks All rights reserved.</div>
       </div>
     </footer>

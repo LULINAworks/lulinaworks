@@ -127,6 +127,16 @@ function RelatedArticleCard() {
   );
 }
 
+function DictionaryLinkCard() {
+  return (
+    <a className="related-article-card" href="/dictionary">
+      <span>プロンプト辞書</span>
+      <strong>AIイラスト制作に使えるプロンプト辞書</strong>
+      <p>AIイラスト制作で使いやすいプロンプトを、カテゴリごとにサンプル付きで整理しています。</p>
+    </a>
+  );
+}
+
 function CompareGrid() {
   return (
     <figure className="anima-compare-figure">
@@ -300,7 +310,8 @@ export default function AnimaBasicPage() {
             <p>タグ形式であれば、髪型、服装、背景、行動を要素ごとに分けて並べられますが、自然文ではそれらを英文として自然につなげる必要があります。</p>
             <p>特に日本語で考えてから英語に直す場合、「どこまでを1文に入れるか？」「要素を分けて書いた方が伝わりやすいのか？」で悩む場面もありました。</p>
             <p>そのため、人物まわりの基本要素はタグで指定し、シーンや関係性、複数人の位置関係は自然文で補足する形が扱いやすいのかなと感じました。</p>
-            <p>LULINAworksでも、こうしたタグ指定を整理して使いやすくするために、髪型・表情・ポーズなどのプロンプト辞書を少しずつ制作しています。</p>
+            <p>LULINAworksでも、髪型・表情・ポーズなどのタグ指定を整理して、制作中に見返しやすいプロンプト辞書を少しずつ制作しています。</p>
+            <DictionaryLinkCard />
             <p>そのほかに特筆する点といえば、やはり複数人の描き分けです。<br />従来のSD系ローカルモデルでは、2人以上のキャラクターを出したときに髪色や服装、特徴が混ざってしまうことがありましたが、Animaでは自然文を使って人物ごとの特徴や関係性を補足することで、複数人の容姿を指定しやすい印象がありました。</p>
             <ArticleFigure
               name="anima-basic-02-two-girls.webp"

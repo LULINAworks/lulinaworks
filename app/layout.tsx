@@ -47,6 +47,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja" className={`${notoSansJp.variable} ${zenMaruGothic.variable}`}>
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4253740145524649"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         {children}
         <Analytics />

@@ -69,7 +69,7 @@ export function PortalSection() {
             </h3>
             <a className="section-link" href="/dictionary">辞書ページへ　→</a>
           </div>
-          <p className="column-sub">髪型・服装・表情など、カテゴリから探せるプロンプト辞書を準備中です。</p>
+          <p className="column-sub">制作に使えるプロンプト辞書をカテゴリ別にまとめています。</p>
 
           <div className="featured-list">
             {topFeaturedDictionaryItems.map((item) => (

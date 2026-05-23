@@ -1,7 +1,8 @@
-import { articleGuideOrderHrefs, articles } from "@/data/articles";
+import { articleAnimaOrderHrefs, articleGuideOrderHrefs, articles } from "@/data/articles";
 
 type ArticleNavigationProps = {
   currentHref: string;
+  series?: "guide" | "anima";
 };
 
 function findPublishedArticle(href: string | undefined) {
@@ -12,15 +13,16 @@ function findPublishedArticle(href: string | undefined) {
   return articles.find((item) => item.href === href && item.published);
 }
 
-export function ArticleNavigation({ currentHref }: ArticleNavigationProps) {
-  const currentIndex = articleGuideOrderHrefs.indexOf(currentHref);
+export function ArticleNavigation({ currentHref, series = "guide" }: ArticleNavigationProps) {
+  const orderHrefs = series === "anima" ? articleAnimaOrderHrefs : articleGuideOrderHrefs;
+  const currentIndex = orderHrefs.indexOf(currentHref);
 
   if (currentIndex < 0) {
     return null;
   }
 
-  const previousArticle = findPublishedArticle(articleGuideOrderHrefs[currentIndex - 1]);
-  const nextArticle = findPublishedArticle(articleGuideOrderHrefs[currentIndex + 1]);
+  const previousArticle = findPublishedArticle(orderHrefs[currentIndex - 1]);
+  const nextArticle = findPublishedArticle(orderHrefs[currentIndex + 1]);
 
   if (!previousArticle && !nextArticle) {
     return null;

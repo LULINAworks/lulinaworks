@@ -1,7 +1,8 @@
 import type { CardItem } from "@/data/articles";
 
 export function LinkCard({ item, variant = "article" }: { item: CardItem; variant?: "article" | "dictionary" }) {
-  const thumbClass = variant === "dictionary" ? "thumb dict-thumb" : "thumb";
+  const compareThumbClass = item.thumbnail?.includes("anima-style-compare-thumb") ? " compare-thumb" : "";
+  const thumbClass = variant === "dictionary" ? "thumb dict-thumb" : `thumb${compareThumbClass}`;
 
   return (
     <a className="link-card" href={item.href}>

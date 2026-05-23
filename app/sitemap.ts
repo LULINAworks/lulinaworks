@@ -39,6 +39,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: "https://lulinaworks.com/articles/anima-style-compare",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: "https://lulinaworks.com/dictionary",
       lastModified: new Date(),
       changeFrequency: "weekly",

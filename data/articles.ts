@@ -13,6 +13,19 @@ export type CardItem = {
 
 export const articles: CardItem[] = [
   {
+    title: "Animaの絵柄はどう変わる？スタイル系プロンプト10種類を作例で比較",
+    description:
+      "Animaにスタイル系プロンプトを追加したときの絵柄・塗り・雰囲気の違いを、1人イラストと複数人シーンの作例で比較します。",
+    href: "/articles/anima-style-compare",
+    thumbnail: "/assets/articles/anima-style-compare/anima-style-compare-thumb.png",
+    tag: "Model",
+    readTime: "約12分",
+    status: "公開中",
+    featured: true,
+    published: true,
+    date: "2026-05-23",
+  },
+  {
     title: "Animaとは？ComfyUIで試して感じた特徴と注意点",
     description: "AnimaをComfyUIで試し、タグ形式・自然文形式の違いや注意点を整理します。",
     href: "/articles/anima-basic",
@@ -74,6 +87,11 @@ export const articleGuideOrderHrefs = [
   "/articles/comfyui-start-guide",
   "/articles/model-basic",
   "/articles/prompt-basic",
+];
+
+export const articleAnimaOrderHrefs = [
+  "/articles/anima-basic",
+  "/articles/anima-style-compare",
 ];
 
 const featuredArticleHrefs = [

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { ArticleNavigation } from "@/components/ArticleNavigation";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
@@ -331,6 +332,7 @@ export default function AnimaBasicPage() {
               特に複数人の描き分けや、キャラクター同士の関係を入れたいときは、今後の使い方が広がりそうだよ。
             </LulinaSpeech>
           </section>
+          <ArticleNavigation currentHref="/articles/anima-basic" series="anima" />
         </article>
       </main>
       <Footer />

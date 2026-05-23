@@ -379,6 +379,11 @@
         object-fit: cover;
       }
 
+      .compare-thumb img {
+        object-fit: contain;
+        object-position: center center;
+      }
+
       .dict-thumb img {
         object-fit: contain;
         object-position: center center;

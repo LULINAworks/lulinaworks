@@ -1,32 +1,46 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { HairstyleDictionaryItem, DictionarySampleVariant } from "@/data/dictionaries/hairstyle";
 import { SegmentedControl } from "./SegmentedControl";
 
 export type CopyFormat = "plain" | "comma";
 
-type DictionaryCardProps = {
-  item: HairstyleDictionaryItem;
-  copyFormat: CopyFormat;
+type DictionaryCardSample = {
+  variant: string;
+  label: string;
+  image: string;
 };
 
-const sampleOptions = [
-  { value: "female", label: "女性" },
-  { value: "male", label: "男性" },
-] satisfies { value: DictionarySampleVariant; label: string }[];
+type DictionaryCardItem = {
+  id: string;
+  category: string;
+  categoryLabel: string;
+  nameJa: string;
+  prompt: string;
+  memo: string[];
+  samples: DictionaryCardSample[];
+};
+
+type DictionaryCardProps = {
+  item: DictionaryCardItem;
+  copyFormat: CopyFormat;
+};
 
 function formatPrompt(prompt: string, copyFormat: CopyFormat) {
   return copyFormat === "comma" ? `${prompt},` : prompt;
 }
 
 export function DictionaryCard({ item, copyFormat }: DictionaryCardProps) {
-  const [selectedVariant, setSelectedVariant] = useState<DictionarySampleVariant>(item.samples[0]?.variant ?? "female");
+  const [selectedVariant, setSelectedVariant] = useState<string>(item.samples[0]?.variant ?? "female");
   const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
 
   const selectedSample = useMemo(() => {
     return item.samples.find((sample) => sample.variant === selectedVariant) ?? item.samples[0];
   }, [item.samples, selectedVariant]);
+
+  const sampleOptions = useMemo(() => {
+    return item.samples.map((sample) => ({ value: sample.variant, label: sample.label }));
+  }, [item.samples]);
 
   const promptText = formatPrompt(item.prompt, copyFormat);
 
@@ -59,7 +73,7 @@ export function DictionaryCard({ item, copyFormat }: DictionaryCardProps) {
         {item.samples.length > 1 ? (
           <SegmentedControl
             label={`${item.nameJa}のサンプル`}
-            options={sampleOptions.filter((option) => item.samples.some((sample) => sample.variant === option.value))}
+            options={sampleOptions}
             value={selectedSample.variant}
             onChange={setSelectedVariant}
             className="sample-segmented"

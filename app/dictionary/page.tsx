@@ -41,10 +41,10 @@ export default function DictionaryPage() {
         <section className="container list-hero visual-list-hero dictionary-hero" aria-labelledby="dictionary-page-title">
           <div className="sr-only">
             <span className="page-kicker">Dictionary</span>
-            <h1 id="dictionary-page-title">辞書ページは準備中です</h1>
-            <p>髪型、表情、ポーズなど、AIイラスト制作に使いやすいプロンプト表現を整理していく予定です。</p>
+            <h1 id="dictionary-page-title">辞書一覧</h1>
+            <p>AIイラスト制作に使いやすいプロンプト辞書を、カテゴリ別にまとめています。</p>
           </div>
-          <img src="/assets/eyecatch/dictionary-list-eyecatch.png" alt="LULINAworksの辞書ページは準備中です" />
+          <img src="/assets/eyecatch/dictionary-list-eyecatch.png" alt="LULINAworksの辞書一覧" />
         </section>
 
         <section className="container list-section dictionary-list-section" aria-label="辞書一覧">

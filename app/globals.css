@@ -1219,6 +1219,54 @@
         pointer-events: none;
       }
 
+      .hairstyle-dictionary-page .dictionary-eyecatch {
+        min-height: clamp(410px, 40vw, 560px);
+        justify-content: center;
+        padding: 46px 48px;
+        background:
+          linear-gradient(90deg, rgba(255, 253, 249, 0.96) 0%, rgba(255, 247, 238, 0.9) 42%, rgba(255, 247, 238, 0.24) 64%, rgba(255, 247, 238, 0) 78%),
+          url("/assets/eyecatch/eyecatch-dictionary-hairstyle-bg-pc.png") center right / cover no-repeat;
+      }
+
+      .hairstyle-dictionary-page .dictionary-eyecatch::after {
+        background:
+          radial-gradient(circle at 10% 14%, rgba(255, 159, 69, 0.14), transparent 25%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 241, 223, 0.08));
+      }
+
+      .hairstyle-dictionary-page .dictionary-eyecatch-copy {
+        width: min(50%, 600px);
+        min-width: 420px;
+      }
+
+      .hairstyle-dictionary-page .dictionary-usage-note {
+        width: min(50%, 600px);
+      }
+
+      .expression-dictionary-page .dictionary-eyecatch {
+        min-height: clamp(410px, 40vw, 560px);
+        justify-content: center;
+        padding: 46px 48px;
+        background:
+          linear-gradient(90deg, rgba(255, 253, 249, 0.96) 0%, rgba(255, 247, 238, 0.9) 42%, rgba(255, 247, 238, 0.24) 64%, rgba(255, 247, 238, 0) 78%),
+          url("/assets/eyecatch/eyecatch-dictionary-expression-bg-pc.png") center right / cover no-repeat;
+      }
+
+      .expression-dictionary-page .dictionary-eyecatch::after {
+        background:
+          radial-gradient(circle at 10% 14%, rgba(255, 159, 69, 0.14), transparent 25%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 241, 223, 0.08));
+      }
+
+      .expression-dictionary-page .dictionary-eyecatch-copy {
+        width: min(50%, 600px);
+        min-width: 420px;
+      }
+
+      .expression-dictionary-page .dictionary-usage-note {
+        width: min(50%, 600px);
+      }
+
       .dictionary-eyecatch-copy {
         width: min(58%, 640px);
         min-width: 460px;
@@ -1561,6 +1609,37 @@
         box-shadow: 0 5px 12px rgba(48, 39, 31, 0.035);
       }
 
+      .related-dictionaries-section {
+        margin-top: 34px;
+      }
+
+      .related-dictionaries-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+        max-width: 920px;
+        margin: 0 auto;
+      }
+
+      .related-dictionaries-grid .link-card {
+        max-width: 100%;
+      }
+
+      @media (min-width: 761px) {
+        .related-dictionaries-grid .link-card {
+          --feature-card-height: 184px;
+          grid-template-columns: 190px minmax(0, 1fr);
+        }
+
+        .related-dictionaries-grid .link-card h3 {
+          -webkit-line-clamp: 2;
+        }
+
+        .related-dictionaries-grid .link-card p {
+          -webkit-line-clamp: 3;
+        }
+      }
+
       .dictionary-back-top {
         margin-top: 28px;
         text-align: center;
@@ -1586,6 +1665,20 @@
         }
       }
 
+      @media (min-width: 761px) and (max-width: 900px) {
+        .hairstyle-dictionary-page .dictionary-eyecatch-copy,
+        .hairstyle-dictionary-page .dictionary-usage-note {
+          width: min(48%, 380px);
+          min-width: 0;
+        }
+
+        .expression-dictionary-page .dictionary-eyecatch-copy,
+        .expression-dictionary-page .dictionary-usage-note {
+          width: min(48%, 380px);
+          min-width: 0;
+        }
+      }
+
       @media (max-width: 760px) {
         .dictionary-hero-panel {
           padding: 0;
@@ -1600,6 +1693,91 @@
           background:
             linear-gradient(180deg, rgba(255, 253, 249, 0.52) 0%, rgba(255, 247, 238, 0.9) 42%, rgba(255, 253, 249, 0.98) 100%),
             url("/assets/eyecatch/eyecatch-dictionary-hairstyle-bg.png") 58% top / auto 62% no-repeat;
+        }
+
+        .hairstyle-dictionary-page .dictionary-eyecatch {
+          min-height: 560px;
+          justify-content: flex-start;
+          gap: 12px;
+          padding: 26px 18px 22px;
+          background:
+            linear-gradient(180deg, rgba(255, 253, 249, 0.18) 0%, rgba(255, 247, 238, 0.2) 38%, rgba(255, 253, 249, 0.58) 78%, rgba(255, 253, 249, 0.88) 100%),
+            url("/assets/eyecatch/eyecatch-dictionary-hairstyle-bg-mobile.png") 70% top / cover no-repeat;
+        }
+
+        .hairstyle-dictionary-page .dictionary-eyecatch::after {
+          background:
+            linear-gradient(90deg, rgba(255, 253, 249, 0.94) 0%, rgba(255, 253, 249, 0.82) 45%, rgba(255, 253, 249, 0.12) 58%, transparent 70%),
+            linear-gradient(180deg, transparent 0%, transparent 64%, rgba(255, 253, 249, 0.42) 82%, rgba(255, 253, 249, 0.9) 100%);
+        }
+
+        .hairstyle-dictionary-page .dictionary-eyecatch-copy {
+          width: min(62%, 220px);
+          min-width: 0;
+        }
+
+        .hairstyle-dictionary-page .dictionary-eyecatch h1 {
+          margin-top: 10px;
+        }
+
+        .hairstyle-dictionary-page .dictionary-eyecatch p {
+          max-width: 100%;
+        }
+
+        .hairstyle-dictionary-page .dictionary-usage-note {
+          box-sizing: border-box;
+          width: 100%;
+          min-width: 0;
+          margin-top: clamp(56px, 16vw, 86px);
+          background: rgba(255, 255, 255, 0.86);
+        }
+
+        .hairstyle-dictionary-page .dictionary-usage-note p,
+        .hairstyle-dictionary-page .dictionary-usage-note span {
+          overflow-wrap: anywhere;
+          word-break: normal;
+        }
+
+        .expression-dictionary-page .dictionary-eyecatch {
+          min-height: 560px;
+          justify-content: flex-start;
+          gap: 12px;
+          padding: 26px 18px 22px;
+          background:
+            linear-gradient(180deg, rgba(255, 253, 249, 0.18) 0%, rgba(255, 247, 238, 0.2) 38%, rgba(255, 253, 249, 0.58) 78%, rgba(255, 253, 249, 0.88) 100%),
+            url("/assets/eyecatch/eyecatch-dictionary-expression-bg-mobile.png") center top / cover no-repeat;
+        }
+
+        .expression-dictionary-page .dictionary-eyecatch::after {
+          background:
+            linear-gradient(90deg, rgba(255, 253, 249, 0.94) 0%, rgba(255, 253, 249, 0.82) 45%, rgba(255, 253, 249, 0.12) 58%, transparent 70%),
+            linear-gradient(180deg, transparent 0%, transparent 64%, rgba(255, 253, 249, 0.42) 82%, rgba(255, 253, 249, 0.9) 100%);
+        }
+
+        .expression-dictionary-page .dictionary-eyecatch-copy {
+          width: min(62%, 220px);
+          min-width: 0;
+        }
+
+        .expression-dictionary-page .dictionary-eyecatch h1 {
+          margin-top: 10px;
+        }
+
+        .expression-dictionary-page .dictionary-eyecatch p {
+          max-width: 100%;
+        }
+
+        .expression-dictionary-page .dictionary-usage-note {
+          box-sizing: border-box;
+          width: 100%;
+          margin-top: clamp(56px, 16vw, 86px);
+          background: rgba(255, 255, 255, 0.86);
+        }
+
+        .expression-dictionary-page .dictionary-usage-note p,
+        .expression-dictionary-page .dictionary-usage-note span {
+          overflow-wrap: anywhere;
+          word-break: normal;
         }
 
         .dictionary-eyecatch-copy {

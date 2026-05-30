@@ -1203,8 +1203,7 @@
         border: 1px solid rgba(236, 217, 199, 0.95);
         border-radius: 28px;
         background:
-          linear-gradient(90deg, rgba(255, 253, 249, 0.94) 0%, rgba(255, 247, 238, 0.88) 44%, rgba(255, 247, 238, 0.18) 72%),
-          url("/assets/eyecatch/eyecatch-dictionary-hairstyle-bg.png") center / cover no-repeat;
+          linear-gradient(90deg, rgba(255, 253, 249, 0.94) 0%, rgba(255, 247, 238, 0.88) 44%, rgba(255, 247, 238, 0.18) 72%);
         box-shadow: var(--shadow-soft);
       }
 
@@ -1691,8 +1690,7 @@
           padding: 24px 20px;
           border-radius: 22px;
           background:
-            linear-gradient(180deg, rgba(255, 253, 249, 0.52) 0%, rgba(255, 247, 238, 0.9) 42%, rgba(255, 253, 249, 0.98) 100%),
-            url("/assets/eyecatch/eyecatch-dictionary-hairstyle-bg.png") 58% top / auto 62% no-repeat;
+            linear-gradient(180deg, rgba(255, 253, 249, 0.52) 0%, rgba(255, 247, 238, 0.9) 42%, rgba(255, 253, 249, 0.98) 100%);
         }
 
         .hairstyle-dictionary-page .dictionary-eyecatch {

@@ -808,6 +808,14 @@
         box-shadow: var(--shadow-soft);
       }
 
+      .published-date {
+        margin: 0 0 26px;
+        color: #69758a;
+        font-size: .92rem;
+        font-weight: 900;
+        line-height: 1.6;
+      }
+
       .article-content h2 {
         margin: 52px 0 18px;
         font-family: var(--font-heading), var(--font-body), sans-serif;
@@ -819,6 +827,10 @@
       }
 
       .article-content h2:first-child {
+        margin-top: 0;
+      }
+
+      .published-date + h2 {
         margin-top: 0;
       }
 

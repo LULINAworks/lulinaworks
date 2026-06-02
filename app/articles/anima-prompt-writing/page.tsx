@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { ArticleNavigation } from "@/components/ArticleNavigation";
+import { ArticlePublishedDate } from "@/components/ArticlePublishedDate";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
@@ -11,7 +12,6 @@ const canonicalUrl = "https://lulinaworks.com/articles/anima-prompt-writing";
 const imageBase = "/assets/articles/anima-prompt-writing/";
 const heroImage = `${imageBase}anima-prompt-writing-eyecatch.png`;
 const ogImage = "/assets/og/ogp-anima-prompt-writing.png";
-const publishedLabel = "2026年6月2日";
 
 const toc = [
   "Animaは自然文だけでも使える",
@@ -159,7 +159,7 @@ export default function AnimaPromptWritingPage() {
           </header>
 
           <section className="article-content">
-            <p className="published-date">公開日：{publishedLabel}</p>
+            <ArticlePublishedDate href="/articles/anima-prompt-writing" />
 
             <h2 id="intro">はじめに</h2>
             <p>画像生成AIでイラストを作るとき、プロンプトの書き方にはいくつかの考え方があります。</p>
@@ -531,14 +531,6 @@ white t-shirt`}</PromptCode>
           background:
             linear-gradient(90deg, rgba(255, 253, 249, 0.94) 0%, rgba(255, 247, 238, 0.86) 48%, rgba(255, 247, 238, 0.18) 78%),
             url("${heroImage}") right 42% / cover no-repeat;
-        }
-
-        .anima-prompt-writing-page .published-date {
-          margin: 0 0 26px;
-          color: #69758a;
-          font-size: .92rem;
-          font-weight: 900;
-          line-height: 1.6;
         }
 
         .anima-prompt-writing-page .article-content h3 {

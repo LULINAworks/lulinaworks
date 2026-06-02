@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { ArticleNavigation } from "@/components/ArticleNavigation";
+import { ArticlePublishedDate } from "@/components/ArticlePublishedDate";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
@@ -179,6 +180,7 @@ export default function PromptBasicPage() {
           </header>
 
           <section className="article-content">
+            <ArticlePublishedDate href="/articles/prompt-basic" />
             <h2 id="intro">はじめに</h2>
             <p>ComfyUIで画像を生成できるようになると、次に迷いやすいのが「プロンプトに何を書くか」です。</p>
             <p>同じモデルや同じワークフローを使っていても、プロンプトの内容によって、キャラクターの見た目、表情、服装、背景、雰囲気は大きく変わります。</p>

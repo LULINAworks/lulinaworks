@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { ArticleNavigation } from "@/components/ArticleNavigation";
+import { ArticlePublishedDate } from "@/components/ArticlePublishedDate";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
@@ -372,6 +373,7 @@ export default function AnimaStyleComparePage() {
           </header>
 
           <section className="article-content">
+            <ArticlePublishedDate href="/articles/anima-style-compare" />
             <h2 id="intro">はじめに</h2>
             <p>前回の記事では、AnimaをComfyUIで試しながら、タグ形式・自然文形式の違いや、使う前に知っておきたい注意点を整理しました。</p>
             <p>

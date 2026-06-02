@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { ArticleNavigation } from "@/components/ArticleNavigation";
+import { ArticlePublishedDate } from "@/components/ArticlePublishedDate";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
@@ -135,6 +136,7 @@ export default function ModelBasicPage() {
           </header>
 
           <section className="article-content">
+            <ArticlePublishedDate href="/articles/model-basic" />
             <h2 id="intro">はじめに</h2>
             <p>前回の記事では、ComfyUI Portable版を導入して、最初の1枚を生成するところまで確認しました。</p>
             <p>今回はその続きとして、画像生成で使うモデルの基本を整理していきます。</p>

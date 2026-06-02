@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { ArticleNavigation } from "@/components/ArticleNavigation";
+import { ArticlePublishedDate } from "@/components/ArticlePublishedDate";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
@@ -190,6 +191,7 @@ export default function AnimaBasicPage() {
           </header>
 
           <section className="article-content">
+            <ArticlePublishedDate href="/articles/anima-basic" />
             <h2 id="intro">はじめに</h2>
             <p>画像生成AIのモデルには、SD1.5系、SDXL系、NovelAI系など、さまざまな系統があります。</p>
             <p>その中で、最近気になったモデルのひとつが <strong>Anima</strong> です。</p>

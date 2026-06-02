@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ArticleNavigation } from "@/components/ArticleNavigation";
+import { ArticlePublishedDate } from "@/components/ArticlePublishedDate";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
@@ -118,6 +119,7 @@ export default function ComfyuiStartGuidePage() {
           </header>
 
           <section className="article-content">
+            <ArticlePublishedDate href="/articles/comfyui-start-guide" />
             <h2 id="intro">はじめに</h2>
             <p>ComfyUIは、画像生成の流れを「ノード」と呼ばれるパーツで組み立てて使うツールです。</p>
             <p>

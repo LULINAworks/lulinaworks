@@ -36,7 +36,7 @@ export const articles: CardItem[] = [
     status: "公開中",
     featured: true,
     published: true,
-    date: "2026-05-23",
+    date: "2026-05-22",
   },
   {
     title: "Animaとは？ComfyUIで試して感じた特徴と注意点",
@@ -48,7 +48,7 @@ export const articles: CardItem[] = [
     status: "公開中",
     featured: true,
     published: true,
-    date: "2026-05-18",
+    date: "2026-05-19",
   },
   {
     title: "画像生成AIのモデルとは？SD1.5・SDXLの違いと選び方",

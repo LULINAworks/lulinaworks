@@ -13,6 +13,19 @@ export type CardItem = {
 
 export const articles: CardItem[] = [
   {
+    title: "Animaで使える？プロンプトをタグと自然文で書く方法",
+    description:
+      "Animaでタグ指定と自然文を組み合わせ、キャラの特徴や複数人シーンを整理して書く方法を紹介します。",
+    href: "/articles/anima-prompt-writing",
+    thumbnail: "/assets/articles/anima-prompt-writing/anima-prompt-writing-thumb.png",
+    tag: "Model",
+    readTime: "約10分",
+    status: "公開中",
+    featured: true,
+    published: true,
+    date: "2026-06-02",
+  },
+  {
     title: "Animaの絵柄はどう変わる？スタイル系プロンプト10種類を作例で比較",
     description:
       "Animaにスタイル系プロンプトを追加したときの絵柄・塗り・雰囲気の違いを、1人イラストと複数人シーンの作例で比較します。",
@@ -92,6 +105,7 @@ export const articleGuideOrderHrefs = [
 export const articleAnimaOrderHrefs = [
   "/articles/anima-basic",
   "/articles/anima-style-compare",
+  "/articles/anima-prompt-writing",
 ];
 
 const featuredArticleHrefs = [

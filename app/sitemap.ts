@@ -45,6 +45,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: "https://lulinaworks.com/articles/anima-prompt-writing",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: "https://lulinaworks.com/dictionary",
       lastModified: new Date(),
       changeFrequency: "weekly",

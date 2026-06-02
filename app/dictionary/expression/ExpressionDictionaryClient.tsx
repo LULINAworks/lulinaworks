@@ -54,7 +54,7 @@ export function ExpressionDictionaryClient() {
               <p>
                 <span>画像サンプルを見ながら、使いたい表情のpromptを探せます。</span>
                 <span>コピー形式は「カンマなし / カンマあり」で切り替えできます。</span>
-                <span>表情辞書v1は女性サンプルのみを掲載しています。</span>
+                <span>女性サンプルのみを掲載しています。</span>
               </p>
             </div>
           </div>

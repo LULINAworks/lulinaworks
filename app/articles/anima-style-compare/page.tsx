@@ -388,7 +388,7 @@ export default function AnimaStyleComparePage() {
             <RelatedAnimaCard />
 
             <h2 id="article-summary">この記事でわかること</h2>
-            <LulinaSpeech tone="recommend" label="この記事でわかること">
+            <LulinaSpeech tone="recommend" label="ルリナ">
               Animaでスタイル系プロンプトを足したときに、絵柄や塗りがどのくらい変わるのかを作例で見ていくよ。
               <br />
               1人イラストと複数人シーンの両方で比べるから、タグごとの違いをざっくり確認しやすいと思うよ。

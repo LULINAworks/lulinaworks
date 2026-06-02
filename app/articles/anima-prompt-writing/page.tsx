@@ -179,7 +179,7 @@ export default function AnimaPromptWritingPage() {
             <p>自然文を否定するのではなく、キャラクターの特徴はタグで整理し、シーンや雰囲気は自然文で補う、という使い方を紹介します。</p>
 
             <h2 id="article-summary">この記事でわかること</h2>
-            <LulinaSpeech tone="recommend" label="この記事でわかること">
+            <LulinaSpeech tone="recommend" label="ルリナ">
               Animaは自然文だけでも使えるけれど、表情・構図・服装差分やオリジナルキャラの特徴づけでは、タグで分けた方が扱いやすい場面もあるよ。
               <br />
               この記事では、タグ指定と自然文をどう組み合わせるかを整理していくね。
@@ -541,6 +541,18 @@ white t-shirt`}</PromptCode>
           line-height: 1.5;
           font-weight: 900;
           letter-spacing: 0;
+        }
+
+        .anima-prompt-writing-page .article-content pre {
+          max-width: 100%;
+          overflow-x: visible;
+          white-space: pre-wrap;
+        }
+
+        .anima-prompt-writing-page .article-content pre code {
+          white-space: pre-wrap;
+          overflow-wrap: anywhere;
+          word-break: normal;
         }
 
         .anima-prompt-writing-page .article-content p,

@@ -199,7 +199,7 @@ export default function AnimaBasicPage() {
             <p>この記事ではAnimaを実際にComfyUIで試してみて、タグ形式と自然文形式の違いや生成速度、使う前に知っておきたい注意点を整理します。</p>
 
             <h2 id="article-summary">この記事でわかること</h2>
-            <LulinaSpeech tone="recommend" label="この記事でわかること">
+            <LulinaSpeech tone="recommend" label="ルリナ">
               Animaは、タグだけでなく文章でも指定できるモデルだよ。<br />
               この記事では、ComfyUIで試したときの使い方の違いや、生成速度、ライセンス面の注意点をまとめていくね。<br />
               いつものタグ指定とどう違うのかを見たい人にも、判断材料になる内容だよ。

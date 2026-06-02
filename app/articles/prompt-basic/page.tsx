@@ -188,7 +188,7 @@ export default function PromptBasicPage() {
             <p>この記事では、AIイラストで使うプロンプトを「長い呪文」として覚えるのではなく、被写体・見た目・表情・構図・背景・画風などの要素に分けて整理する考え方を紹介します。</p>
             <p>今回はSDXL系のイラスト向けモデルを使った作例を中心に載せていますが、基本的な考え方はSD1.5系や他のモデルでも共通して使えます。</p>
 
-            <LulinaSpeech tone="recommend" label="この記事でわかること">
+            <LulinaSpeech tone="recommend" label="ルリナ">
               プロンプトは、長く書けばよくなるというより「何を変えたいか」を分けて考えるのが大事だよ。
               この記事では、英語・日本語の違い、positive / negative、タグ形式、髪型や表情などの要素ごとの考え方を整理していくね。
             </LulinaSpeech>

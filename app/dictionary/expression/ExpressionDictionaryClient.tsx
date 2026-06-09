@@ -37,26 +37,25 @@ export function ExpressionDictionaryClient() {
             <span aria-hidden="true">/</span>
             <a href="/dictionary">辞書一覧</a>
             <span aria-hidden="true">/</span>
-            <span>表情辞書</span>
+            <span>表情プロンプト辞書</span>
           </nav>
 
           <div className="dictionary-eyecatch">
             <div className="dictionary-eyecatch-copy">
               <span className="page-kicker">Dictionary</span>
-              <h1 id="expression-page-title">表情辞書</h1>
+              <h1 id="expression-page-title">表情プロンプト辞書</h1>
+              <p className="dictionary-eyecatch-subcopy">AIイラスト向け表情タグ一覧</p>
               <p>
-                AIイラスト制作で使いやすい表情プロンプトを、笑顔・怒り・涙・記号顔などのカテゴリ別に整理しています。
+                Stable DiffusionやNovelAIなどの画像生成AIで使いやすい表情プロンプトを、笑顔・怒り・涙・照れ・記号表情などのカテゴリ別に整理しています。
               </p>
             </div>
+          </div>
 
-            <div className="dictionary-usage-note" aria-label="使い方メモ">
-              <strong>使い方メモ</strong>
-              <p>
-                <span>画像サンプルを見ながら、使いたい表情のpromptを探せます。</span>
-                <span>コピー形式は「カンマなし / カンマあり」で切り替えできます。</span>
-                <span>女性サンプルのみを掲載しています。</span>
-              </p>
-            </div>
+          <div className="dictionary-usage-note" aria-label="使い方メモ">
+            <strong>使い方メモ</strong>
+            <p>
+              画像サンプルを見ながら、AIイラストに使いたい表情タグを探せます。コピー形式は「カンマなし / カンマあり」で切り替えできます。現在は女性サンプルのみを掲載しています。
+            </p>
           </div>
         </section>
 

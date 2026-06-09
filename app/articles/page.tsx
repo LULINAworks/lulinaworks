@@ -5,7 +5,8 @@ import { LinkCard } from "@/components/LinkCard";
 import { publishedArticles } from "@/data/articles";
 
 const title = "記事一覧｜LULINAworks";
-const description = "ComfyUIやAIイラスト制作に関する記事をまとめています。";
+const description =
+  "ComfyUIの始め方、画像生成AIのモデル、プロンプトの考え方など、AIイラスト制作に役立つ記事をまとめています。";
 const canonicalUrl = "https://lulinaworks.com/articles";
 
 export const metadata: Metadata = {
@@ -36,13 +37,19 @@ export default function ArticlesPage() {
     <>
       <Header />
       <main className="subpage-main">
-        <section className="container list-hero visual-list-hero" aria-labelledby="articles-page-title">
-          <div className="sr-only">
+        <section className="container list-hero visual-list-hero articles-index-hero" aria-labelledby="articles-page-title">
+          <picture className="visual-list-picture" aria-hidden="true">
+            <source media="(max-width: 760px)" srcSet="/assets/eyecatch/eyecatch-articles-index-bg-mobile.webp" />
+            <img src="/assets/eyecatch/eyecatch-articles-index-bg-pc.webp" alt="" />
+          </picture>
+          <div className="list-hero-copy">
             <span className="page-kicker">Articles</span>
             <h1 id="articles-page-title">記事一覧</h1>
-            <p>ComfyUIの導入やAIイラスト制作の基礎を、少しずつ読みやすくまとめていきます。</p>
+            <p className="list-hero-subcopy">AIイラスト制作のガイドをまとめています</p>
+            <p>
+              ComfyUIの始め方、画像生成AIのモデル、プロンプトの考え方など、AIイラスト制作に役立つ記事をまとめています。
+            </p>
           </div>
-          <img src="/assets/eyecatch/articles-list-eyecatch.png" alt="LULINAworksの記事一覧" />
         </section>
 
         <section className="container list-section" aria-label="記事一覧">

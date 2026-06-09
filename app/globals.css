@@ -706,22 +706,69 @@
       }
 
       .visual-list-hero {
+        position: relative;
+        isolation: isolate;
         display: block;
         width: min(1120px, calc(100% - 32px));
-        min-height: 0;
         margin: 0 auto;
-        padding: 12px;
+        padding: 0;
+        box-sizing: border-box;
+        border-radius: 24px;
+        background: #fffaf5;
+        overflow: hidden;
       }
 
-      .visual-list-hero img {
+      .visual-list-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background:
+          linear-gradient(90deg, rgba(255, 253, 249, 0.94) 0%, rgba(255, 247, 238, 0.88) 42%, rgba(255, 247, 238, 0.26) 70%, rgba(255, 247, 238, 0.06) 100%);
+      }
+
+      .visual-list-picture {
+        display: block;
+        width: 100%;
+        line-height: 0;
+      }
+
+      .visual-list-picture img {
         display: block;
         width: 100%;
         height: auto;
         max-width: none;
-        margin: 0 auto;
-        object-fit: contain;
-        border-radius: 18px;
-        background: #fffaf5;
+        border-radius: 24px;
+        box-shadow: none;
+      }
+
+      .list-hero-copy {
+        position: relative;
+        z-index: 1;
+        position: absolute;
+        left: clamp(20px, 4vw, 44px);
+        top: 50%;
+        width: min(54%, 600px);
+        min-width: 380px;
+        padding: 24px 26px;
+        box-sizing: border-box;
+        transform: translateY(-50%);
+        border: 1px solid rgba(236, 217, 199, 0.88);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.56);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 12px 28px rgba(48, 39, 31, 0.08);
+      }
+
+      .list-hero .list-hero-subcopy {
+        margin-bottom: 10px;
+        color: var(--orange);
+        font-size: 1.08rem;
+        font-weight: 900;
+      }
+
+      .hero-title-line {
+        display: block;
       }
 
       .list-section {
@@ -1205,13 +1252,13 @@
       .dictionary-eyecatch {
         position: relative;
         isolation: isolate;
-        min-height: clamp(390px, 36vw, 520px);
+        min-height: clamp(360px, 39vw, 520px);
         overflow: hidden;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 22px;
-        padding: 42px 46px;
+        align-items: stretch;
+        padding: 0;
         border: 1px solid rgba(236, 217, 199, 0.95);
         border-radius: 28px;
         background:
@@ -1231,79 +1278,83 @@
       }
 
       .hairstyle-dictionary-page .dictionary-eyecatch {
-        min-height: clamp(410px, 40vw, 560px);
+        min-height: clamp(390px, 39vw, 560px);
         justify-content: center;
-        padding: 46px 48px;
         background:
-          linear-gradient(90deg, rgba(255, 253, 249, 0.96) 0%, rgba(255, 247, 238, 0.9) 42%, rgba(255, 247, 238, 0.24) 64%, rgba(255, 247, 238, 0) 78%),
-          url("/assets/eyecatch/eyecatch-dictionary-hairstyle-bg-pc.png") center right / cover no-repeat;
+          url("/assets/eyecatch/eyecatch-dictionary-hairstyle-bg-pc.webp") center / cover no-repeat;
       }
 
       .hairstyle-dictionary-page .dictionary-eyecatch::after {
         background:
-          radial-gradient(circle at 10% 14%, rgba(255, 159, 69, 0.14), transparent 25%),
-          linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 241, 223, 0.08));
+          linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 241, 223, 0.08));
       }
 
       .hairstyle-dictionary-page .dictionary-eyecatch-copy {
-        width: min(50%, 600px);
-        min-width: 420px;
-      }
-
-      .hairstyle-dictionary-page .dictionary-usage-note {
-        width: min(50%, 600px);
+        width: 100%;
+        min-width: 0;
       }
 
       .expression-dictionary-page .dictionary-eyecatch {
-        min-height: clamp(410px, 40vw, 560px);
+        min-height: clamp(390px, 39vw, 560px);
         justify-content: center;
-        padding: 46px 48px;
         background:
-          linear-gradient(90deg, rgba(255, 253, 249, 0.96) 0%, rgba(255, 247, 238, 0.9) 42%, rgba(255, 247, 238, 0.24) 64%, rgba(255, 247, 238, 0) 78%),
-          url("/assets/eyecatch/eyecatch-dictionary-expression-bg-pc.png") center right / cover no-repeat;
+          url("/assets/eyecatch/eyecatch-dictionary-expression-bg-pc.webp") center / cover no-repeat;
       }
 
       .expression-dictionary-page .dictionary-eyecatch::after {
         background:
-          radial-gradient(circle at 10% 14%, rgba(255, 159, 69, 0.14), transparent 25%),
-          linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 241, 223, 0.08));
+          linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 241, 223, 0.08));
       }
 
       .expression-dictionary-page .dictionary-eyecatch-copy {
-        width: min(50%, 600px);
-        min-width: 420px;
-      }
-
-      .expression-dictionary-page .dictionary-usage-note {
-        width: min(50%, 600px);
+        width: 100%;
+        min-width: 0;
       }
 
       .dictionary-eyecatch-copy {
-        width: min(58%, 640px);
-        min-width: 460px;
+        width: 100%;
+        min-width: 0;
+        padding: 24px clamp(22px, 5vw, 58px);
+        box-sizing: border-box;
+        background: rgba(32, 96, 114, 0.56);
+        text-align: center;
+        backdrop-filter: blur(2px);
+        box-shadow: 0 12px 28px rgba(48, 39, 31, 0.08);
       }
 
       .dictionary-eyecatch h1 {
-        margin: 14px 0 12px;
+        margin: 12px auto 10px;
         font-family: var(--font-heading), var(--font-body), sans-serif;
-        color: var(--navy);
-        font-size: clamp(2rem, 4vw, 3.25rem);
+        color: #fff6e6;
+        font-size: clamp(2.1rem, 4.4vw, 3.5rem);
         line-height: 1.25;
         font-weight: 900;
         letter-spacing: 0;
+        text-shadow:
+          0 3px 0 rgba(91, 54, 24, 0.82),
+          0 0 18px rgba(34, 65, 92, 0.35);
       }
 
       .dictionary-eyecatch p {
-        max-width: 780px;
+        max-width: 880px;
         margin: 0;
-        color: #586273;
-        font-weight: 700;
-        line-height: 1.9;
+        margin-inline: auto;
+        color: #fffaf3;
+        font-weight: 800;
+        line-height: 1.75;
+        text-shadow: 0 1px 2px rgba(43, 61, 78, 0.44);
+      }
+
+      .dictionary-eyecatch .dictionary-eyecatch-subcopy {
+        margin-bottom: 10px;
+        color: #ffe0a8;
+        font-size: 1.12rem;
+        font-weight: 900;
       }
 
       .dictionary-usage-note {
         width: min(100%, 760px);
-        margin-top: 4px;
+        margin-top: 16px;
         padding: 15px 18px;
         border: 1px solid rgba(236, 217, 199, 0.88);
         border-radius: 16px;
@@ -1324,10 +1375,6 @@
         color: #586273;
         font-weight: 700;
         line-height: 1.8;
-      }
-
-      .dictionary-usage-note p span {
-        display: block;
       }
 
       .dictionary-toc-section,
@@ -1677,14 +1724,12 @@
       }
 
       @media (min-width: 761px) and (max-width: 900px) {
-        .hairstyle-dictionary-page .dictionary-eyecatch-copy,
-        .hairstyle-dictionary-page .dictionary-usage-note {
+        .hairstyle-dictionary-page .dictionary-eyecatch-copy {
           width: min(48%, 380px);
           min-width: 0;
         }
 
-        .expression-dictionary-page .dictionary-eyecatch-copy,
-        .expression-dictionary-page .dictionary-usage-note {
+        .expression-dictionary-page .dictionary-eyecatch-copy {
           width: min(48%, 380px);
           min-width: 0;
         }
@@ -1695,35 +1740,70 @@
           padding: 0;
         }
 
+        .visual-list-hero {
+          min-height: 0;
+          padding: 0;
+        }
+
+        .visual-list-hero::before {
+          background:
+            linear-gradient(180deg, rgba(255, 253, 249, 0.08) 0%, rgba(255, 247, 238, 0.18) 42%, rgba(255, 253, 249, 0.9) 76%, rgba(255, 253, 249, 0.98) 100%);
+        }
+
+        .list-hero-copy {
+          left: 18px;
+          right: 18px;
+          top: auto;
+          bottom: 18px;
+          width: auto;
+          min-width: 0;
+          padding: 18px 18px;
+          transform: none;
+          border-radius: 18px;
+          background: rgba(255, 255, 255, 0.58);
+        }
+
+        .list-hero h1 {
+          max-width: 100%;
+          font-size: clamp(1.55rem, 6.6vw, 2rem);
+          overflow-wrap: anywhere;
+          word-break: break-all;
+          line-break: anywhere;
+        }
+
+        .list-hero p {
+          max-width: 100%;
+          overflow-wrap: anywhere;
+          word-break: break-all;
+          line-break: anywhere;
+        }
+
         .dictionary-eyecatch {
           min-height: 520px;
-          justify-content: flex-end;
-          gap: 16px;
-          padding: 24px 20px;
+          justify-content: center;
+          padding: 0;
           border-radius: 22px;
           background:
             linear-gradient(180deg, rgba(255, 253, 249, 0.52) 0%, rgba(255, 247, 238, 0.9) 42%, rgba(255, 253, 249, 0.98) 100%);
         }
 
         .hairstyle-dictionary-page .dictionary-eyecatch {
-          min-height: 560px;
-          justify-content: flex-start;
-          gap: 12px;
-          padding: 26px 18px 22px;
+          min-height: 520px;
+          justify-content: center;
           background:
-            linear-gradient(180deg, rgba(255, 253, 249, 0.18) 0%, rgba(255, 247, 238, 0.2) 38%, rgba(255, 253, 249, 0.58) 78%, rgba(255, 253, 249, 0.88) 100%),
-            url("/assets/eyecatch/eyecatch-dictionary-hairstyle-bg-mobile.png") 70% top / cover no-repeat;
+            url("/assets/eyecatch/eyecatch-dictionary-hairstyle-bg-mobile.webp") center top / cover no-repeat;
         }
 
         .hairstyle-dictionary-page .dictionary-eyecatch::after {
           background:
-            linear-gradient(90deg, rgba(255, 253, 249, 0.94) 0%, rgba(255, 253, 249, 0.82) 45%, rgba(255, 253, 249, 0.12) 58%, transparent 70%),
-            linear-gradient(180deg, transparent 0%, transparent 64%, rgba(255, 253, 249, 0.42) 82%, rgba(255, 253, 249, 0.9) 100%);
+            linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 241, 223, 0.1));
         }
 
         .hairstyle-dictionary-page .dictionary-eyecatch-copy {
-          width: min(62%, 220px);
+          width: 100%;
           min-width: 0;
+          padding: 20px 18px;
+          background: rgba(32, 96, 114, 0.6);
         }
 
         .hairstyle-dictionary-page .dictionary-eyecatch h1 {
@@ -1734,39 +1814,23 @@
           max-width: 100%;
         }
 
-        .hairstyle-dictionary-page .dictionary-usage-note {
-          box-sizing: border-box;
-          width: 100%;
-          min-width: 0;
-          margin-top: clamp(56px, 16vw, 86px);
-          background: rgba(255, 255, 255, 0.86);
-        }
-
-        .hairstyle-dictionary-page .dictionary-usage-note p,
-        .hairstyle-dictionary-page .dictionary-usage-note span {
-          overflow-wrap: anywhere;
-          word-break: normal;
-        }
-
         .expression-dictionary-page .dictionary-eyecatch {
-          min-height: 560px;
-          justify-content: flex-start;
-          gap: 12px;
-          padding: 26px 18px 22px;
+          min-height: 520px;
+          justify-content: center;
           background:
-            linear-gradient(180deg, rgba(255, 253, 249, 0.18) 0%, rgba(255, 247, 238, 0.2) 38%, rgba(255, 253, 249, 0.58) 78%, rgba(255, 253, 249, 0.88) 100%),
-            url("/assets/eyecatch/eyecatch-dictionary-expression-bg-mobile.png") center top / cover no-repeat;
+            url("/assets/eyecatch/eyecatch-dictionary-expression-bg-mobile.webp") center top / cover no-repeat;
         }
 
         .expression-dictionary-page .dictionary-eyecatch::after {
           background:
-            linear-gradient(90deg, rgba(255, 253, 249, 0.94) 0%, rgba(255, 253, 249, 0.82) 45%, rgba(255, 253, 249, 0.12) 58%, transparent 70%),
-            linear-gradient(180deg, transparent 0%, transparent 64%, rgba(255, 253, 249, 0.42) 82%, rgba(255, 253, 249, 0.9) 100%);
+            linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 241, 223, 0.1));
         }
 
         .expression-dictionary-page .dictionary-eyecatch-copy {
-          width: min(62%, 220px);
+          width: 100%;
           min-width: 0;
+          padding: 20px 18px;
+          background: rgba(32, 96, 114, 0.6);
         }
 
         .expression-dictionary-page .dictionary-eyecatch h1 {
@@ -1777,35 +1841,34 @@
           max-width: 100%;
         }
 
-        .expression-dictionary-page .dictionary-usage-note {
-          box-sizing: border-box;
-          width: 100%;
-          margin-top: clamp(56px, 16vw, 86px);
-          background: rgba(255, 255, 255, 0.86);
-        }
-
-        .expression-dictionary-page .dictionary-usage-note p,
-        .expression-dictionary-page .dictionary-usage-note span {
-          overflow-wrap: anywhere;
-          word-break: normal;
-        }
-
         .dictionary-eyecatch-copy {
           width: 100%;
           min-width: 0;
         }
 
         .dictionary-eyecatch h1 {
-          font-size: clamp(1.75rem, 9vw, 2.4rem);
+          max-width: 100%;
+          font-size: clamp(1.65rem, 7vw, 2.15rem);
+          overflow-wrap: anywhere;
+          line-break: anywhere;
         }
 
         .dictionary-eyecatch p {
           font-size: .95rem;
-          line-height: 1.8;
+          line-height: 1.7;
+          overflow-wrap: anywhere;
+          line-break: anywhere;
         }
 
         .dictionary-usage-note {
+          box-sizing: border-box;
+          width: 100%;
           padding: 14px 15px;
+        }
+
+        .dictionary-usage-note p {
+          overflow-wrap: anywhere;
+          word-break: normal;
         }
 
         .dictionary-section-head {

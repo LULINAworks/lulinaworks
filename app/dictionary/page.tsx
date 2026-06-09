@@ -4,8 +4,9 @@ import { Header } from "@/components/Header";
 import { LinkCard } from "@/components/LinkCard";
 import { dictionaryItems } from "@/data/dictionary";
 
-const title = "辞書一覧｜LULINAworks";
-const description = "AIイラスト制作に使うプロンプト辞書ページです。現在準備中です。";
+const title = "AIイラスト用プロンプト辞書｜Stable Diffusion・NovelAI向けタグ一覧｜LULINAworks";
+const description =
+  "Stable DiffusionやNovelAIなどの画像生成AIで使いやすいプロンプトを、髪型・表情・ポーズなどのカテゴリ別にサンプル付きでまとめています。";
 const canonicalUrl = "https://lulinaworks.com/dictionary";
 
 export const metadata: Metadata = {
@@ -39,15 +40,24 @@ export default function DictionaryPage() {
       <Header />
       <main className="subpage-main">
         <section className="container list-hero visual-list-hero dictionary-hero" aria-labelledby="dictionary-page-title">
-          <div className="sr-only">
+          <picture className="visual-list-picture" aria-hidden="true">
+            <source media="(max-width: 760px)" srcSet="/assets/eyecatch/eyecatch-dictionary-index-bg-mobile.webp" />
+            <img src="/assets/eyecatch/eyecatch-dictionary-index-bg-pc.webp" alt="" />
+          </picture>
+          <div className="list-hero-copy">
             <span className="page-kicker">Dictionary</span>
-            <h1 id="dictionary-page-title">辞書一覧</h1>
-            <p>AIイラスト制作に使いやすいプロンプト辞書を、カテゴリ別にまとめています。</p>
+            <h1 id="dictionary-page-title">
+              <span className="hero-title-line">AIイラスト用</span>
+              <span className="hero-title-line">プロンプト辞書</span>
+            </h1>
+            <p className="list-hero-subcopy">Stable Diffusion・NovelAI向けタグ一覧</p>
+            <p>
+              Stable DiffusionやNovelAIなどの画像生成AIで使いやすいプロンプトを、髪型・表情・ポーズなどのカテゴリ別にまとめています。画像サンプルを見ながら、使いたいタグや指定を探せます。
+            </p>
           </div>
-          <img src="/assets/eyecatch/dictionary-list-eyecatch.png" alt="LULINAworksの辞書一覧" />
         </section>
 
-        <section className="container list-section dictionary-list-section" aria-label="辞書一覧">
+        <section className="container list-section dictionary-list-section" aria-label="AIイラスト用プロンプト辞書一覧">
           <div className="article-list-grid dictionary-list-grid">
             {publishedDictionaryItems.map((item) => (
               <LinkCard key={item.href} item={item} variant="dictionary" />

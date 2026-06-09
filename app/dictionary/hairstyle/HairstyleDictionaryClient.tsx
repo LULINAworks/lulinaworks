@@ -14,8 +14,8 @@ const copyFormatOptions = [
 ] satisfies { value: CopyFormat; label: string }[];
 
 const expressionDictionaryItem = {
-  title: "表情辞書",
-  description: "笑顔・怒り・涙・記号表情など、表情づくりに使いやすいプロンプトをまとめています。",
+  title: "表情プロンプト辞書",
+  description: "smile、angry、crying など、AIイラストの表情指定に使いやすいタグを画像サンプル付きでまとめています。",
   href: "/dictionary/expression",
   thumbnail: "/assets/dictionary/expression/female/expression-smile.webp",
   tag: "Prompt Dictionary",
@@ -44,26 +44,25 @@ export function HairstyleDictionaryClient() {
             <span aria-hidden="true">/</span>
             <a href="/dictionary">辞書一覧</a>
             <span aria-hidden="true">/</span>
-            <span>髪型辞書</span>
+            <span>髪型プロンプト辞書</span>
           </nav>
 
           <div className="dictionary-eyecatch">
             <div className="dictionary-eyecatch-copy">
               <span className="page-kicker">Dictionary</span>
-              <h1 id="hairstyle-page-title">髪型辞書</h1>
+              <h1 id="hairstyle-page-title">髪型プロンプト辞書</h1>
+              <p className="dictionary-eyecatch-subcopy">AIイラスト向け髪型タグ一覧</p>
               <p>
-                AIイラスト制作で使いやすい髪型プロンプトを、長さ・シルエット・前髪・顔まわりなどのカテゴリ別に整理しています。
+                Stable DiffusionやNovelAIなどの画像生成AIで使いやすい髪型プロンプトを、長さ・シルエット・前髪・顔まわりなどのカテゴリ別に整理しています。
               </p>
             </div>
+          </div>
 
-            <div className="dictionary-usage-note" aria-label="使い方メモ">
-              <strong>使い方メモ</strong>
-              <p>
-                <span>画像サンプルを見ながら、使いたい髪型プロンプトを探せます。</span>
-                <span>コピー形式は「カンマなし / カンマあり」で切り替えでき、全カードに連動します。</span>
-                <span>女性・男性の切り替えがある項目は、同じpromptでサンプルの違いを確認できます。</span>
-              </p>
-            </div>
+          <div className="dictionary-usage-note" aria-label="使い方メモ">
+            <strong>使い方メモ</strong>
+            <p>
+              画像サンプルを見ながら、AIイラストに使いたい髪型タグを探せます。コピー形式は「カンマなし / カンマあり」で切り替えできます。髪型辞書では女性・男性サンプルを切り替えて確認できます。
+            </p>
           </div>
         </section>
 

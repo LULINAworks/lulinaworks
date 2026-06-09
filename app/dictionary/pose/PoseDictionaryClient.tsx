@@ -6,43 +6,46 @@ import { Header } from "@/components/Header";
 import { DictionaryCard, type CopyFormat } from "@/components/dictionary/DictionaryCard";
 import { RelatedDictionaries } from "@/components/dictionary/RelatedDictionaries";
 import { SegmentedControl } from "@/components/dictionary/SegmentedControl";
-import { hairstyleCategories, hairstyleDictionaryItems } from "@/data/dictionaries/hairstyle";
+import { poseCategories, poseDictionaryItems } from "@/data/dictionaries/pose";
 
 const copyFormatOptions = [
   { value: "plain", label: "カンマなし" },
   { value: "comma", label: "カンマあり" },
 ] satisfies { value: CopyFormat; label: string }[];
 
-export function HairstyleDictionaryClient() {
+export function PoseDictionaryClient() {
   const [copyFormat, setCopyFormat] = useState<CopyFormat>("plain");
 
   const itemsByCategory = useMemo(() => {
-    return hairstyleCategories.map((category) => ({
+    return poseCategories.map((category) => ({
       ...category,
-      items: hairstyleDictionaryItems.filter((item) => item.category === category.id),
+      items: poseDictionaryItems.filter((item) => item.category === category.id),
     }));
   }, []);
 
   return (
     <>
       <Header />
-      <main className="subpage-main dictionary-page hairstyle-dictionary-page" id="page-top">
-        <section className="container dictionary-hero-panel" aria-labelledby="hairstyle-page-title">
+      <main className="subpage-main dictionary-page pose-dictionary-page" id="page-top">
+        <section className="container dictionary-hero-panel" aria-labelledby="pose-page-title">
           <nav className="breadcrumb" aria-label="パンくず">
             <a href="/">TOP</a>
             <span aria-hidden="true">/</span>
             <a href="/dictionary">辞書一覧</a>
             <span aria-hidden="true">/</span>
-            <span>髪型プロンプト辞書</span>
+            <span>ポーズプロンプト辞書</span>
           </nav>
 
           <div className="dictionary-eyecatch">
             <div className="dictionary-eyecatch-copy">
               <span className="page-kicker">Dictionary</span>
-              <h1 id="hairstyle-page-title">髪型プロンプト辞書</h1>
-              <p className="dictionary-eyecatch-subcopy">AIイラスト向け髪型タグ一覧</p>
+              <h1 id="pose-page-title">
+                <span className="hero-title-line">ポーズ</span>
+                <span className="hero-title-line">プロンプト辞書</span>
+              </h1>
+              <p className="dictionary-eyecatch-subcopy">AIイラスト向けポーズタグ一覧</p>
               <p>
-                Stable DiffusionやNovelAIなどの画像生成AIで使いやすい髪型プロンプトを、長さ・シルエット・前髪・顔まわりなどのカテゴリ別に整理しています。
+                Stable DiffusionやNovelAIなどの画像生成AIで使いやすいポーズプロンプトを、立ちポーズ・座りポーズ・手や腕の動き・寝そべりなどのカテゴリ別に整理しています。現在は1人用サンプルのみを掲載しています。
               </p>
             </div>
           </div>
@@ -50,7 +53,7 @@ export function HairstyleDictionaryClient() {
           <div className="dictionary-usage-note" aria-label="使い方メモ">
             <strong>使い方メモ</strong>
             <p>
-              画像サンプルを見ながら、AIイラストに使いたい髪型タグを探せます。コピー形式は「カンマなし / カンマあり」で切り替えできます。髪型辞書では女性・男性サンプルを切り替えて確認できます。
+              画像サンプルを見ながら、AIイラストに使いたいポーズタグを探せます。コピー形式は「カンマなし / カンマあり」で切り替えできます。ポーズによっては構図やカメラ指定と組み合わせると安定しやすくなります。
             </p>
           </div>
         </section>
@@ -95,7 +98,7 @@ export function HairstyleDictionaryClient() {
           </section>
         ))}
 
-        <RelatedDictionaries currentHref="/dictionary/hairstyle" />
+        <RelatedDictionaries currentHref="/dictionary/pose" />
 
         <div className="container dictionary-back-top">
           <a href="#page-top">ページ上部へ戻る</a>

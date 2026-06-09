@@ -7,11 +7,10 @@ import { LinkCard } from "@/components/LinkCard";
 type RelatedDictionariesProps = {
   currentHref: string;
   descriptionsByHref?: Record<string, string>;
-  additionalItems?: CardItem[];
 };
 
-export function RelatedDictionaries({ currentHref, descriptionsByHref = {}, additionalItems = [] }: RelatedDictionariesProps) {
-  const relatedItems = Array.from(new Map([...dictionaryItems, ...additionalItems].map((item) => [item.href, item])).values())
+export function RelatedDictionaries({ currentHref, descriptionsByHref = {} }: RelatedDictionariesProps) {
+  const relatedItems = dictionaryItems
     .filter((item) => item.published && item.href !== currentHref)
     .map<CardItem>((item) => ({
       ...item,

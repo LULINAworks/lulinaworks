@@ -69,7 +69,7 @@ export function PortalSection() {
             </h3>
             <a className="section-link" href="/dictionary">辞書ページへ　→</a>
           </div>
-          <p className="column-sub">AIイラスト制作で使いやすいプロンプトを、髪型・表情などのカテゴリ別にまとめています。</p>
+          <p className="column-sub">髪型・表情・ポーズなど、制作に使えるプロンプトをまとめています。</p>
 
           <div className="featured-list">
             {topFeaturedDictionaryItems.map((item) => (

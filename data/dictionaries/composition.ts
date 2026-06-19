@@ -344,7 +344,7 @@ export const compositionDictionaryItems: CompositionDictionaryItem[] = [
     categoryKey: "composition",
     categoryLabel: "構図・配置",
     name: "キャラクターシート",
-    prompt: "character_sheet",
+    prompt: "character sheet",
     imageFilename: "composition-character-sheet.webp",
     description: "キャラ資料風にまとめる構図",
     supplement: "",

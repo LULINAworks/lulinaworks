@@ -36,6 +36,18 @@ export const dictionaryItems: CardItem[] = [
     date: "2026-06-09",
   },
   {
+    title: "構図・カメラプロンプト辞書",
+    description:
+      "close-up shot、from above など、AIイラストの構図・画角・目線指定に使いやすいタグを画像サンプル付きでまとめています。",
+    href: "/dictionary/composition",
+    thumbnail: "/assets/dictionary/composition/female/composition-from-above.webp",
+    tag: "Prompt Dictionary",
+    status: "42項目",
+    featured: false,
+    published: true,
+    date: "2026-06-19",
+  },
+  {
     title: "AIイラスト用プロンプト辞書一覧",
     description: "Stable DiffusionやNovelAIなどで使いやすいプロンプト辞書を、カテゴリ別にまとめています。",
     href: "/dictionary",

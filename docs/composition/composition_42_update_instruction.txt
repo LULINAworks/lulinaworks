@@ -1,0 +1,77 @@
+composition辞書 42件版 更新指示
+
+目的:
+- /dictionary/composition を37件版から42件版へ更新する。
+- 新規5件を既存カテゴリへ追加する。
+- supplement列を追加し、カード説明を最大2行構成にする。
+
+使用CSV:
+docs/composition/composition_web_items_42.csv
+
+CSV列:
+id,categoryKey,categoryLabel,name,prompt,imageFilename,description,supplement
+
+表示仕様:
+- name をカード名に使う
+- prompt を表示・コピー対象に使う
+- imageFilename を画像に使う
+- description を説明1行目として使う
+- supplement が空でない場合のみ、説明2行目として使う
+- supplement が空なら1行表示のままでよい
+- description / supplement はCSVの文言をそのまま使い、Codex側で長文化しない
+- コピー対象は prompt のみ
+- generation_prompt / aliases / memo / internalNote は使わない
+
+件数:
+- 37件 → 42件
+
+追加項目:
+- multiple_views / 向き・見せ方
+- turnaround / 向き・見せ方
+- character_sheet / 構図・配置
+- lineup / 構図・配置
+- rotational_symmetry / 構図・配置
+
+カテゴリ件数:
+- 写る範囲・ショットサイズ: 9件
+- カメラアングル・視点: 6件
+- 向き・見せ方: 7件
+- 視線・目線: 8件
+- 構図・配置: 5件
+- 奥行き・演出・撮影表現: 7件
+合計: 42件
+
+追加画像ファイル:
+public/assets/dictionary/composition/female/
+- composition-character-sheet.webp
+- composition-lineup.webp
+- composition-multiple-views.webp
+- composition-rotational-symmetry.webp
+- composition-turnaround.webp
+
+やること:
+- data/dictionaries/composition.ts を42件版へ更新
+- CompositionDictionaryClient.tsx 側で description + supplement の2行構成に対応
+- data/dictionary.ts のcomposition件数を42項目へ更新
+- /dictionary一覧のcompositionカード項目数を42項目へ更新
+- TOP最近追加した辞書で件数を表示していない場合は変更不要
+- sitemapは既に追加済みなら変更不要
+
+やらないこと:
+- TOP固定3辞書カード変更
+- TOP記事カード変更
+- data/articles.ts変更
+- components/LinkCard.tsx変更
+- AdSense / robots / noindex変更
+- Git push
+
+確認:
+- npx tsc --noEmit
+- npm run build
+- /dictionary/composition 42件表示
+- 追加5件の画像表示
+- supplementあり項目が2行表示される
+- supplementなし項目は1行表示のまま
+- コピー対象がpromptのみ
+- /dictionaryのcompositionカードが42項目
+- 既存3辞書ページが壊れていない

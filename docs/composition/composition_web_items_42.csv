@@ -1,0 +1,43 @@
+﻿id,categoryKey,categoryLabel,name,prompt,imageFilename,description,supplement
+close_up_shot,framing,写る範囲・ショットサイズ,クローズアップ,close-up shot,composition-close-up-shot.webp,顔や表情を大きく見せる寄り構図,
+extreme_close_up,framing,写る範囲・ショットサイズ,超クローズアップ,extreme close-up,composition-extreme-close-up.webp,顔や目元を強く寄せる構図,
+portrait,framing,写る範囲・ショットサイズ,ポートレート,portrait,composition-portrait.webp,人物を主役に見せる指定,
+bust_up_shot,framing,写る範囲・ショットサイズ,バストアップ,bust-up shot,composition-bust-up-shot.webp,胸から上を中心に写す構図,
+upper_body,framing,写る範囲・ショットサイズ,上半身,upper body,composition-upper-body.webp,上半身を中心に写す基本構図,
+waist_up_shot,framing,写る範囲・ショットサイズ,腰上,waist-up shot,composition-waist-up-shot.webp,腰あたりまで写す構図,
+cowboy_shot,framing,写る範囲・ショットサイズ,カウボーイショット,cowboy shot,composition-cowboy-shot.webp,太もも付近まで入れる構図,
+full_body,framing,写る範囲・ショットサイズ,全身,full body,composition-full-body.webp,頭から足元まで入れる全身構図,
+wide_shot,framing,写る範囲・ショットサイズ,引きの構図,wide shot,composition-wide-shot.webp,人物と空間を広く見せる構図,
+eye_level_shot,camera_angle,カメラアングル・視点,目線の高さ,eye-level shot,composition-eye-level-shot.webp,目線の高さで見る自然な構図,
+from_above,camera_angle,カメラアングル・視点,上から,from above,composition-from-above.webp,上から見下ろすカメラ指定,high angleでも代用可能
+from_below,camera_angle,カメラアングル・視点,下から,from below,composition-from-below.webp,下から見上げるカメラ指定,low angleでも代用可能
+birds_eye_view,camera_angle,カメラアングル・視点,鳥瞰,bird's-eye view,composition-birds-eye-view.webp,高い位置から見下ろす視点,
+worms_eye_view,camera_angle,カメラアングル・視点,あおり視点,worm's-eye view,composition-worms-eye-view.webp,低い位置から強く見上げる視点,
+dutch_angle,camera_angle,カメラアングル・視点,ダッチアングル,dutch angle,composition-dutch-angle.webp,画面を傾けた動きのある構図,
+front_view,view_direction,向き・見せ方,正面,front view,composition-front-view.webp,正面から見せる基本の向き,
+side_view,view_direction,向き・見せ方,横向き,side view,composition-side-view.webp,横向きで見せる構図,profileでも指定可能
+three_quarter_view,view_direction,向き・見せ方,斜め向き,three-quarter view,composition-three-quarter-view.webp,斜め向きで立体感を出す構図,モデルによっては3/4 viewでも代用可能
+from_behind,view_direction,向き・見せ方,後ろから,from behind,composition-from-behind.webp,後ろ姿を見せる構図,
+straight_on,view_direction,向き・見せ方,真正面,straight-on,composition-straight-on.webp,カメラにまっすぐ向けた構図,
+multiple_views,view_direction,向き・見せ方,複数視点,multiple views,composition-multiple-views.webp,複数の角度で見せる構図,
+turnaround,view_direction,向き・見せ方,三面図,turnaround,composition-turnaround.webp,正面・側面・背面を並べる構図,キャラクター資料向き
+looking_at_viewer,gaze,視線・目線,こちらを見る,looking at viewer,composition-looking-at-viewer.webp,キャラクターがこちらを見る指定,
+looking_away,gaze,視線・目線,目線を外す,looking away,composition-looking-away.webp,視線を外す指定,
+looking_up,gaze,視線・目線,上を見る,looking up,composition-looking-up.webp,上方向を見る指定,
+looking_down,gaze,視線・目線,下を見る,looking down,composition-looking-down.webp,下方向を見る指定,
+looking_to_the_side,gaze,視線・目線,横を見る,looking to the side,composition-looking-to-the-side.webp,横方向を見る指定,
+looking_back,gaze,視線・目線,振り向いて見る,looking back,composition-looking-back.webp,振り向いて見る指定,
+eye_contact,gaze,視線・目線,目が合う,eye contact,composition-eye-contact.webp,相手と目が合う指定,複数人構図用
+looking_at_object,gaze,視線・目線,物を見る,looking at object,composition-looking-at-object.webp,物や対象を見る指定,見る対象も指定すると安定しやすい
+centered_composition,composition,構図・配置,中央構図,centered composition,composition-centered-composition.webp,被写体を中央に置く構図,
+symmetrical_composition,composition,構図・配置,左右対称構図,symmetrical composition,composition-symmetrical-composition.webp,左右対称を意識した構図,
+character_sheet,composition,構図・配置,キャラクターシート,character_sheet,composition-character-sheet.webp,キャラ資料風にまとめる構図,
+lineup,composition,構図・配置,ラインナップ,lineup,composition-lineup.webp,人物や要素を並べて見せる構図,
+rotational_symmetry,composition,構図・配置,回転対称構図,rotational symmetry,composition-rotational-symmetry.webp,回転させた配置で見せる構図,
+depth_of_field,camera_effect,奥行き・演出・撮影表現,被写界深度,depth of field,composition-depth-of-field.webp,前後のぼけで奥行きを出す表現,
+bokeh,camera_effect,奥行き・演出・撮影表現,ボケ表現,bokeh,composition-bokeh.webp,背景の光やぼけを出す表現,
+pov,camera_effect,奥行き・演出・撮影表現,主観視点,pov,composition-pov.webp,主観視点で見せる構図,
+selfie,camera_effect,奥行き・演出・撮影表現,自撮り,selfie,composition-selfie.webp,自撮り風に見せる構図,
+fisheye,camera_effect,奥行き・演出・撮影表現,魚眼,fisheye,composition-fisheye.webp,魚眼レンズ風の歪みを出す指定,
+blurry_foreground,camera_effect,奥行き・演出・撮影表現,前景ぼかし,blurry foreground,composition-blurry-foreground.webp,手前側をぼかす指定,
+blurry_background,camera_effect,奥行き・演出・撮影表現,背景ぼかし,blurry background,composition-blurry-background.webp,背景側をぼかす指定,

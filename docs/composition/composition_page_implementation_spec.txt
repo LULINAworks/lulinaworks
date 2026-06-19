@@ -1,0 +1,213 @@
+LULINAworks 構図・カメラプロンプト辞書 実装指示書
+作成日: 2026-06-19
+用途: Codex実装用。composition_web_items.csv を正本として /dictionary/composition を実装する。
+
+============================================================
+1. ページ基本情報
+============================================================
+
+URL:
+  /dictionary/composition
+
+ページ名 / h1:
+  構図・カメラプロンプト辞書
+
+アイキャッチ内サブコピー:
+  AIイラスト向け構図・画角・目線タグ一覧
+
+metadata title:
+  構図・カメラプロンプト辞書｜AIイラスト向け構図・画角・目線タグ一覧｜LULINAworks
+
+metadata description:
+  Stable DiffusionやNovelAIなどの画像生成AIで使いやすい構図・カメラ・目線プロンプトを、ショットサイズ、カメラアングル、向き、視線、奥行き表現などのカテゴリ別にサンプル付きでまとめています。
+
+canonical:
+  https://lulinaworks.com/dictionary/composition
+
+OGP:
+  /assets/og/ogp-dictionary-composition.png
+
+アイキャッチ:
+  PC: /assets/eyecatch/eyecatch-dictionary-composition-bg-pc.webp
+  SP: /assets/eyecatch/eyecatch-dictionary-composition-bg-mobile.webp
+
+画像配置:
+  public/assets/dictionary/composition/female/
+
+画像ファイル名:
+  composition-<id>.webp
+
+採用項目数:
+  37件
+
+============================================================
+2. ページ構成
+============================================================
+
+既存の髪型・表情・ポーズ辞書と同じ、シンプルな辞書ページにする。
+
+構成:
+1. アイキャッチ
+2. 短い導入文
+3. コピー形式切り替え
+4. カテゴリ目次
+5. カード一覧
+6. 関連辞書
+
+辞書ページの役割:
+- 探す
+- 見る
+- コピーする
+
+長い解説、失敗例、使い方記事のような本文は入れない。
+使い方・解説・検証記事は別記事側で扱う。
+
+導入文:
+  構図やカメラ指定は、キャラクターをどの距離・角度・向きで見せるかを決めるためのプロンプトです。
+  このページでは、AIイラストで使いやすい構図・画角・目線タグを、サンプル付きで一覧化しています。
+
+============================================================
+3. 使用CSV
+============================================================
+
+使用するCSV:
+  composition_web_items.csv
+
+列:
+  id,categoryKey,categoryLabel,name,prompt,imageFilename,description
+
+このCSVをWeb実装用の正本として使う。
+
+カード表示に使う列:
+- name
+- prompt
+- description
+- imageFilename
+
+コピー対象:
+- prompt のみ
+
+カテゴリ表示:
+- categoryKey でグルーピング
+- categoryLabel を見出しに表示
+
+重要:
+- generation_prompt は存在しても使わない
+- aliases / memo / internalNote は今回のカード表示に使わない
+- 別表記や制作メモをCodex側で勝手にカードへ追加しない
+- カード説明欄は composition_web_items.csv の description をそのまま使う
+- description の文言は短文にしてあるので、勝手に長文化しない
+
+============================================================
+4. 採用カテゴリと表示順
+============================================================
+
+1. framing / 写る範囲・ショットサイズ
+2. camera_angle / カメラアングル・視点
+3. view_direction / 向き・見せ方
+4. gaze / 視線・目線
+5. composition / 構図・配置
+6. camera_effect / 奥行き・演出・撮影表現
+
+カテゴリ順はCSV順ではなく、上記の明示順を優先する。
+
+============================================================
+5. 画像・素材確認
+============================================================
+
+確認対象:
+- public/assets/dictionary/composition/female/ に37件のWebPがあること
+- composition_web_items.csv の imageFilename が37件すべて存在すること
+- /assets/og/ogp-dictionary-composition.png が存在すること
+- /assets/eyecatch/eyecatch-dictionary-composition-bg-pc.webp が存在すること
+- /assets/eyecatch/eyecatch-dictionary-composition-bg-mobile.webp が存在すること
+
+欠落がある場合は実装前に報告して止める。
+
+============================================================
+6. 作成・更新候補
+============================================================
+
+新規作成候補:
+- data/dictionaries/composition.ts
+- app/dictionary/composition/page.tsx
+- app/dictionary/composition/CompositionDictionaryClient.tsx
+
+更新候補:
+- data/dictionary.ts
+- components/PortalSection.tsx
+- components/dictionary/RelatedDictionaries.tsx
+- app/sitemap.ts
+- app/globals.css
+
+既存の hairstyle / expression / pose 辞書の実装構造に合わせる。
+大幅な共通コンポーネント改修はしない。
+
+============================================================
+7. TOP・辞書一覧・関連辞書
+============================================================
+
+/dictionary 一覧:
+- 構図・カメラプロンプト辞書を追加する。
+
+辞書一覧カード文言:
+  タイトル: 構図・カメラプロンプト辞書
+  サブコピー: AIイラスト向け構図・画角・目線タグ一覧
+  説明: ショットサイズ、カメラアングル、向き、視線、奥行き表現などのプロンプトをサンプル付きでまとめています。
+
+TOP:
+- TOPのプロンプト辞書カードを4枚構成にする場合は、既存レイアウトが崩れないかPC/SPで確認する。
+- 4枚化で崩れる場合は、実装前に相談する。
+- TOPを触る場合の文言は以下。
+
+TOPカード文言:
+  タイトル: 構図・カメラプロンプト辞書
+  説明: 構図・画角・目線タグをサンプル付きで確認できます。
+  href: /dictionary/composition
+
+RelatedDictionaries:
+- 各辞書ページで現在ページ自身を除外し、公開済み辞書を自然に表示する。
+- compositionページでは、髪型・表情・ポーズを関連辞書として表示する。
+
+============================================================
+8. まだやらないこと
+============================================================
+
+- 記事ページ作成
+- Anima記事更新
+- AdSenseコード変更
+- robots / noindex 変更
+- URL構造変更
+- 既存辞書ページの大幅な構造変更
+- 辞書カード説明欄の長文化
+- aliases / memo の表示
+
+============================================================
+9. 実装後確認
+============================================================
+
+確認コマンド:
+- npx tsc --noEmit
+- npm run build
+
+確認ページ:
+- /dictionary/composition
+- /dictionary
+- /
+- /dictionary/hairstyle
+- /dictionary/expression
+- /dictionary/pose
+- /sitemap.xml
+
+確認項目:
+- composition辞書が37件表示される
+- 画像37件がすべて表示される
+- コピー形式切り替えが動く
+- コピー機能が動く
+- カテゴリ目次が動く
+- 関連辞書が自然に表示される
+- PC表示OK
+- スマホ表示OK
+- OGP参照OK
+- アイキャッチPC/SP参照OK
+- 既存辞書の件数や表示が壊れていない

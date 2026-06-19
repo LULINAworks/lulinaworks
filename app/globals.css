@@ -1328,6 +1328,23 @@
         min-width: 0;
       }
 
+      .composition-dictionary-page .dictionary-eyecatch {
+        min-height: clamp(390px, 39vw, 560px);
+        justify-content: center;
+        background:
+          url("/assets/eyecatch/eyecatch-dictionary-composition-bg-pc.webp") center / cover no-repeat;
+      }
+
+      .composition-dictionary-page .dictionary-eyecatch::after {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 241, 223, 0.08));
+      }
+
+      .composition-dictionary-page .dictionary-eyecatch-copy {
+        width: 100%;
+        min-width: 0;
+      }
+
       .dictionary-eyecatch-copy {
         width: 100%;
         min-width: 0;
@@ -1759,6 +1776,11 @@
           width: min(48%, 380px);
           min-width: 0;
         }
+
+        .composition-dictionary-page .dictionary-eyecatch-copy {
+          width: min(48%, 380px);
+          min-width: 0;
+        }
       }
 
       @media (max-width: 760px) {
@@ -1891,6 +1913,33 @@
         }
 
         .pose-dictionary-page .dictionary-eyecatch p {
+          max-width: 100%;
+        }
+
+        .composition-dictionary-page .dictionary-eyecatch {
+          min-height: 520px;
+          justify-content: center;
+          background:
+            url("/assets/eyecatch/eyecatch-dictionary-composition-bg-mobile.webp") center top / cover no-repeat;
+        }
+
+        .composition-dictionary-page .dictionary-eyecatch::after {
+          background:
+            linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 241, 223, 0.1));
+        }
+
+        .composition-dictionary-page .dictionary-eyecatch-copy {
+          width: 100%;
+          min-width: 0;
+          padding: 20px 18px;
+          background: rgba(32, 96, 114, 0.6);
+        }
+
+        .composition-dictionary-page .dictionary-eyecatch h1 {
+          margin-top: 10px;
+        }
+
+        .composition-dictionary-page .dictionary-eyecatch p {
           max-width: 100%;
         }
 

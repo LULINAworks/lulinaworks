@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
@@ -38,24 +39,40 @@ export default function PrivacyPolicyPage() {
 
             <h2>2. アクセス解析について</h2>
             <p>
-              当サイトでは、サイトの利用状況を把握し、コンテンツ改善の参考にするため、アクセス解析ツールを利用する場合があります。
-              アクセス解析では、Cookieを使用して匿名の利用情報を収集することがあります。
-              これらの情報は個人を特定するものではありません。
+              当サイトでは、サイトの利用状況を把握し、コンテンツ改善の参考にするため、Google Analyticsなどのアクセス解析ツールを利用する場合があります。
+              これらのツールではCookieなどを使用し、ページ閲覧状況やサイト内での操作状況などの利用データを収集する場合があります。
+              収集した情報は、個人を特定する目的では使用しません。
+              Googleによるデータ収集・処理については、
+              <a
+                href="https://policies.google.com/technologies/partner-sites?hl=ja"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Googleのサービスを使用するサイトやアプリから収集した情報のGoogleによる使用
+              </a>
+              をご確認ください。
             </p>
 
             <h2>3. 広告配信について</h2>
             <p>
-              当サイトでは、今後Google AdSenseなどの第三者配信広告サービスを利用する場合があります。
-              広告配信事業者は、ユーザーの興味に応じた広告を表示するためにCookieを使用することがあります。
-              Cookieを使用した広告配信を希望しない場合は、ブラウザ設定などからCookieを無効にできます。
+              当サイトでは、Google AdSenseなどの第三者配信広告サービスを利用する場合があります。
+              Googleを含む第三者配信事業者は、Cookieなどを使用し、ユーザーの過去の当サイトまたは他サイトへのアクセス情報に基づいて広告を配信する場合があります。
+              また、Googleやそのパートナーが、当サイトや他サイトへのアクセス情報に基づいて広告を表示する場合があります。
+              パーソナライズ広告を希望しない場合は、
+              <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">
+                Googleの広告設定
+              </a>
+              から無効にできます。
+              また、Cookieはブラウザ設定から無効にできます。
             </p>
 
             <h2>4. Cookieについて</h2>
             <p>
               Cookieとは、サイトを利用した際にブラウザへ保存される情報です。
-              当サイトでは、アクセス解析や広告配信などの目的でCookieを使用する場合があります。
+              当サイトでは、アクセス解析、広告配信、サイトの利便性向上、不正利用防止などの目的でCookieを使用する場合があります。
               Cookieには氏名、住所、メールアドレスなど、個人を直接特定する情報は含まれません。
               Cookieの使用を希望しない場合は、ブラウザの設定から無効にできます。
+              ただし、Cookieを無効にすると一部機能が正常に利用できない場合があります。
             </p>
 
             <h2>5. 免責事項</h2>
@@ -83,15 +100,17 @@ export default function PrivacyPolicyPage() {
 
             <h2>8. お問い合わせ</h2>
             <p>
-              当サイトに関するお問い合わせは、LULINAworksのXアカウントまでお願いいたします。
-              <br />
-              <a href="https://x.com/LULINAworks" target="_blank" rel="noopener noreferrer">
-                https://x.com/LULINAworks
-              </a>
+              当サイトに関するお問い合わせは、
+              <Link href="/contact">お問い合わせページ</Link>
+              よりお願いいたします。
             </p>
 
-            <h2>9. 制定日</h2>
-            <p>制定日：2026年5月</p>
+            <h2>9. 制定日・最終更新日</h2>
+            <p>
+              制定日：2026年5月
+              <br />
+              最終更新日：2026年6月26日
+            </p>
           </section>
         </article>
       </main>

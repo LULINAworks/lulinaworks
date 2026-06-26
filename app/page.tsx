@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { Icons } from "@/components/Icons";
 import { PortalSection } from "@/components/PortalSection";
+import { ToolsSection } from "@/components/ToolsSection";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <HeroSection />
         <div className="container">
           <PortalSection />
+          <ToolsSection />
           <AboutLulinaSection />
         </div>
       </main>

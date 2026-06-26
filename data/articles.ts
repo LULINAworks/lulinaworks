@@ -13,6 +13,19 @@ export type CardItem = {
 
 export const articles: CardItem[] = [
   {
+    title: "Animaでも使えるプロンプトガイドジェネレーター βの使い方｜AI発注書と骨組みプロンプトの作り方",
+    description:
+      "プロンプトの骨組みやAI発注書を作れる「プロンプトガイドジェネレーター β」の使い方を解説。タグのみ・タグ＋自然文の違い、ComfyUIでの使い方、ChatGPTなどの対話型AIへ渡す方法を紹介します。",
+    href: "/articles/anima-prompt-template-guide",
+    thumbnail: "/assets/og/ogp-article-anima-prompt-template-guide.png",
+    tag: "Prompt",
+    readTime: "約12分",
+    status: "公開中",
+    featured: true,
+    published: true,
+    date: "2026-06-26",
+  },
+  {
     title: "Animaで使える？プロンプトをタグと自然文で書く方法",
     description:
       "Animaでタグ指定と自然文を組み合わせ、キャラの特徴や複数人シーンを整理して書く方法を紹介します。",
@@ -106,6 +119,7 @@ export const articleAnimaOrderHrefs = [
   "/articles/anima-basic",
   "/articles/anima-style-compare",
   "/articles/anima-prompt-writing",
+  "/articles/anima-prompt-template-guide",
 ];
 
 const featuredArticleHrefs = [

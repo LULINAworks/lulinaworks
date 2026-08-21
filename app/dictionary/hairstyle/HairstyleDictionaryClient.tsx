@@ -31,15 +31,15 @@ export function HairstyleDictionaryClient() {
           <nav className="breadcrumb" aria-label="パンくず">
             <a href="/">TOP</a>
             <span aria-hidden="true">/</span>
-            <a href="/dictionary">辞書一覧</a>
+            <a href="/dictionary">プロンプト一覧</a>
             <span aria-hidden="true">/</span>
-            <span>髪型プロンプト辞書</span>
+            <span>髪型プロンプト一覧</span>
           </nav>
 
           <div className="dictionary-eyecatch">
             <div className="dictionary-eyecatch-copy">
-              <span className="page-kicker">Dictionary</span>
-              <h1 id="hairstyle-page-title">髪型プロンプト辞書</h1>
+              <span className="page-kicker">Prompt List</span>
+              <h1 id="hairstyle-page-title">髪型プロンプト一覧</h1>
               <p className="dictionary-eyecatch-subcopy">AIイラスト向け髪型タグ一覧</p>
               <p>
                 Stable DiffusionやNovelAIなどの画像生成AIで使いやすい髪型プロンプトを、長さ・シルエット・前髪・顔まわりなどのカテゴリ別に整理しています。
@@ -50,7 +50,7 @@ export function HairstyleDictionaryClient() {
           <div className="dictionary-usage-note" aria-label="使い方メモ">
             <strong>使い方メモ</strong>
             <p>
-              画像サンプルを見ながら、AIイラストに使いたい髪型タグを探せます。コピー形式は「カンマなし / カンマあり」で切り替えできます。髪型辞書では女性・男性サンプルを切り替えて確認できます。
+              画像サンプルを見ながら、AIイラストに使いたい髪型タグを探せます。コピー形式は「カンマなし / カンマあり」で切り替えできます。髪型プロンプト一覧では女性・男性サンプルを切り替えて確認できます。
             </p>
           </div>
         </section>

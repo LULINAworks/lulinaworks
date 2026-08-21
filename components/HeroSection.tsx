@@ -16,8 +16,8 @@ export function HeroSection() {
             わかりやすく。
           </h1>
           <div className="hero-actions">
-            <a className="btn btn-primary" href="/articles"><Icon name="i-book" />記事を見る</a>
-            <a className="btn btn-secondary" href="/dictionary"><Icon name="i-book" />辞書を見る</a>
+            <a className="btn btn-primary" href="/contents"><Icon name="i-book" />記事を見る</a>
+            <a className="btn btn-secondary" href="/contents?category=prompt"><Icon name="i-book" />辞書を見る</a>
           </div>
         </div>
       </div>

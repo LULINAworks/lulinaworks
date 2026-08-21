@@ -1,0 +1,130 @@
+.footer {
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+  border-top: 1px solid rgba(21, 101, 255, 0.1);
+  background:
+    radial-gradient(circle at 8% 15%, rgba(0, 198, 255, 0.09), transparent 28%),
+    linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%);
+  color: #34425a;
+  font-family: var(--font-renewal), "Hiragino Sans", "Yu Gothic UI", sans-serif;
+}
+
+.inner {
+  width: min(1160px, calc(100% - 40px));
+  margin-inline: auto;
+  padding: 56px 0 24px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(60px, 11vw, 150px);
+}
+
+.column {
+  min-width: 0;
+}
+
+.logoLink {
+  display: inline-flex;
+  margin: -16px 0 20px;
+  border-radius: 8px;
+}
+
+.logo {
+  width: min(260px, 100%);
+  height: auto;
+}
+
+.column h2 {
+  margin: 0 0 18px;
+  color: #24334e;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.column ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  gap: 8px 28px;
+  list-style: none;
+}
+
+.column a:not(.logoLink) {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  gap: 5px;
+  color: #536078;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.55;
+  transition: color 160ms ease;
+}
+
+.column a:not(.logoLink):hover {
+  color: #1565ff;
+}
+
+.column a:focus-visible,
+.logoLink:focus-visible {
+  outline: 3px solid rgba(0, 198, 255, 0.7);
+  outline-offset: 4px;
+}
+
+.externalMark {
+  color: #1565ff;
+  font-size: 0.82em;
+}
+
+.copyright {
+  margin: 46px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(21, 101, 255, 0.1);
+  color: #7b8597;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .inner {
+    width: calc(100% - 32px);
+    padding: 42px 0 20px;
+  }
+
+  .columns {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  .logoLink {
+    margin-bottom: 16px;
+  }
+
+  .logo {
+    width: 220px;
+  }
+
+  .column ul {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+
+  .column a:not(.logoLink) {
+    min-height: 44px;
+  }
+
+  .copyright {
+    margin-top: 36px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .column a:not(.logoLink) {
+    transition: none;
+  }
+}

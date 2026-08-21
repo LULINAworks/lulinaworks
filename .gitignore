@@ -15,6 +15,7 @@ build/
 # misc
 .DS_Store
 *.pem
+renewal-assets-source/
 
 # debug
 npm-debug.log*

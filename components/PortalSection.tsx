@@ -43,7 +43,7 @@ export function PortalSection() {
               <span className="icon-wrap"><Icon name="i-pen" /></span>
               おすすめの記事
             </h3>
-            <a className="section-link" href="/articles">記事一覧へ　→</a>
+            <a className="section-link" href="/contents">記事一覧へ　→</a>
           </div>
           <p className="column-sub">ComfyUIの導入や基本、プロンプトの考え方などを掲載しています。</p>
 
@@ -67,7 +67,7 @@ export function PortalSection() {
               <span className="icon-wrap"><Icon name="i-book" /></span>
               プロンプト辞書
             </h3>
-            <a className="section-link" href="/dictionary">辞書ページへ　→</a>
+            <a className="section-link" href="/contents?category=prompt">辞書ページへ　→</a>
           </div>
           <p className="column-sub">髪型・表情・ポーズなど、制作に使えるプロンプトをまとめています。</p>
 

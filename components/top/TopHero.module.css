@@ -1,0 +1,66 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: #f4f8ff;
+}
+
+.picture,
+.picture img {
+  display: block;
+  width: 100%;
+}
+
+.picture img {
+  height: auto;
+  max-width: none;
+}
+
+.copy {
+  position: absolute;
+  top: 47%;
+  left: 0;
+  width: 54%;
+  padding-left: 4%;
+  color: #26344d;
+  text-align: center;
+  transform: translateY(-50%);
+}
+
+.logo {
+  width: min(92%, 700px);
+  height: auto;
+  margin-inline: auto;
+}
+
+.copy h1 {
+  margin: clamp(4px, 0.8vw, 14px) 0 0;
+  color: #29364e;
+  font-family: var(--font-heading), var(--font-renewal), sans-serif;
+  font-size: clamp(1.35rem, 2.55vw, 2.95rem);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 760px) {
+  .copy {
+    top: 8%;
+    left: 8%;
+    width: 84%;
+    padding-left: 0;
+    transform: none;
+  }
+
+  .logo {
+    width: 76%;
+  }
+
+  .copy h1 {
+    margin-top: 0;
+    font-size: clamp(0.95rem, 5vw, 1.5rem);
+    line-height: 1.45;
+  }
+}

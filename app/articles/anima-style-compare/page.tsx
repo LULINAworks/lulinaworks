@@ -284,8 +284,8 @@ function RelatedAnimaCard() {
 function DictionaryLinkCard() {
   return (
     <a className="related-article-card" href="/dictionary">
-      <span>プロンプト辞書</span>
-      <strong>AIイラスト制作に使えるプロンプト辞書</strong>
+      <span>プロンプト一覧</span>
+      <strong>AIイラスト制作に使えるプロンプト一覧</strong>
       <p>AIイラスト制作で使いやすいプロンプトを、カテゴリごとにサンプル付きで整理しています。</p>
     </a>
   );
@@ -365,7 +365,7 @@ export default function AnimaStyleComparePage() {
         <article className="article-shell" id="article-top">
           <header className="article-header">
             <div className="article-header-copy">
-              <a className="back-link" href="/articles">記事一覧へ戻る</a>
+              <a className="back-link" href="/contents">記事一覧へ戻る</a>
               <span className="page-kicker">Model</span>
               <h1>{title}</h1>
               <p>{description}</p>
@@ -520,7 +520,7 @@ cute, clean composition, detailed eyes,
             </p>
             <p>スタイル系プロンプトは、単体で絵柄を完全に固定するものというより、画像全体の方向性を調整するための手がかりとして使うと扱いやすい印象です。</p>
             <p>
-              LULINAworksでは、髪型などのプロンプト辞書も公開しています。
+              LULINAworksでは、髪型などのプロンプト一覧も公開しています。
               今回のようなスタイル系プロンプトと組み合わせながら、作りたい絵に近づけるための指定を探すときに活用してください。
             </p>
             <DictionaryLinkCard />

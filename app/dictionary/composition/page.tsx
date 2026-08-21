@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { CompositionDictionaryClient } from "./CompositionDictionaryClient";
 
-const title = "構図・カメラプロンプト辞書｜AIイラスト向け構図・画角・目線タグ一覧｜LULINAworks";
+const title = "構図プロンプト一覧｜AIイラスト向け構図・画角・目線タグ一覧｜LULINAworks";
 const description =
   "Stable DiffusionやNovelAIなどの画像生成AIで使いやすい構図・カメラ・目線プロンプトを、ショットサイズ、カメラアングル、向き、視線、奥行き表現などのカテゴリ別にサンプル付きでまとめています。";
 const canonicalUrl = "https://lulinaworks.com/dictionary/composition";

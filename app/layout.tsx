@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Zen_Maru_Gothic } from "next/font/google";
+import { M_PLUS_1, Noto_Sans_JP, Zen_Maru_Gothic } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -13,6 +13,13 @@ const zenMaruGothic = Zen_Maru_Gothic({
   subsets: ["latin"],
   weight: ["400", "500", "700", "900"],
   variable: "--font-heading",
+});
+
+const mPlusOne = M_PLUS_1({
+  subsets: ["latin"],
+  weight: "variable",
+  display: "swap",
+  variable: "--font-renewal",
 });
 
 const title = "LULINAworks｜AIイラストとプロンプトのメモ帳";
@@ -47,7 +54,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ja" className={`${notoSansJp.variable} ${zenMaruGothic.variable}`}>
+    <html
+      lang="ja"
+      className={`${notoSansJp.variable} ${zenMaruGothic.variable} ${mPlusOne.variable}`}
+    >
       <head>
         <script
           async

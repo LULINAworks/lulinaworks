@@ -31,17 +31,17 @@ export function PoseDictionaryClient() {
           <nav className="breadcrumb" aria-label="パンくず">
             <a href="/">TOP</a>
             <span aria-hidden="true">/</span>
-            <a href="/dictionary">辞書一覧</a>
+            <a href="/dictionary">プロンプト一覧</a>
             <span aria-hidden="true">/</span>
-            <span>ポーズプロンプト辞書</span>
+            <span>ポーズプロンプト一覧</span>
           </nav>
 
           <div className="dictionary-eyecatch">
             <div className="dictionary-eyecatch-copy">
-              <span className="page-kicker">Dictionary</span>
+              <span className="page-kicker">Prompt List</span>
               <h1 id="pose-page-title">
                 <span className="hero-title-line">ポーズ</span>
-                <span className="hero-title-line">プロンプト辞書</span>
+                <span className="hero-title-line">プロンプト一覧</span>
               </h1>
               <p className="dictionary-eyecatch-subcopy">AIイラスト向けポーズタグ一覧</p>
               <p>

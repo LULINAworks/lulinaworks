@@ -111,20 +111,20 @@ function LulinaSpeech({
 function DictionaryCards() {
   const items = [
     {
-      label: "プロンプト辞書",
-      title: "AIイラスト制作に使えるプロンプト辞書",
+      label: "プロンプト一覧",
+      title: "AIイラスト制作に使えるプロンプト一覧",
       description: "AIイラスト制作で使いやすいプロンプトを、カテゴリごとにサンプル付きで整理しています。",
       href: "/dictionary",
     },
     {
-      label: "髪型辞書",
-      title: "髪型辞書",
+      label: "髪型プロンプト",
+      title: "髪型プロンプト一覧",
       description: "髪の長さ・前髪・ポニーテールなど、髪型に関するプロンプトを探せます。",
       href: "/dictionary/hairstyle",
     },
     {
-      label: "表情辞書",
-      title: "表情辞書",
+      label: "表情プロンプト",
+      title: "表情プロンプト一覧",
       description: "笑顔・怒り・涙・記号表情など、表情づくりに使いやすいプロンプトを探せます。",
       href: "/dictionary/expression",
     },
@@ -151,7 +151,7 @@ export default function AnimaPromptWritingPage() {
         <article className="article-shell" id="article-top">
           <header className="article-header">
             <div className="article-header-copy">
-              <a className="back-link" href="/articles">記事一覧へ戻る</a>
+              <a className="back-link" href="/contents">記事一覧へ戻る</a>
               <span className="page-kicker">Model</span>
               <h1>{title}</h1>
               <p>{description}</p>
@@ -441,13 +441,13 @@ walking together
 waving one hand`}</PromptCode>
             <p>のような指定があります。</p>
             <p>こうした言葉を毎回ゼロから考えるより、よく使う指定を辞書や一覧から探せるようにしておくと、プロンプトを組み立てやすくなります。</p>
-            <p>LULINAworksでは、現在は髪型辞書と表情辞書を公開しています。</p>
+            <p>LULINAworksでは、髪型プロンプト一覧や表情プロンプト一覧などを公開しています。</p>
             <p>髪型や表情は、キャラクターの印象を作るうえで使う機会が多いため、タグ＋自然文の書き方とも相性が良い項目です。</p>
             <p>たとえば、複数人シーンでキャラクターごとに特徴を分ける場合も、</p>
             <PromptCode>{`left side girl: bob cut, calm smile, cool girl
 right side girl: long hair, bright smile, cute girl`}</PromptCode>
             <p>のように、タグ候補を組み合わせて考えやすくなります。</p>
-            <p>今後、ポーズや視線、服装、演出系の辞書が増えれば、同じ考え方でさらに使える範囲が広がります。</p>
+            <p>今後、服装や背景などのプロンプト一覧が増えれば、同じ考え方でさらに使える範囲が広がります。</p>
             <p>辞書は、プロンプトを丸暗記するためのものではありません。</p>
             <p>
               「この指定は英語でどう書くのか」

@@ -1,114 +1,57 @@
 import type { MetadataRoute } from "next";
+import { publishedContentsByDate } from "@/data/contents";
 
 export const dynamic = "force-static";
+
+const siteUrl = "https://lulinaworks.com";
+
+const contentEntries = publishedContentsByDate.map(
+  (content): MetadataRoute.Sitemap[number] => ({
+    url: `${siteUrl}${content.href}`,
+    lastModified: content.publishedAt,
+    changeFrequency: "monthly",
+    priority:
+      content.contentType === "article"
+        ? 0.9
+        : content.contentType === "dictionary"
+          ? 0.8
+          : 0.7,
+  }),
+);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://lulinaworks.com/",
-      lastModified: new Date(),
+      url: `${siteUrl}/`,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: "https://lulinaworks.com/articles",
-      lastModified: new Date(),
+      url: `${siteUrl}/contents`,
+      lastModified: "2026-08-20",
       changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: "https://lulinaworks.com/articles/comfyui-start-guide",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: "https://lulinaworks.com/articles/model-basic",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: "https://lulinaworks.com/articles/prompt-basic",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: "https://lulinaworks.com/articles/anima-basic",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: "https://lulinaworks.com/articles/anima-style-compare",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: "https://lulinaworks.com/articles/anima-prompt-writing",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: "https://lulinaworks.com/articles/anima-prompt-template-guide",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: "https://lulinaworks.com/dictionary",
-      lastModified: new Date(),
+      url: `${siteUrl}/dictionary`,
+      lastModified: "2026-08-21",
       changeFrequency: "weekly",
-      priority: 0.6,
+      priority: 0.9,
     },
+    ...contentEntries,
     {
-      url: "https://lulinaworks.com/dictionary/hairstyle",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "https://lulinaworks.com/dictionary/expression",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "https://lulinaworks.com/dictionary/pose",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "https://lulinaworks.com/dictionary/composition",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "https://lulinaworks.com/tools/anima-prompt-template",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: "https://lulinaworks.com/about",
-      lastModified: new Date(),
+      url: `${siteUrl}/about`,
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
-      url: "https://lulinaworks.com/contact",
-      lastModified: new Date(),
+      url: `${siteUrl}/contact`,
       changeFrequency: "yearly",
       priority: 0.4,
     },
     {
-      url: "https://lulinaworks.com/privacy-policy",
-      lastModified: new Date(),
+      url: `${siteUrl}/privacy-policy`,
+      lastModified: "2026-06-26",
       changeFrequency: "yearly",
       priority: 0.3,
     },

@@ -49,17 +49,17 @@ export function CompositionDictionaryClient() {
           <nav className="breadcrumb" aria-label="パンくず">
             <a href="/">TOP</a>
             <span aria-hidden="true">/</span>
-            <a href="/dictionary">辞書一覧</a>
+            <a href="/dictionary">プロンプト一覧</a>
             <span aria-hidden="true">/</span>
-            <span>構図・カメラプロンプト辞書</span>
+            <span>構図プロンプト一覧</span>
           </nav>
 
           <div className="dictionary-eyecatch">
             <div className="dictionary-eyecatch-copy">
-              <span className="page-kicker">Dictionary</span>
+              <span className="page-kicker">Prompt List</span>
               <h1 id="composition-page-title">
-                <span className="hero-title-line">構図・カメラ</span>
-                <span className="hero-title-line">プロンプト辞書</span>
+                <span className="hero-title-line">構図</span>
+                <span className="hero-title-line">プロンプト一覧</span>
               </h1>
               <p className="dictionary-eyecatch-subcopy">AIイラスト向け構図・画角・目線タグ一覧</p>
               <p>

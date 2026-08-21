@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { HairstyleDictionaryClient } from "./HairstyleDictionaryClient";
 
-const title = "髪型プロンプト辞書｜AIイラスト向け髪型タグ一覧｜LULINAworks";
+const title = "髪型プロンプト一覧｜AIイラスト向け髪型タグ一覧｜LULINAworks";
 const description =
   "Stable DiffusionやNovelAIなどの画像生成AIで使いやすい髪型プロンプトを、長さ・シルエット・前髪・顔まわりなどのカテゴリ別にサンプル付きでまとめています。";
 const canonicalUrl = "https://lulinaworks.com/dictionary/hairstyle";

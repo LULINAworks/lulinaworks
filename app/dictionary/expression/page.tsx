@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ExpressionDictionaryClient } from "./ExpressionDictionaryClient";
 
-const title = "表情プロンプト辞書｜AIイラスト向け表情タグ一覧｜LULINAworks";
+const title = "表情プロンプト一覧｜AIイラスト向け表情タグ一覧｜LULINAworks";
 const description =
   "Stable DiffusionやNovelAIなどの画像生成AIで使いやすい表情プロンプトを、笑顔・怒り・涙・照れ・記号表情などのカテゴリ別にサンプル付きでまとめています。";
 const canonicalUrl = "https://lulinaworks.com/dictionary/expression";

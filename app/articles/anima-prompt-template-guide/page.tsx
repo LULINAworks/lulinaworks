@@ -314,30 +314,30 @@ Animaのように自然文も扱いやすいモデルでは、シーン全体の
 
 キャラクターごとの髪色、服装、表情などが混ざりにくくなるように整理しています。
 
-## LULINAworksの辞書ページと組み合わせる
+## LULINAworksのプロンプト一覧と組み合わせる
 
-骨組みプロンプトの角括弧を埋める時は、LULINAworksのプロンプト辞書もあわせて使えます。
+骨組みプロンプトの角括弧を埋める時は、LULINAworksのプロンプト一覧もあわせて使えます。
 
 たとえば、以下のように組み合わせられます。
 
-- [髪型] → 髪型辞書
-- [表情] → 表情辞書
-- [ポーズ] → ポーズ辞書
-- [構図] → 構図・カメラ辞書
+- [髪型] → 髪型プロンプト一覧
+- [表情] → 表情プロンプト一覧
+- [ポーズ] → ポーズプロンプト一覧
+- [構図] → 構図プロンプト一覧
 
-辞書一覧：/dictionary
+プロンプト一覧：/dictionary
 
-髪型辞書：/dictionary/hairstyle
+髪型プロンプト一覧：/dictionary/hairstyle
 
-表情辞書：/dictionary/expression
+表情プロンプト一覧：/dictionary/expression
 
-ポーズ辞書：/dictionary/pose
+ポーズプロンプト一覧：/dictionary/pose
 
-構図・カメラ辞書：/dictionary/composition
+構図プロンプト一覧：/dictionary/composition
 
-今後は、辞書内のタグをツール側から直接参照し、選んだ項目をそのまま生成プロンプトへ組み込める形へ拡張する予定です。
+今後は、一覧内のタグをツール側から直接参照し、選んだ項目をそのまま生成プロンプトへ組み込める形へ拡張する予定です。
 
-現時点では、辞書ページでタグ候補を探し、ツールで作った骨組みに手動で入れていく使い方がおすすめです。
+現時点では、プロンプト一覧でタグ候補を探し、ツールで作った骨組みに手動で入れていく使い方がおすすめです。
 
 ## まとめ
 
@@ -591,7 +591,7 @@ export default function AnimaPromptTemplateGuidePage() {
               <img src={eyecatchPc} alt="" />
             </picture>
             <div className="article-header-copy">
-              <a className="back-link" href="/articles">記事一覧へ戻る</a>
+              <a className="back-link" href="/contents">記事一覧へ戻る</a>
               <span className="page-kicker">Prompt Tool</span>
               <h1>
                 <span className="article-title-part">Animaでも使える</span>

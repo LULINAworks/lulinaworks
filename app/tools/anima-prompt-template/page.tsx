@@ -130,7 +130,7 @@ export default function AnimaPromptTemplatePage() {
                 対話型AIにそのまま投げて完成プロンプトを生成させることもできます。
               </p>
               <p className="tool-beta-note">
-                ※現在β版です。今後サイト内のタグ辞書と連携し、実際のタグを選択して完成プロンプトを
+                ※現在β版です。今後サイト内のプロンプト一覧と連携し、実際のタグを選択して完成プロンプトを
                 そのまま出力できる機能を追加予定です。
               </p>
             </aside>
@@ -180,12 +180,12 @@ export default function AnimaPromptTemplatePage() {
         <section className="anima-dictionary-block" aria-labelledby="tool-dictionary-title">
           <div className="container tool-dictionary-links anima-dictionary-section">
             <div className="tool-section-head">
-              <h2 id="tool-dictionary-title">枠を埋めるときに使える辞書</h2>
+              <h2 id="tool-dictionary-title">枠を埋めるときに使えるプロンプト一覧</h2>
             </div>
             <a className="tool-dictionary-main" href="/dictionary">
-              <span>辞書一覧を見る</span>
-              <strong>AIイラスト用プロンプト辞書一覧</strong>
-              <p>髪型・表情・ポーズ・構図など、公開済みの辞書をまとめて確認できます。</p>
+              <span>プロンプト一覧を見る</span>
+              <strong>AIイラスト用プロンプト一覧</strong>
+              <p>髪型・表情・ポーズ・構図など、公開済みのプロンプト一覧をまとめて確認できます。</p>
             </a>
             <div className="tool-dictionary-grid">
               {dictionaryCards.map((item) => (

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PoseDictionaryClient } from "./PoseDictionaryClient";
 
-const title = "ポーズプロンプト辞書｜AIイラスト向けポーズタグ一覧｜LULINAworks";
+const title = "ポーズプロンプト一覧｜AIイラスト向けポーズタグ一覧｜LULINAworks";
 const description =
   "Stable DiffusionやNovelAIなどの画像生成AIで使いやすいポーズプロンプトを、立ちポーズ・座りポーズ・手や腕の動き・寝そべりなどのカテゴリ別にサンプル付きでまとめています。";
 const canonicalUrl = "https://lulinaworks.com/dictionary/pose";

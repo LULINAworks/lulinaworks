@@ -35,15 +35,15 @@ export function ExpressionDictionaryClient() {
           <nav className="breadcrumb" aria-label="パンくず">
             <a href="/">TOP</a>
             <span aria-hidden="true">/</span>
-            <a href="/dictionary">辞書一覧</a>
+            <a href="/dictionary">プロンプト一覧</a>
             <span aria-hidden="true">/</span>
-            <span>表情プロンプト辞書</span>
+            <span>表情プロンプト一覧</span>
           </nav>
 
           <div className="dictionary-eyecatch">
             <div className="dictionary-eyecatch-copy">
-              <span className="page-kicker">Dictionary</span>
-              <h1 id="expression-page-title">表情プロンプト辞書</h1>
+              <span className="page-kicker">Prompt List</span>
+              <h1 id="expression-page-title">表情プロンプト一覧</h1>
               <p className="dictionary-eyecatch-subcopy">AIイラスト向け表情タグ一覧</p>
               <p>
                 Stable DiffusionやNovelAIなどの画像生成AIで使いやすい表情プロンプトを、笑顔・怒り・涙・照れ・記号表情などのカテゴリ別に整理しています。

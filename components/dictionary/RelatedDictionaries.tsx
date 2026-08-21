@@ -26,7 +26,7 @@ export function RelatedDictionaries({ currentHref, descriptionsByHref = {} }: Re
       <div className="dictionary-section-head">
         <div>
           <span className="page-kicker">Related</span>
-          <h2 id="related-dictionaries-title">関連する辞書</h2>
+          <h2 id="related-dictionaries-title">関連するプロンプト</h2>
         </div>
       </div>
       <div className="related-dictionaries-grid">

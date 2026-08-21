@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { ContentsCard } from "@/components/content/ContentsCard";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { LinkCard } from "@/components/LinkCard";
-import { dictionaryItems } from "@/data/dictionary";
+import { allPublishedContents } from "@/data/contents";
+import styles from "./dictionary-hub.module.css";
 
-const title = "AIイラスト用プロンプト辞書｜Stable Diffusion・NovelAI向けタグ一覧｜LULINAworks";
+const title = "AIイラストのプロンプト一覧｜髪型・表情・ポーズ・構図 | LULINAworks";
 const description =
-  "Stable DiffusionやNovelAIなどの画像生成AIで使いやすいプロンプトを、髪型・表情・ポーズなどのカテゴリ別にサンプル付きでまとめています。";
+  "髪型・表情・ポーズ・構図など、AIイラスト制作で使えるプロンプトをカテゴリ別に探せます。";
 const canonicalUrl = "https://lulinaworks.com/dictionary";
+const ogImage = "/assets/og/og-prompt-hub.png";
 
 export const metadata: Metadata = {
   title,
@@ -22,45 +24,53 @@ export const metadata: Metadata = {
     siteName: "LULINAworks",
     type: "website",
     locale: "ja_JP",
-    images: ["/assets/og/og-dictionary.png"],
+    images: [
+      {
+        url: ogImage,
+        width: 1200,
+        height: 630,
+        alt: "LULINAworks AIイラストのプロンプト一覧",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
-    images: ["/assets/og/og-dictionary.png"],
+    images: [ogImage],
   },
 };
 
-export default function DictionaryPage() {
-  const publishedDictionaryItems = dictionaryItems.filter((item) => item.published);
+const promptContents = allPublishedContents.filter(
+  (item) => item.contentType === "dictionary",
+);
 
+export default function DictionaryPage() {
   return (
     <>
       <Header />
-      <main className="subpage-main">
-        <section className="container list-hero visual-list-hero dictionary-hero" aria-labelledby="dictionary-page-title">
-          <picture className="visual-list-picture" aria-hidden="true">
-            <source media="(max-width: 760px)" srcSet="/assets/eyecatch/eyecatch-dictionary-index-bg-mobile.webp" />
-            <img src="/assets/eyecatch/eyecatch-dictionary-index-bg-pc.webp" alt="" />
-          </picture>
-          <div className="list-hero-copy">
-            <span className="page-kicker">Dictionary</span>
-            <h1 id="dictionary-page-title">
-              <span className="hero-title-line">AIイラスト用</span>
-              <span className="hero-title-line">プロンプト辞書</span>
-            </h1>
-            <p className="list-hero-subcopy">Stable Diffusion・NovelAI向けタグ一覧</p>
-            <p>
-              Stable DiffusionやNovelAIなどの画像生成AIで使いやすいプロンプトを、髪型・表情・ポーズなどのカテゴリ別にまとめています。画像サンプルを見ながら、使いたいタグや指定を探せます。
-            </p>
+      <main className={styles.page}>
+        <section className={styles.hero} aria-labelledby="prompt-hub-title">
+          <div className={styles.heroImage}>
+            <img
+              src="/assets/eyecatch/prompt-hub-eyecatch.webp"
+              alt=""
+              width="1600"
+              height="900"
+              decoding="async"
+              fetchPriority="high"
+            />
+          </div>
+          <div className={styles.heroCopy}>
+            <h1 id="prompt-hub-title">プロンプト一覧</h1>
+            <p>{description}</p>
           </div>
         </section>
 
-        <section className="container list-section dictionary-list-section" aria-label="AIイラスト用プロンプト辞書一覧">
-          <div className="article-list-grid dictionary-list-grid">
-            {publishedDictionaryItems.map((item) => (
-              <LinkCard key={item.href} item={item} variant="dictionary" />
+        <section className={styles.indexSection} aria-label="公開中のプロンプト一覧">
+          <div className={styles.grid}>
+            {promptContents.map((item) => (
+              <ContentsCard item={item} key={item.href} />
             ))}
           </div>
         </section>

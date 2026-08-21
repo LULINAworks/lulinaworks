@@ -1,0 +1,77 @@
+.main {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding: 0;
+  background: #f3f8fc;
+  color: #273349;
+  font-family: var(--font-renewal), "Hiragino Sans", "Yu Gothic UI", sans-serif;
+}
+
+.introduction {
+  padding: clamp(34px, 5vw, 62px) 20px;
+  border-bottom: 1px solid rgba(21, 101, 255, 0.08);
+  background: #f7fbfe;
+}
+
+.introduction p {
+  width: min(920px, 100%);
+  margin: 0 auto;
+  color: #48566d;
+  font-size: clamp(1.05rem, 1.55vw, 1.2rem);
+  font-weight: 500;
+  line-height: 2.05;
+  text-align: center;
+}
+
+.contentSections {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(180deg, #f7fbfe 0%, #eef6fb 50%, #f3f8fc 100%);
+}
+
+.sectionBand {
+  width: 100%;
+  padding: clamp(38px, 5vw, 64px) 0;
+}
+
+.sectionInner {
+  width: min(1160px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.latestBand {
+  padding-top: clamp(54px, 7vw, 88px);
+}
+
+.sectionBand:last-child {
+  padding-bottom: clamp(76px, 9vw, 118px);
+}
+
+@media (max-width: 760px) {
+  .introduction {
+    padding: 30px 20px 34px;
+  }
+
+  .introduction p {
+    font-size: 0.94rem;
+    line-height: 1.9;
+    text-align: left;
+  }
+
+  .sectionBand {
+    padding: 38px 0;
+  }
+
+  .sectionInner {
+    width: calc(100% - 24px);
+  }
+
+  .latestBand {
+    padding-top: 48px;
+  }
+
+  .sectionBand:last-child {
+    padding-bottom: 76px;
+  }
+}

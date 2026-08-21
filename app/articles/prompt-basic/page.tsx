@@ -172,7 +172,7 @@ export default function PromptBasicPage() {
         <article className="article-shell" id="article-top">
           <header className="article-header">
             <div className="article-header-copy">
-              <a className="back-link" href="/articles">記事一覧へ戻る</a>
+              <a className="back-link" href="/contents">記事一覧へ戻る</a>
               <span className="page-kicker">Prompt</span>
               <h1>{title}</h1>
               <p>{description}</p>

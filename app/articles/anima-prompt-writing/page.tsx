@@ -180,9 +180,9 @@ export default function AnimaPromptWritingPage() {
 
             <h2 id="article-summary">この記事でわかること</h2>
             <LulinaSpeech tone="recommend" label="ルリナ">
-              Animaは自然文だけでも使えるけれど、表情・構図・服装差分やオリジナルキャラの特徴づけでは、タグで分けた方が扱いやすい場面もあるよ。
+              Animaは自然文だけでも使えますが、表情・構図・服装差分やオリジナルキャラクターの特徴づけでは、タグで要素を分けた方が扱いやすい場合もあります。
               <br />
-              この記事では、タグ指定と自然文をどう組み合わせるかを整理していくね。
+              この記事では、タグ指定と自然文をどのように組み合わせるかを整理します。
             </LulinaSpeech>
 
             <nav className="toc-box" aria-labelledby="toc-title">

@@ -389,9 +389,9 @@ export default function AnimaStyleComparePage() {
 
             <h2 id="article-summary">この記事でわかること</h2>
             <LulinaSpeech tone="recommend" label="ルリナ">
-              Animaでスタイル系プロンプトを足したときに、絵柄や塗りがどのくらい変わるのかを作例で見ていくよ。
+              Animaでスタイル系プロンプトを追加したときに、絵柄や塗りがどの程度変化するのかを作例で比較します。
               <br />
-              1人イラストと複数人シーンの両方で比べるから、タグごとの違いをざっくり確認しやすいと思うよ。
+              1人イラストと複数人シーンの両方を使うため、タグごとの違いを確認しやすくなっています。
             </LulinaSpeech>
 
             <nav className="toc-box" aria-labelledby="toc-title">

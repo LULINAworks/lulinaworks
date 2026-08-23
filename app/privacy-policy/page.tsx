@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { StaticPageShell } from "@/components/static-page/StaticPageShell";
 
 const title = "プライバシーポリシー | LULINAworks";
 const description =
@@ -18,22 +17,14 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <>
-      <Header />
-      <main className="article-main static-page-main">
-        <article className="article-shell">
-          <header className="article-header">
-            <div className="article-header-copy">
-              <span className="page-kicker">Policy</span>
-              <h1>プライバシーポリシー</h1>
-              <p>LULINAworksをご利用いただく際の情報の取り扱いについてまとめています。</p>
-            </div>
-          </header>
-
-          <section className="article-content">
+    <StaticPageShell
+      label="Policy"
+      title="プライバシーポリシー"
+      lead="LULINAworksをご利用いただく際の情報の取り扱いについてまとめています。"
+    >
             <h2>1. はじめに</h2>
             <p>
-              LULINAworks（以下「当サイト」）では、AIイラスト制作に関するガイド記事やプロンプト辞書などの情報を掲載しています。
+              LULINAworks（以下「当サイト」）では、AIイラスト制作に関するコンテンツ、プロンプト一覧、制作補助ツールなどを提供しています。
               当サイトをご利用いただく際の個人情報の取り扱い、アクセス解析、広告配信、Cookieなどについて、以下のとおり定めます。
             </p>
 
@@ -109,12 +100,8 @@ export default function PrivacyPolicyPage() {
             <p>
               制定日：2026年5月
               <br />
-              最終更新日：2026年6月26日
+              最終更新日：2026年8月23日
             </p>
-          </section>
-        </article>
-      </main>
-      <Footer />
-    </>
+    </StaticPageShell>
   );
 }

@@ -1,17 +1,31 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { ArticleNavigation } from "@/components/ArticleNavigation";
-import { ArticlePublishedDate } from "@/components/ArticlePublishedDate";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { ArticleBody } from "@/components/content/ArticleBody";
+import { Callout } from "@/components/content/Callout";
+import { ContentHero } from "@/components/content/ContentHero";
+import { ContentPageShell } from "@/components/content/ContentPageShell";
+import { contentCategoryLabels } from "@/data/content";
+import { allPublishedContents } from "@/data/contents";
 
 const title = "画像生成AIのモデルとは？SD1.5・SDXLの違いと選び方";
 const description =
   "画像生成AIで使うモデルの基本と、SD1.5系・SDXL系の違いを、画像サイズ・軽さ・ワークフローの違いから整理します。";
-const heroDescription = "画像生成AIで使うモデルの基本と、SD1.5系・SDXL系の違いを整理します。";
+const lead = "画像生成AIで使うモデルの基本と、SD1.5系・SDXL系の違いを整理します。";
 const canonicalUrl = "https://lulinaworks.com/articles/model-basic";
+const currentHref = "/articles/model-basic";
 const imageBase = "/assets/articles/model-basic/";
 const ogImage = "/assets/og/og-model-basic.png";
+const contentRecord = allPublishedContents.find((content) => content.href === currentHref);
+
+if (!contentRecord) {
+  throw new Error(`Published content is missing for ${currentHref}`);
+}
+
+const articleCategory = contentCategoryLabels[contentRecord.primaryCategory];
+const backHref = `/contents?category=${contentRecord.primaryCategory}`;
+const heroImageSrc = contentRecord.cardImage.src;
+const publishedAt = contentRecord.publishedAt;
 
 const toc = [
   "画像生成AIの「モデル」とは",
@@ -67,44 +81,19 @@ function ArticleFigure({ name, alt, caption }: { name: string; alt: string; capt
   );
 }
 
-function LulinaSpeech({
-  children,
-  tone = "point",
-}: {
-  children: ReactNode;
-  tone?: "point" | "recommend" | "warning";
-}) {
-  const imageMap = {
-    point: {
-      src: "/assets/character/lulina-speech-point.png",
-      alt: "ワンポイントを話すルリナ",
-    },
-    recommend: {
-      src: "/assets/character/lulina-speech-recommend.png",
-      alt: "おすすめを話すルリナ",
-    },
-    warning: {
-      src: "/assets/character/lulina-speech-warning.png",
-      alt: "注意をうながすルリナ",
-    },
-  } as const;
-  const image = imageMap[tone];
-
+function StructurePanel({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <aside className="lulina-speech" aria-label="ルリナのメモ">
-      <img src={image.src} alt={image.alt} />
-      <div className="lulina-bubble">
-        <span>ルリナ</span>
-        <p>{children}</p>
-      </div>
+    <aside className="model-structure-panel">
+      <p className="model-panel-title">{title}</p>
+      {children}
     </aside>
   );
 }
 
-function NoteBox({ title, children }: { title?: string; children: ReactNode }) {
+function SelectionFlowPanel({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <aside className="model-note">
-      {title ? <p className="model-note-title">{title}</p> : null}
+    <aside className="model-flow-panel">
+      <p className="model-panel-title">{title}</p>
       {children}
     </aside>
   );
@@ -123,20 +112,22 @@ function RelatedArticleCard() {
 export default function ModelBasicPage() {
   return (
     <>
-      <Header />
-      <main className="article-main model-basic-page">
-        <article className="article-shell" id="article-top">
-          <header className="article-header">
-            <div className="article-header-copy">
-              <a className="back-link" href="/contents">記事一覧へ戻る</a>
-              <span className="page-kicker">ComfyUI</span>
-              <h1>{title}</h1>
-              <p>{heroDescription}</p>
-            </div>
-          </header>
+      <ContentPageShell articleId="article-top">
+        <ContentHero
+          className="model-basic-hero"
+          backHref={backHref}
+          backLabel="コンテンツ一覧へ"
+          category={articleCategory}
+          title={title}
+          lead={lead}
+          publishedAt={publishedAt}
+          eyecatchSrc={heroImageSrc}
+          eyecatchAlt=""
+          imagePosition="center top"
+          tone="dark"
+        />
 
-          <section className="article-content">
-            <ArticlePublishedDate href="/articles/model-basic" />
+        <ArticleBody>
             <h2 id="intro">はじめに</h2>
             <p>前回の記事では、ComfyUI Portable版を導入して、最初の1枚を生成するところまで確認しました。</p>
             <p>今回はその続きとして、画像生成で使うモデルの基本を整理していきます。</p>
@@ -144,9 +135,9 @@ export default function ModelBasicPage() {
             <p>この記事では、SD1.5系とSDXL系の違いを、画像サイズ・軽さ・得意な表現・ワークフローの違いから見ていきます。</p>
 
             <h2 id="article-summary">この記事でわかること</h2>
-            <LulinaSpeech tone="recommend">
+            <p>
               画像生成AIでは、同じプロンプトでも使用するモデルによって絵柄や生成結果が変わります。この記事では、SD1.5系とSDXL系の違いを、画像サイズ・軽さ・ワークフローの違いから整理します。読み終えるころには、どちらの系統から試すかを判断しやすくなります。
-            </LulinaSpeech>
+            </p>
 
             <nav className="toc-box" aria-labelledby="toc-title">
               <h2 id="toc-title">目次</h2>
@@ -187,7 +178,7 @@ export default function ModelBasicPage() {
             <p>SD1.5系やSDXL系は、モデルの大きな世代・土台のようなものです。その中に、アニメ寄り、リアル寄り、イラスト寄りなど、さまざまな方向に調整された派生モデルがあります。</p>
             <p>この記事では、個別の派生モデルの違いではなく、まずSD1.5系とSDXL系という大きな分け方を整理していきます。</p>
             <figure className="model-system-figure">
-              <NoteBox title="モデルの大きな系統イメージ">
+              <StructurePanel title="モデルの大きな系統イメージ">
                 <pre><code>{`SD1.5系
 ├─ SD1.5 base
 └─ SD1.5系の派生モデル
@@ -201,14 +192,14 @@ SDXL系
    ├─ アニメ・イラスト寄り
    ├─ リアル寄り
    └─ その他`}</code></pre>
-              </NoteBox>
+              </StructurePanel>
               <figcaption>
                 SD1.5やSDXLは、絵柄ジャンル名ではなく、大きな系統として考えると分かりやすいです。その中に、さまざまな方向に調整された派生モデルがあります。
               </figcaption>
             </figure>
-            <LulinaSpeech>
+            <Callout variant="point">
               SD1.5やSDXLは、絵柄の名前ではなく大きなモデル系統として捉えると分かりやすくなります。アニメ寄り・リアル寄りなどの雰囲気は、それぞれの系統に属する派生モデルによって変わることがあります。
-            </LulinaSpeech>
+            </Callout>
 
             <h2 id="section-3">3. SD1.5系とSDXL系は何が違う？</h2>
             <p>SD1.5系とSDXL系の違いは、単に「古い・新しい」だけではありません。</p>
@@ -328,9 +319,9 @@ SDXL系
               alt="SDXLワークフロー内のbaseモデルとrefinerモデル周辺"
               caption="SDXL向けのサンプルワークフローでは、baseモデルに加えてrefinerモデルを使う構成が出てくることがあります。この記事ではrefinerの詳しい使い方までは扱わず、ワークフロー構成の違いとして確認します。"
             />
-            <LulinaSpeech tone="warning">
+            <Callout variant="warning">
               SDXLモデルをSD1.5用のワークフローにそのまま組み込むと、想定どおりに動作しないことがあります。まずは使用するモデルに合ったワークフローを選ぶことが重要です。
-            </LulinaSpeech>
+            </Callout>
 
             <h2 id="section-7">7. 同じようなプロンプトでも結果は変わる</h2>
             <p>ここでは、近い内容のプロンプトを使って、SD1.5系の例とSDXL系の例で生成結果を見比べます。</p>
@@ -373,17 +364,17 @@ photorealistic, realistic, photo, photography, low quality, bad anatomy, bad han
             <p>軽さや情報の多さを重視するなら、SD1.5系から試すのもよいと思います。古くから使われている分、解説や作例が見つけやすく、PCへの負荷も比較的軽めです。</p>
             <p>一方で、今から新しめの環境で覚えていくなら、SDXL系も候補になります。1024×1024px前後の生成や、背景込みのまとまりを見たい場合は、SDXL系の方が合う場面もあります。</p>
             <p>使いたいモデルがすでに決まっている場合は、まずそのモデル向けの説明や推奨設定を確認しておくと安心です。まだ迷う場合は、最初からたくさん入れず、まずは1つに絞って試すのがおすすめです。</p>
-            <NoteBox title="最初の選び方">
+            <SelectionFlowPanel title="最初の選び方">
               <ul className="flow-list">
                 <li><span>PC負荷を軽くしたい</span><strong>SD1.5系から試す</strong></li>
                 <li><span>今から新しめの環境で覚えたい</span><strong>SDXL系も候補</strong></li>
                 <li><span>使いたいモデルが決まっている</span><strong>そのモデル向けの説明や推奨設定を確認する</strong></li>
                 <li><span>まだ迷う</span><strong>まず1つのモデルに絞って試す</strong></li>
               </ul>
-            </NoteBox>
-            <LulinaSpeech>
+            </SelectionFlowPanel>
+            <Callout variant="point">
               最初から多くのモデルを入れると、何が原因で生成結果が変わったのか判断しにくくなります。まずは1つのモデルに絞って使い、慣れてから比較していくのがおすすめです。
-            </LulinaSpeech>
+            </Callout>
 
             <h2 id="section-9">9. モデルとプロンプトの関係</h2>
             <p>画像生成では、モデルとプロンプトの両方が結果に関わります。</p>
@@ -400,9 +391,9 @@ photorealistic, realistic, photo, photography, low quality, bad anatomy, bad han
             <h2 id="section-10">10. モデルを使うときの注意</h2>
             <p>モデルを使うときは、配布ページに書かれているライセンスや利用条件も確認しておきましょう。</p>
             <p>特に、商用利用・再配布・マージモデルの公開・生成画像の販売などを考えている場合は、使うモデルごとの条件を確認してから進めるのが安全です。</p>
-            <NoteBox title="注意">
-              <p>モデルごとに利用条件は異なります。商用利用や配布、販売を考えている場合は、必ず配布ページのライセンスや利用条件を確認しておきましょう。</p>
-            </NoteBox>
+            <Callout variant="warning">
+              モデルごとに利用条件は異なります。商用利用や配布、販売を考えている場合は、必ず配布ページのライセンスや利用条件を確認しておきましょう。
+            </Callout>
 
             <h2 id="section-11">11. まとめ</h2>
             <p>今回は、画像生成AIで使う「モデル」の基本と、SD1.5系・SDXL系の違いを整理しました。</p>
@@ -410,9 +401,9 @@ photorealistic, realistic, photo, photography, low quality, bad anatomy, bad han
             <p>SD1.5系とSDXL系は、アニメ系・リアル系といった絵柄ジャンルの名前ではなく、モデルの大きな系統として考えると分かりやすいです。その中に、アニメ寄り、リアル寄り、イラスト寄りなど、さまざまな方向に調整された派生モデルがあります。</p>
             <p>SD1.5系は、比較的軽く、情報や作例が多い定番の系統です。SDXL系は、それより新しい世代で、1024×1024px前後の画像サイズや、背景込みの表現で使われることが多い系統です。</p>
             <p>また、SD1.5とSDXLでは、モデルだけでなくワークフローも合わせて考える必要があります。最初は、使いたいモデルに合ったワークフローを使い、1つずつ違いを確認していくのがおすすめです。</p>
-            <LulinaSpeech tone="recommend">
+            <Callout variant="info">
               モデルは、画像生成の土台になる重要な要素です。使用するモデルによって同じプロンプトでも結果が変わるため、まずは1つずつ試しながら違いを確認していくと理解しやすくなります。
-            </LulinaSpeech>
+            </Callout>
 
             <h2 id="section-12">12. 参考リンク</h2>
             <ul>
@@ -420,64 +411,39 @@ photorealistic, realistic, photo, photography, low quality, bad anatomy, bad han
               <li><a href="https://comfyanonymous.github.io/ComfyUI_examples/" target="_blank" rel="noopener noreferrer">ComfyUI Examples</a></li>
               <li><a href="https://comfyanonymous.github.io/ComfyUI_examples/sdxl/" target="_blank" rel="noopener noreferrer">ComfyUI SDXL Examples</a></li>
             </ul>
-          </section>
-          <ArticleNavigation currentHref="/articles/model-basic" />
-        </article>
-      </main>
-      <Footer />
+        </ArticleBody>
+        <ArticleNavigation currentHref="/articles/model-basic" />
+      </ContentPageShell>
       <style>{`
-        .article-content h3 {
-          margin: 34px 0 12px;
-          color: var(--navy);
-          font-size: 1.24rem;
-          line-height: 1.5;
-          font-weight: 900;
-          letter-spacing: 0;
-        }
-
-        @media (min-width: 1120px) {
-          .model-basic-page .article-header-copy {
-            min-height: 347.469px;
-          }
-        }
-
-        @media (min-width: 761px) and (max-width: 1119px) {
-          .model-basic-page .article-header-copy {
-            min-height: 250.281px;
-          }
-        }
-
-        .model-basic-page .article-content p,
-        .model-basic-page .article-content li,
-        .model-basic-page .article-content a,
-        .model-basic-page .lulina-bubble p,
-        .model-basic-page .related-article-card strong {
+        .related-article-card strong {
           overflow-wrap: anywhere;
           word-break: normal;
         }
 
-        .model-note {
-          margin: 24px 0 30px;
+        .model-structure-panel,
+        .model-flow-panel {
+          margin: 26px 0 30px;
           padding: 20px 22px;
-          border: 1px solid rgba(236, 217, 199, 0.9);
-          border-radius: 18px;
-          background: linear-gradient(135deg, #fffaf5, #fff1df);
-          box-shadow: 0 10px 22px rgba(48, 39, 31, 0.05);
+          border: 1px solid #cfe0f7;
+          border-radius: 16px;
+          background: #f5f9ff;
         }
 
-        .model-note-title {
+        .model-panel-title {
           margin: 0 0 12px !important;
-          color: var(--navy);
-          font-weight: 900 !important;
+          color: var(--content-text, #242a36);
+          font-weight: 800 !important;
         }
 
-        .model-note > :last-child {
+        .model-structure-panel > :last-child,
+        .model-flow-panel > :last-child {
           margin-bottom: 0;
         }
 
-        .model-note pre {
+        .model-structure-panel pre {
           margin-bottom: 0;
-          background: rgba(255, 255, 255, 0.74);
+          border-color: #dbe6f5;
+          background: #fff;
         }
 
         .model-system-figure {
@@ -487,49 +453,49 @@ photorealistic, realistic, photo, photography, low quality, bad anatomy, bad han
         .model-system-figure figcaption,
         .comparison-caption {
           margin-top: 10px;
-          color: #6d7280;
-          font-size: .9rem;
-          font-weight: 700;
-          line-height: 1.7;
+          color: var(--content-muted, #5f697b);
+          font-size: .84rem;
+          font-weight: 600;
+          line-height: 1.65;
           text-align: center;
         }
 
         .model-table-scroll {
           overflow-x: auto;
           margin: 22px 0 24px;
-          border: 1px solid rgba(236, 217, 199, 0.9);
+          border: 1px solid #d6e3f4;
           border-radius: 16px;
           background: #fff;
-          box-shadow: 0 10px 22px rgba(48, 39, 31, 0.05);
         }
 
         .model-comparison-table {
           width: 100%;
-          min-width: 720px;
+          min-width: 690px;
           border-collapse: collapse;
         }
 
         .model-comparison-table th,
         .model-comparison-table td {
-          padding: 14px 16px;
-          border-bottom: 1px solid rgba(236, 217, 199, 0.75);
-          color: #344563;
-          font-size: .95rem;
-          line-height: 1.8;
+          padding: 13px 14px;
+          border-bottom: 1px solid #dbe6f5;
+          color: var(--content-text, #242a36);
+          font-size: .93rem;
+          line-height: 1.75;
           text-align: left;
           vertical-align: top;
         }
 
         .model-comparison-table thead th {
-          background: #fff7ee;
-          color: var(--navy);
-          font-weight: 900;
+          background: #edf4ff;
+          color: #174784;
+          font-weight: 800;
         }
 
         .model-comparison-table tbody th {
           width: 26%;
-          color: var(--navy);
-          font-weight: 900;
+          background: #f8fbff;
+          color: #174784;
+          font-weight: 800;
         }
 
         .model-comparison-table tr:last-child th,
@@ -541,11 +507,17 @@ photorealistic, realistic, photo, photography, low quality, bad anatomy, bad han
           display: block;
           margin: 24px 0 28px;
           padding: 18px 20px;
-          border: 1px solid rgba(236, 217, 199, 0.9);
-          border-radius: 18px;
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 247, 238, 0.96));
-          box-shadow: 0 10px 22px rgba(48, 39, 31, 0.05);
+          border: 1px solid #cfe0f7;
+          border-radius: 16px;
+          background: #f7fbff;
+          box-shadow: none;
           text-decoration: none !important;
+          transition: border-color 180ms ease, background-color 180ms ease;
+        }
+
+        .related-article-card:hover {
+          border-color: rgba(21, 101, 255, 0.36);
+          background: #eef6ff;
         }
 
         .related-article-card span {
@@ -553,22 +525,22 @@ photorealistic, realistic, photo, photography, low quality, bad anatomy, bad han
           margin-bottom: 8px;
           padding: 5px 10px;
           border-radius: 999px;
-          background: var(--blue);
+          background: var(--content-blue, #1565ff);
           color: #fff;
           font-size: .82rem;
-          font-weight: 900;
+          font-weight: 800;
         }
 
         .related-article-card strong {
           display: block;
-          color: var(--navy);
+          color: var(--content-text, #242a36);
           font-size: 1.04rem;
           line-height: 1.6;
         }
 
         .related-article-card p {
           margin: 6px 0 0;
-          color: #586273;
+          color: var(--content-muted, #5f697b);
           font-size: .94rem;
           line-height: 1.8;
         }
@@ -616,8 +588,8 @@ photorealistic, realistic, photo, photography, low quality, bad anatomy, bad han
           justify-content: center;
           grid-column: 2;
           grid-row: 1;
-          color: var(--orange);
-          font-weight: 900;
+          color: var(--content-cyan, #00c6ff);
+          font-weight: 800;
           line-height: 1;
         }
 
@@ -628,44 +600,51 @@ photorealistic, realistic, photo, photography, low quality, bad anatomy, bad han
           min-width: 0;
           min-height: 58px;
           padding: 12px 14px;
-          border: 1px solid rgba(236, 217, 199, 0.88);
+          border: 1px solid #d6e3f4;
           border-radius: 12px;
-          background: rgba(255, 255, 255, 0.7);
-          color: #344563;
+          background: #fff;
+          color: var(--content-text, #242a36);
           font-size: .95rem;
           line-height: 1.6;
         }
 
         .flow-list strong {
           grid-column: 3;
-          color: var(--navy);
-          font-weight: 900;
+          border-color: #bfd6f5;
+          background: #edf5ff;
+          color: #174784;
+          font-weight: 800;
+        }
+
+        @media (min-width: 761px) {
+          .model-basic-hero > figure {
+            height: 450px;
+          }
         }
 
         @media (max-width: 760px) {
-          .model-basic-page {
-            overflow-x: clip;
-          }
-
-          .model-basic-page .article-header-copy {
-            min-height: 278.188px;
-          }
-
           .comparison-grid {
             grid-template-columns: 1fr;
           }
 
-          .model-basic-page .article-header,
-          .model-basic-page .article-content,
-          .model-basic-page .toc-box,
-          .model-basic-page .model-note,
-          .model-basic-page .lulina-bubble {
-            max-width: 100%;
+          .model-structure-panel,
+          .model-flow-panel {
+            padding: 18px 16px;
           }
 
           .flow-list li {
             grid-template-columns: 1fr;
             gap: 8px;
+          }
+
+          .flow-list {
+            gap: 0;
+          }
+
+          .flow-list li + li {
+            margin-top: 10px;
+            padding-top: 12px;
+            border-top: 1px solid #dbe6f5;
           }
 
           .flow-list li::before {
@@ -678,6 +657,12 @@ photorealistic, realistic, photo, photography, low quality, bad anatomy, bad han
           .flow-list strong {
             grid-column: 1;
             grid-row: 3;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .related-article-card {
+            transition: none;
           }
         }
       `}</style>

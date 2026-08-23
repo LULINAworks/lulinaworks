@@ -110,9 +110,9 @@ export default function ComfyuiStartGuidePage() {
               今回は、ComfyUI公式ドキュメントで紹介されている流れに沿って進めます。モデルについても、公式ページで案内されているSD1.5モデルを使って、まずは基本の動作確認をしていきます。
             </p>
             <h2 id="article-summary">この記事でわかること</h2>
-            <Callout variant="info">
+            <p>
               ComfyUI Portable版は、必要なファイルを用意して起動できれば、シンプルなワークフローから画像生成を始められます。この記事では、導入・起動・画面の見方・最初の1枚を生成するまでの流れを順番に確認します。
-            </Callout>
+            </p>
 
             <nav className="toc-box" aria-labelledby="toc-title">
               <h2 id="toc-title">目次</h2>

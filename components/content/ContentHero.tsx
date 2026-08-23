@@ -3,6 +3,7 @@ import { DateMeta } from "./DateMeta";
 import styles from "./ContentPage.module.css";
 
 type ContentHeroProps = {
+  className?: string;
   backHref: string;
   backLabel: string;
   category: string;
@@ -12,10 +13,12 @@ type ContentHeroProps = {
   updatedAt?: string;
   eyecatchSrc: string;
   eyecatchAlt: string;
+  imagePosition?: string;
   tone?: "light" | "dark";
 };
 
 export function ContentHero({
+  className,
   backHref,
   backLabel,
   category,
@@ -25,12 +28,13 @@ export function ContentHero({
   updatedAt,
   eyecatchSrc,
   eyecatchAlt,
+  imagePosition,
   tone = "light",
 }: ContentHeroProps) {
   const toneClass = tone === "dark" ? styles.heroToneDark : styles.heroToneLight;
 
   return (
-    <header className={styles.hero}>
+    <header className={className ? `${styles.hero} ${className}` : styles.hero}>
       <nav className={styles.backNav} aria-label="記事ナビゲーション">
         <Link href={backHref} className={styles.backLink}>
           <span aria-hidden="true">←</span> {backLabel}
@@ -38,7 +42,11 @@ export function ContentHero({
       </nav>
 
       <figure className={`${styles.eyecatch} ${toneClass}`}>
-        <img src={eyecatchSrc} alt={eyecatchAlt} />
+        <img
+          src={eyecatchSrc}
+          alt={eyecatchAlt}
+          style={imagePosition ? { objectPosition: imagePosition } : undefined}
+        />
         <figcaption className={styles.heroBand}>
           <span className={styles.category}>{category}</span>
           <h1>{title}</h1>

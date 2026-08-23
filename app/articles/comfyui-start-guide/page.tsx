@@ -1,15 +1,31 @@
 import type { Metadata } from "next";
 import { ArticleNavigation } from "@/components/ArticleNavigation";
-import { ArticlePublishedDate } from "@/components/ArticlePublishedDate";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { ArticleBody } from "@/components/content/ArticleBody";
+import { Callout } from "@/components/content/Callout";
+import { ContentHero } from "@/components/content/ContentHero";
+import { ContentPageShell } from "@/components/content/ContentPageShell";
+import { contentCategoryLabels } from "@/data/content";
+import { allPublishedContents } from "@/data/contents";
 
 const title = "ComfyUIの始め方｜Portable版の導入から画像生成まで";
 const description =
   "ComfyUI Portable版の導入から、公式Text to Image Workflowを使った画像生成までの流れをまとめました。SD1.5モデルの用意、ワークフローの読み込み、最初の1枚を生成するまでを順番に確認できます。";
 const canonicalUrl = "https://lulinaworks.com/articles/comfyui-start-guide";
+const currentHref = "/articles/comfyui-start-guide";
 const imageBase = "/assets/articles/comfyui-start-guide/";
 const ogImage = "/assets/og/og-comfyui-start-guide.png";
+const lead =
+  "Windows向けComfyUI Portable版の導入から、公式Text to Image Workflowを使って最初の画像生成を行うまでの流れをまとめます。";
+const contentRecord = allPublishedContents.find((content) => content.href === currentHref);
+
+if (!contentRecord) {
+  throw new Error(`Published content is missing for ${currentHref}`);
+}
+
+const articleCategory = contentCategoryLabels[contentRecord.primaryCategory];
+const backHref = `/contents?category=${contentRecord.primaryCategory}`;
+const heroImageSrc = contentRecord.cardImage.src;
+const publishedAt = contentRecord.publishedAt;
 
 const toc = [
   "ComfyUI Portable版をダウンロードする",
@@ -66,60 +82,22 @@ function ArticleFigure({ name, alt, caption }: { name: string; alt: string; capt
   );
 }
 
-function LulinaSpeech({
-  children,
-  tone = "point",
-}: {
-  children: React.ReactNode;
-  tone?: "point" | "recommend" | "warning" | "reassure";
-}) {
-  const speechTone = tone === "reassure" ? "recommend" : tone;
-  const imageMap = {
-    point: {
-      src: "/assets/character/lulina-speech-point.png",
-      alt: "ワンポイントを話すルリナ",
-    },
-    recommend: {
-      src: "/assets/character/lulina-speech-recommend.png",
-      alt: "おすすめを話すルリナ",
-    },
-    warning: {
-      src: "/assets/character/lulina-speech-warning.png",
-      alt: "注意をうながすルリナ",
-    },
-  } as const;
-  const image = imageMap[speechTone];
-
-  return (
-    <aside className="lulina-speech" aria-label="ルリナのメモ">
-      <img src={image.src} alt={image.alt} />
-      <div className="lulina-bubble">
-        <span>ルリナ</span>
-        <p>{children}</p>
-      </div>
-    </aside>
-  );
-}
-
 export default function ComfyuiStartGuidePage() {
   return (
-    <>
-      <Header />
-      <main className="article-main">
-        <article className="article-shell" id="article-top">
-          <header className="article-header">
-            <div className="article-header-copy">
-              <a className="back-link" href="/contents">記事一覧へ戻る</a>
-              <span className="page-kicker">ComfyUI</span>
-              <h1>{title}</h1>
-              <p>
-                Windows向けComfyUI Portable版の導入から、公式Text to Image Workflowを使って最初の画像生成を行うまでの流れをまとめます。
-              </p>
-            </div>
-          </header>
+    <ContentPageShell articleId="article-top">
+      <ContentHero
+        backHref={backHref}
+        backLabel="コンテンツ一覧へ"
+        category={articleCategory}
+        title={title}
+        lead={lead}
+        publishedAt={publishedAt}
+        eyecatchSrc={heroImageSrc}
+        eyecatchAlt=""
+        tone="light"
+      />
 
-          <section className="article-content">
-            <ArticlePublishedDate href="/articles/comfyui-start-guide" />
+      <ArticleBody>
             <h2 id="intro">はじめに</h2>
             <p>ComfyUIは、画像生成の流れを「ノード」と呼ばれるパーツで組み立てて使うツールです。</p>
             <p>
@@ -132,11 +110,9 @@ export default function ComfyuiStartGuidePage() {
               今回は、ComfyUI公式ドキュメントで紹介されている流れに沿って進めます。モデルについても、公式ページで案内されているSD1.5モデルを使って、まずは基本の動作確認をしていきます。
             </p>
             <h2 id="article-summary">この記事でわかること</h2>
-            <LulinaSpeech tone="recommend">
-              ComfyUI Portable版は、必要なファイルを用意して起動できれば、まずはシンプルなワークフローで画像生成まで進められるよ。
-              この記事では、導入・起動・画面の見方・最初の1枚生成までを順番に確認していくよ。
-              読み終えるころには、ComfyUIで画像を出すまでの全体の流れをつかみやすくなるよ。
-            </LulinaSpeech>
+            <Callout variant="info">
+              ComfyUI Portable版は、必要なファイルを用意して起動できれば、シンプルなワークフローから画像生成を始められます。この記事では、導入・起動・画面の見方・最初の1枚を生成するまでの流れを順番に確認します。
+            </Callout>
 
             <nav className="toc-box" aria-labelledby="toc-title">
               <h2 id="toc-title">目次</h2>
@@ -188,9 +164,9 @@ export default function ComfyuiStartGuidePage() {
               alt="Portable版を展開したフォルダ"
               caption="Portable版を展開したフォルダ。NVIDIA GPUを使う場合は run_nvidia_gpu.bat から起動します。"
             />
-            <LulinaSpeech>
-              長く使うなら、専用フォルダを作っておくと管理しやすいよ。あとからモデルや出力画像が増えても、場所が分かりやすくなるからね。
-            </LulinaSpeech>
+            <Callout variant="point">
+              長く使う場合は、ComfyUI専用のフォルダを作っておくと管理しやすくなります。モデルや出力画像が増えたときも、保存場所を把握しやすくなります。
+            </Callout>
 
             <h2 id="section-3">3. 公式Text to Image Workflowを確認する</h2>
             <p>ComfyUIで画像を生成するには、ComfyUI本体とは別に、画像生成に使うモデルファイルが必要です。</p>
@@ -210,9 +186,9 @@ export default function ComfyuiStartGuidePage() {
               alt="公式ページ内のSD1.5モデル案内"
               caption="公式ページでは、SD1.5モデルファイルを ComfyUI/models/checkpoints に入れるよう案内されています。"
             />
-            <LulinaSpeech>
-              最初は公式の流れに合わせると迷いにくいよ。モデル選びで止まるより、まずは動かしてみるところまで進めてみよう。
-            </LulinaSpeech>
+            <Callout variant="point">
+              最初は公式の手順に沿って進めると迷いにくくなります。モデル選びで止まるより、まずは基本構成で動作確認まで進めるのがおすすめです。
+            </Callout>
 
             <h2 id="section-4">4. 公式案内に沿ってSD1.5モデルをダウンロードする</h2>
             <p>
@@ -251,9 +227,9 @@ export default function ComfyuiStartGuidePage() {
               caption="checkpoints フォルダに、SD1.5モデルファイルを入れた状態です。"
             />
             <p>すでにComfyUIを起動している場合は、モデル追加後に再起動しておくと安心です。</p>
-            <LulinaSpeech>
-              モデルを入れたのに一覧に出ないときは、ComfyUIを再起動してみよう。あとから追加したモデルは、読み込み直しが必要なことがあるよ。
-            </LulinaSpeech>
+            <Callout variant="point">
+              モデルを追加しても一覧に表示されない場合は、ComfyUIを再起動してください。あとから追加したモデルは、読み込み直しが必要になることがあります。
+            </Callout>
 
             <h2 id="section-6">6. ComfyUIを起動する</h2>
             <p>モデルファイルを配置したら、ComfyUIを起動します。</p>
@@ -267,9 +243,9 @@ export default function ComfyuiStartGuidePage() {
             />
             <p>ブラウザが自動で開かない場合は、黒い画面に表示されているURLを確認します。多くの場合は、以下のようなURLです。</p>
             <pre><code>http://127.0.0.1:8188/</code></pre>
-            <LulinaSpeech tone="warning">
-              黒い画面は閉じないでね。ComfyUI本体が動いている画面だから、閉じるとブラウザ側も使えなくなるよ。
-            </LulinaSpeech>
+            <Callout variant="warning">
+              ComfyUI起動中の黒いコンソール画面は閉じないでください。この画面でComfyUI本体が動作しているため、閉じるとブラウザ側からも使用できなくなります。
+            </Callout>
 
             <h2 id="section-7">7. ComfyUIの表示を日本語にする</h2>
             <p>この記事では、日本語表示のComfyUI画面をもとに説明します。</p>
@@ -297,9 +273,9 @@ export default function ComfyuiStartGuidePage() {
               caption="公式ワークフローをComfyUIに読み込んだ状態です。"
             />
             <p>このワークフローには、モデルの読み込み、プロンプト入力、画像生成、保存までの基本的な流れが含まれています。</p>
-            <LulinaSpeech>
-              まずは公式ワークフローをそのまま読み込んでみよう。自分でノードを組むのは、流れを確認してからで大丈夫だよ。
-            </LulinaSpeech>
+            <Callout variant="point">
+              最初は公式ワークフローをそのまま読み込み、基本的な流れを確認するのがおすすめです。自分でノードを組むのは、操作に慣れてからでも問題ありません。
+            </Callout>
 
             <h2 id="section-9">9. まずは公式ワークフローのプロンプトで生成してみる</h2>
             <p>ワークフローを読み込んだら、最初は中身を大きく変えずに、そのまま生成してみます。</p>
@@ -348,9 +324,9 @@ export default function ComfyuiStartGuidePage() {
               alt="書き換え後に生成された画像"
               caption="プロンプトを書き換えたあとに生成された画像です。"
             />
-            <LulinaSpeech>
-              最初のプロンプトは短くてOK。まずは「文字を変えると画像も変わる」感覚をつかんでみよう。
-            </LulinaSpeech>
+            <Callout variant="point">
+              最初のプロンプトは短い内容で十分です。まずはテキストを変更すると生成結果も変わることを確認すると、プロンプトの基本的な役割をつかみやすくなります。
+            </Callout>
 
             <h2 id="section-11">11. 生成された画像を確認する</h2>
             <p>生成された画像はComfyUIの画面上で確認でき、左側の アセット をクリックすると一覧が表示されます。</p>
@@ -367,9 +343,9 @@ export default function ComfyuiStartGuidePage() {
               caption="生成された画像は、ComfyUIの output フォルダにも保存されます。"
             />
             <p>ComfyUI上で画像が表示され、output フォルダにも保存されていれば、最初の画像生成は成功です。</p>
-            <LulinaSpeech tone="recommend">
-              ここまでできれば、ComfyUIの導入と基本的な動作確認は完了だよ。まずは1枚出せたことを成功ラインにしよう。
-            </LulinaSpeech>
+            <Callout variant="info">
+              ここまでできれば、ComfyUIの導入と基本的な動作確認は完了です。まずは正常に1枚生成できることを最初の確認ポイントとします。
+            </Callout>
 
             <h2 id="section-12">12. うまく動かないときの確認</h2>
             <p>ComfyUIが起動しない、モデルが選べない、画像が生成されない場合は、まず以下を確認します。</p>
@@ -387,9 +363,9 @@ export default function ComfyuiStartGuidePage() {
             <p>
               また、ComfyUIが動いている間は、起動時に開いた黒いコンソール画面を閉じないようにします。閉じてしまった場合は、もう一度 <code>run_nvidia_gpu.bat</code> から起動し直します。
             </p>
-            <LulinaSpeech tone="warning">
-              エラーが出たときは、まず黒い画面を見てみよう。どこで止まっているかのヒントが書かれていることが多いよ。
-            </LulinaSpeech>
+            <Callout variant="warning">
+              エラーが発生した場合は、まず起動時の黒いコンソール画面を確認してください。処理が止まっている箇所や、原因を特定するための情報が表示されていることがあります。
+            </Callout>
 
             <h2 id="section-13">まとめ</h2>
             <p>この記事では、ComfyUI Portable版を使って、導入から最初の画像生成までの流れをまとめました。</p>
@@ -413,14 +389,11 @@ export default function ComfyuiStartGuidePage() {
             <p>
               SDXLやPony系などのモデルもComfyUIで使えますが、推奨設定やプロンプトの考え方が変わる部分があります。そのあたりは、別の記事で整理していく予定です。
             </p>
-            <LulinaSpeech tone="recommend">
-              まずは基本ワークフローで1枚出せれば大丈夫。次は、プロンプトの書き方や設定の意味も少しずつ見ていこう。
-            </LulinaSpeech>
-          </section>
-          <ArticleNavigation currentHref="/articles/comfyui-start-guide" />
-        </article>
-      </main>
-      <Footer />
-    </>
+            <Callout variant="info">
+              まずは基本ワークフローで1枚生成できれば十分です。その後、プロンプトの書き方や各設定の意味を少しずつ確認していくと理解しやすくなります。
+            </Callout>
+      </ArticleBody>
+      <ArticleNavigation currentHref={currentHref} />
+    </ContentPageShell>
   );
 }

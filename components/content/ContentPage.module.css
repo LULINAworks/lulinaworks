@@ -112,27 +112,6 @@
   color: #fff;
 }
 
-.category {
-  display: inline-flex;
-  align-items: center;
-  min-height: 30px;
-  margin-bottom: 14px;
-  padding: 5px 13px;
-  border: 1px solid rgb(21 101 255 / 22%);
-  border-radius: 999px;
-  background: rgb(255 255 255 / 88%);
-  color: var(--content-blue);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-}
-
-.heroToneDark .category {
-  border-color: rgb(255 255 255 / 30%);
-  background: rgb(21 101 255 / 82%);
-  color: #fff;
-}
-
 .heroBand h1 {
   width: min(820px, 100%);
   margin: 0;
@@ -401,12 +380,6 @@
 
   .backNav {
     margin-bottom: 14px;
-  }
-
-  .category {
-    min-height: 28px;
-    margin-bottom: 10px;
-    padding: 4px 11px;
   }
 
   .eyecatch {

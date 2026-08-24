@@ -8,6 +8,11 @@ import { contentCategoryLabels } from "@/data/content";
 import { allPublishedContents } from "@/data/contents";
 
 const title = "AIイラストのプロンプトとは？基本の考え方と書き方を整理する";
+const heroTitle = (
+  <>
+    AIイラストの<span style={{ whiteSpace: "nowrap" }}>プロンプト</span>とは？基本の考え方と書き方を整理する
+  </>
+);
 const description =
   "AIイラストで使うプロンプトの基本と、要素ごとに分けて考える書き方を整理します。";
 const canonicalUrl = "https://lulinaworks.com/articles/prompt-basic";
@@ -148,7 +153,7 @@ export default function PromptBasicPage() {
           backHref={backHref}
           backLabel="コンテンツ一覧へ"
           category={articleCategory}
-          title={title}
+          title={heroTitle}
           lead={description}
           publishedAt={publishedAt}
           eyecatchSrc={heroImageSrc}

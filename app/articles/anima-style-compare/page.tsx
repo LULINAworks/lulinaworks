@@ -1,17 +1,37 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import { ArticleNavigation } from "@/components/ArticleNavigation";
-import { ArticlePublishedDate } from "@/components/ArticlePublishedDate";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { ArticleBody } from "@/components/content/ArticleBody";
+import { ContentHero } from "@/components/content/ContentHero";
+import { ContentPageShell } from "@/components/content/ContentPageShell";
+import { contentCategoryLabels } from "@/data/content";
+import { allPublishedContents } from "@/data/contents";
 
 const title = "Animaの絵柄はどう変わる？スタイル系プロンプト10種類を作例で比較";
+const heroTitle = (
+  <>
+    Animaの絵柄はどう<span style={{ whiteSpace: "nowrap" }}>変わる？</span>{"\n"}
+    <span style={{ whiteSpace: "nowrap" }}>スタイル系</span>
+    <span style={{ whiteSpace: "nowrap" }}>プロンプト</span>
+    <span style={{ whiteSpace: "nowrap" }}>10種類を</span><br className="anima-style-compare-hero-break" /><span style={{ whiteSpace: "nowrap" }}>作例で比較</span>
+  </>
+);
 const description =
   "Animaにスタイル系プロンプトを追加したときの絵柄・塗り・雰囲気の違いを、1人イラストと複数人シーンの作例で比較します。";
 const canonicalUrl = "https://lulinaworks.com/articles/anima-style-compare";
+const currentHref = "/articles/anima-style-compare";
 const imageBase = "/assets/articles/anima-style-compare/";
-const heroImage = `${imageBase}anima-style-scene-anime-screenshot.webp`;
 const ogImage = "/assets/og/ogp-anima-style-compare.png";
+const contentRecord = allPublishedContents.find((content) => content.href === currentHref);
+
+if (!contentRecord) {
+  throw new Error(`Published content is missing for ${currentHref}`);
+}
+
+const articleCategory = contentCategoryLabels[contentRecord.primaryCategory];
+const backHref = `/contents?category=${contentRecord.primaryCategory}`;
+const heroImageSrc = contentRecord.cardImage.src;
+const heroImagePosition = contentRecord.cardImage.position;
+const publishedAt = contentRecord.publishedAt;
 
 const toc = [
   "今回の比較条件",
@@ -220,7 +240,7 @@ export const metadata: Metadata = {
 
 function PromptCode({ children }: { children: string }) {
   return (
-    <pre>
+    <pre className="prompt-code">
       <code>{children}</code>
     </pre>
   );
@@ -232,42 +252,6 @@ function ArticleFigure({ name, alt, caption }: { name: string; alt: string; capt
       <img src={`${imageBase}${name}`} alt={alt} />
       <figcaption>{caption}</figcaption>
     </figure>
-  );
-}
-
-function LulinaSpeech({
-  children,
-  tone = "point",
-  label,
-}: {
-  children: ReactNode;
-  tone?: "point" | "recommend" | "warning";
-  label?: string;
-}) {
-  const imageMap = {
-    point: {
-      src: "/assets/character/lulina-speech-point.png",
-      alt: "ワンポイントを話すルリナ",
-    },
-    recommend: {
-      src: "/assets/character/lulina-speech-recommend.png",
-      alt: "おすすめを話すルリナ",
-    },
-    warning: {
-      src: "/assets/character/lulina-speech-warning.png",
-      alt: "注意をうながすルリナ",
-    },
-  } as const;
-  const image = imageMap[tone];
-
-  return (
-    <aside className="lulina-speech" aria-label="ルリナのメモ">
-      <img src={image.src} alt={image.alt} />
-      <div className="lulina-bubble">
-        <span>{label ?? "ルリナ"}</span>
-        <p>{children}</p>
-      </div>
-    </aside>
   );
 }
 
@@ -360,20 +344,21 @@ function SceneStyleCompare({
 export default function AnimaStyleComparePage() {
   return (
     <>
-      <Header />
-      <main className="article-main anima-style-compare-page">
-        <article className="article-shell" id="article-top">
-          <header className="article-header">
-            <div className="article-header-copy">
-              <a className="back-link" href="/contents">記事一覧へ戻る</a>
-              <span className="page-kicker">Model</span>
-              <h1>{title}</h1>
-              <p>{description}</p>
-            </div>
-          </header>
-
-          <section className="article-content">
-            <ArticlePublishedDate href="/articles/anima-style-compare" />
+      <ContentPageShell articleId="article-top">
+        <ContentHero
+          className="anima-style-compare-hero"
+          backHref={backHref}
+          backLabel="コンテンツ一覧へ"
+          category={articleCategory}
+          title={heroTitle}
+          lead={description}
+          publishedAt={publishedAt}
+          eyecatchSrc={heroImageSrc}
+          eyecatchAlt={title}
+          imagePosition={heroImagePosition}
+          tone="dark"
+        />
+        <ArticleBody>
             <h2 id="intro">はじめに</h2>
             <p>前回の記事では、AnimaをComfyUIで試しながら、タグ形式・自然文形式の違いや、使う前に知っておきたい注意点を整理しました。</p>
             <p>
@@ -388,11 +373,11 @@ export default function AnimaStyleComparePage() {
             <RelatedAnimaCard />
 
             <h2 id="article-summary">この記事でわかること</h2>
-            <LulinaSpeech tone="recommend" label="ルリナ">
+            <p>
               Animaでスタイル系プロンプトを追加したときに、絵柄や塗りがどの程度変化するのかを作例で比較します。
               <br />
               1人イラストと複数人シーンの両方を使うため、タグごとの違いを確認しやすくなっています。
-            </LulinaSpeech>
+            </p>
 
             <nav className="toc-box" aria-labelledby="toc-title">
               <h2 id="toc-title">目次</h2>
@@ -411,20 +396,20 @@ export default function AnimaStyleComparePage() {
               <table className="anima-style-table">
                 <thead>
                   <tr>
-                    <th>項目</th>
-                    <th>設定</th>
+                    <th scope="col">項目</th>
+                    <th scope="col">設定</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><th>Model</th><td>anima-base-v1.0</td></tr>
-                  <tr><th>Sampler</th><td>Euler</td></tr>
-                  <tr><th>Steps</th><td>40</td></tr>
-                  <tr><th>CFG</th><td>5.0</td></tr>
-                  <tr><th>1人比較</th><td>1024x1024</td></tr>
-                  <tr><th>1人比較 Seed A</th><td>435230025936092</td></tr>
-                  <tr><th>1人比較 Seed B</th><td>988292519661244</td></tr>
-                  <tr><th>複数人シーン</th><td>1536x864</td></tr>
-                  <tr><th>複数人シーン Seed C</th><td>819499044197465</td></tr>
+                  <tr><th scope="row">Model</th><td>anima-base-v1.0</td></tr>
+                  <tr><th scope="row">Sampler</th><td>Euler</td></tr>
+                  <tr><th scope="row">Steps</th><td>40</td></tr>
+                  <tr><th scope="row">CFG</th><td>5.0</td></tr>
+                  <tr><th scope="row">1人比較</th><td>1024x1024</td></tr>
+                  <tr><th scope="row">1人比較 Seed A</th><td>435230025936092</td></tr>
+                  <tr><th scope="row">1人比較 Seed B</th><td>988292519661244</td></tr>
+                  <tr><th scope="row">複数人シーン</th><td>1536x864</td></tr>
+                  <tr><th scope="row">複数人シーン Seed C</th><td>819499044197465</td></tr>
                 </tbody>
               </table>
             </div>
@@ -525,34 +510,28 @@ cute, clean composition, detailed eyes,
             </p>
             <DictionaryLinkCard />
             <p>今回の比較を目安にしつつ、作りたい絵柄やシーンに合わせて、気になるタグを試してみるのがよさそうです。</p>
-          </section>
-          <ArticleNavigation currentHref="/articles/anima-style-compare" series="anima" />
-        </article>
-      </main>
-      <Footer />
+        </ArticleBody>
+        <ArticleNavigation currentHref={currentHref} series="anima" />
+      </ContentPageShell>
 
       <style>{`
-        .anima-style-compare-page .article-header {
-          background:
-            linear-gradient(90deg, rgba(255, 253, 249, 0.94) 0%, rgba(255, 247, 238, 0.86) 48%, rgba(255, 247, 238, 0.2) 78%),
-            url("${heroImage}") 58% 42% / cover no-repeat;
+        .anima-style-compare-hero h1 {
+          white-space: pre-line;
         }
 
-        .anima-style-compare-page .article-content h3 {
-          margin: 34px 0 14px;
-          font-family: var(--font-heading), var(--font-body), sans-serif;
-          color: var(--navy);
-          font-size: clamp(1.18rem, 2vw, 1.45rem);
-          line-height: 1.5;
-          font-weight: 900;
-          letter-spacing: 0;
+        @media (max-width: 700px) {
+          .anima-style-compare-hero h1 {
+            white-space: normal;
+            font-size: 1.75rem;
+            line-height: 1.28;
+          }
+
+          .anima-style-compare-hero-break {
+            display: none;
+          }
         }
 
-        .anima-style-compare-page .article-content p,
-        .anima-style-compare-page .article-content li,
-        .anima-style-compare-page .article-content a,
-        .anima-style-compare-page .lulina-bubble p,
-        .anima-style-compare-page .related-article-card strong,
+        .related-article-card strong,
         .anima-style-table th,
         .anima-style-table td {
           overflow-wrap: anywhere;
@@ -562,10 +541,9 @@ cute, clean composition, detailed eyes,
         .anima-style-table-scroll {
           overflow-x: auto;
           margin: 22px 0 28px;
-          border: 1px solid rgba(236, 217, 199, 0.9);
+          border: 1px solid #cfe0f7;
           border-radius: 16px;
           background: #fff;
-          box-shadow: 0 10px 22px rgba(48, 39, 31, 0.05);
         }
 
         .anima-style-table {
@@ -577,8 +555,8 @@ cute, clean composition, detailed eyes,
         .anima-style-table th,
         .anima-style-table td {
           padding: 13px 15px;
-          border-bottom: 1px solid rgba(236, 217, 199, 0.75);
-          color: #344563;
+          border-bottom: 1px solid #dbe6f5;
+          color: var(--content-text, #242a36);
           font-size: .95rem;
           line-height: 1.75;
           text-align: left;
@@ -586,14 +564,15 @@ cute, clean composition, detailed eyes,
         }
 
         .anima-style-table thead th {
-          background: #fff7ee;
-          color: var(--navy);
-          font-weight: 900;
+          background: #edf4ff;
+          color: #174784;
+          font-weight: 800;
         }
 
         .anima-style-table tbody th {
-          color: var(--navy);
-          font-weight: 900;
+          background: #f8fbff;
+          color: #174784;
+          font-weight: 800;
         }
 
         .anima-style-table tr:last-child th,
@@ -609,9 +588,10 @@ cute, clean composition, detailed eyes,
         .style-compare-block > h3 {
           margin: 0 0 18px;
           padding: 12px 16px;
-          border-left: 5px solid var(--blue);
+          border-left: 5px solid var(--content-blue, #1565ff);
           border-radius: 0 12px 12px 0;
-          background: rgba(255, 247, 238, 0.72);
+          background: #f3f7ff;
+          color: var(--content-text, #242a36);
           font-size: clamp(1.28rem, 2.2vw, 1.62rem);
           font-weight: 900;
           line-height: 1.35;
@@ -637,26 +617,26 @@ cute, clean composition, detailed eyes,
           width: 100%;
           aspect-ratio: 1;
           object-fit: cover;
-          border: 1px solid rgba(236, 217, 199, 0.95);
+          border: 1px solid #d9e3f0;
           border-radius: 14px;
-          background: #fff;
-          box-shadow: 0 10px 22px rgba(48, 39, 31, 0.08);
+          background: #f7f9fc;
+          box-shadow: 0 8px 22px rgba(37, 77, 140, 0.08);
         }
 
         .single-compare-grid figcaption {
           margin-top: 8px;
-          color: var(--navy);
+          color: var(--content-text, #242a36);
           font-size: .88rem;
-          font-weight: 900;
+          font-weight: 800;
           line-height: 1.45;
           text-align: center;
         }
 
         .single-compare-figure > figcaption {
           margin-top: 12px;
-          color: #6d7280;
+          color: var(--content-muted, #5f697b);
           font-size: .9rem;
-          font-weight: 700;
+          font-weight: 600;
           line-height: 1.7;
           text-align: center;
         }
@@ -665,11 +645,17 @@ cute, clean composition, detailed eyes,
           display: block;
           margin: 24px 0 28px;
           padding: 18px 20px;
-          border: 1px solid rgba(236, 217, 199, 0.9);
-          border-radius: 18px;
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 247, 238, 0.96));
-          box-shadow: 0 10px 22px rgba(48, 39, 31, 0.05);
+          border: 1px solid #cfe0f7;
+          border-radius: 16px;
+          background: #f7fbff;
+          box-shadow: none;
           text-decoration: none !important;
+          transition: border-color 180ms ease, background-color 180ms ease;
+        }
+
+        .related-article-card:hover {
+          border-color: rgba(21, 101, 255, 0.36);
+          background: #eef6ff;
         }
 
         .related-article-card span {
@@ -677,46 +663,35 @@ cute, clean composition, detailed eyes,
           margin-bottom: 8px;
           padding: 5px 10px;
           border-radius: 999px;
-          background: var(--blue);
+          background: var(--content-blue, #1565ff);
           color: #fff;
           font-size: .82rem;
-          font-weight: 900;
+          font-weight: 800;
         }
 
         .related-article-card strong {
           display: block;
-          color: var(--navy);
+          color: var(--content-text, #242a36);
           font-size: 1.04rem;
           line-height: 1.6;
         }
 
         .related-article-card p {
           margin: 6px 0 0;
-          color: #586273;
+          color: var(--content-muted, #5f697b);
           font-size: .94rem;
           line-height: 1.8;
         }
 
         @media (max-width: 760px) {
-          .anima-style-compare-page {
-            overflow-x: clip;
-          }
-
-          .anima-style-compare-page .article-header {
-            background:
-              linear-gradient(180deg, rgba(255, 253, 249, 0.34) 0%, rgba(255, 247, 238, 0.82) 46%, rgba(255, 253, 249, 0.96) 100%),
-              url("${heroImage}") center top / cover no-repeat;
-          }
-
-          .anima-style-compare-page .article-header,
-          .anima-style-compare-page .article-content,
-          .anima-style-compare-page .toc-box,
-          .anima-style-compare-page .lulina-bubble {
-            max-width: 100%;
-          }
-
           .single-compare-grid {
             grid-template-columns: 1fr;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .related-article-card {
+            transition: none;
           }
         }
       `}</style>

@@ -8,6 +8,12 @@ import { contentCategoryLabels } from "@/data/content";
 import { allPublishedContents } from "@/data/contents";
 
 const title = "ComfyUIの始め方｜Portable版の導入から画像生成まで";
+const heroTitle = (
+  <>
+    ComfyUIの始め方｜<span style={{ whiteSpace: "nowrap" }}>Portable版</span>の
+    <span style={{ whiteSpace: "nowrap" }}>導入</span>から画像生成まで
+  </>
+);
 const description =
   "ComfyUI Portable版の導入から、公式Text to Image Workflowを使った画像生成までの流れをまとめました。SD1.5モデルの用意、ワークフローの読み込み、最初の1枚を生成するまでを順番に確認できます。";
 const canonicalUrl = "https://lulinaworks.com/articles/comfyui-start-guide";
@@ -89,7 +95,7 @@ export default function ComfyuiStartGuidePage() {
         backHref={backHref}
         backLabel="コンテンツ一覧へ"
         category={articleCategory}
-        title={title}
+        title={heroTitle}
         lead={lead}
         publishedAt={publishedAt}
         eyecatchSrc={heroImageSrc}

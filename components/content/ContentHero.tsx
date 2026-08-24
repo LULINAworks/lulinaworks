@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { DateMeta } from "./DateMeta";
 import styles from "./ContentPage.module.css";
 
@@ -7,7 +8,7 @@ type ContentHeroProps = {
   backHref: string;
   backLabel: string;
   category: string;
-  title: string;
+  title: ReactNode;
   lead: string;
   publishedAt: string;
   updatedAt?: string;
@@ -21,7 +22,6 @@ export function ContentHero({
   className,
   backHref,
   backLabel,
-  category,
   title,
   lead,
   publishedAt,
@@ -48,7 +48,6 @@ export function ContentHero({
           style={imagePosition ? { objectPosition: imagePosition } : undefined}
         />
         <figcaption className={styles.heroBand}>
-          <span className={styles.category}>{category}</span>
           <h1>{title}</h1>
         </figcaption>
       </figure>

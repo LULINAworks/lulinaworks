@@ -9,6 +9,11 @@ import { contentCategoryLabels } from "@/data/content";
 import { allPublishedContents } from "@/data/contents";
 
 const title = "画像生成AIのモデルとは？SD1.5・SDXLの違いと選び方";
+const heroTitle = (
+  <>
+    画像生成AIの<span style={{ whiteSpace: "nowrap" }}>モデル</span>とは？SD1.5・SDXLの違いと選び方
+  </>
+);
 const description =
   "画像生成AIで使うモデルの基本と、SD1.5系・SDXL系の違いを、画像サイズ・軽さ・ワークフローの違いから整理します。";
 const lead = "画像生成AIで使うモデルの基本と、SD1.5系・SDXL系の違いを整理します。";
@@ -118,7 +123,7 @@ export default function ModelBasicPage() {
           backHref={backHref}
           backLabel="コンテンツ一覧へ"
           category={articleCategory}
-          title={title}
+          title={heroTitle}
           lead={lead}
           publishedAt={publishedAt}
           eyecatchSrc={heroImageSrc}

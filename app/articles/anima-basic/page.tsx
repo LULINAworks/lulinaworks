@@ -1,16 +1,30 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import { ArticleNavigation } from "@/components/ArticleNavigation";
-import { ArticlePublishedDate } from "@/components/ArticlePublishedDate";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { ArticleBody } from "@/components/content/ArticleBody";
+import { Callout } from "@/components/content/Callout";
+import { ContentHero } from "@/components/content/ContentHero";
+import { ContentPageShell } from "@/components/content/ContentPageShell";
+import { contentCategoryLabels } from "@/data/content";
+import { allPublishedContents } from "@/data/contents";
 
 const title = "Animaとは？ComfyUIで試して感じた特徴と注意点";
 const description =
   "AnimaをComfyUIで試した所感をもとに、タグ形式・自然文形式の違い、生成速度、使う前に知っておきたい注意点を整理します。";
 const canonicalUrl = "https://lulinaworks.com/articles/anima-basic";
+const currentHref = "/articles/anima-basic";
 const imageBase = "/assets/articles/anima-basic/";
 const ogImage = "/assets/og/og-anima-basic.png";
+const contentRecord = allPublishedContents.find((content) => content.href === currentHref);
+
+if (!contentRecord) {
+  throw new Error(`Published content is missing for ${currentHref}`);
+}
+
+const articleCategory = contentCategoryLabels[contentRecord.primaryCategory];
+const backHref = `/contents?category=${contentRecord.primaryCategory}`;
+const heroImageSrc = contentRecord.cardImage.src;
+const heroImagePosition = contentRecord.cardImage.position;
+const publishedAt = contentRecord.publishedAt;
 
 const toc = [
   "Animaとは？",
@@ -83,42 +97,6 @@ function ArticleFigure({ name, alt, caption }: { name: string; alt: string; capt
   );
 }
 
-function LulinaSpeech({
-  children,
-  tone = "point",
-  label,
-}: {
-  children: ReactNode;
-  tone?: "point" | "recommend" | "warning";
-  label?: string;
-}) {
-  const imageMap = {
-    point: {
-      src: "/assets/character/lulina-speech-point.png",
-      alt: "ワンポイントを話すルリナ",
-    },
-    recommend: {
-      src: "/assets/character/lulina-speech-recommend.png",
-      alt: "おすすめを話すルリナ",
-    },
-    warning: {
-      src: "/assets/character/lulina-speech-warning.png",
-      alt: "注意をうながすルリナ",
-    },
-  } as const;
-  const image = imageMap[tone];
-
-  return (
-    <aside className="lulina-speech" aria-label="ルリナのメモ">
-      <img src={image.src} alt={image.alt} />
-      <div className="lulina-bubble">
-        <span>{label ?? "ルリナ"}</span>
-        <p>{children}</p>
-      </div>
-    </aside>
-  );
-}
-
 function RelatedArticleCard() {
   return (
     <a className="related-article-card" href="/articles/comfyui-start-guide">
@@ -178,20 +156,20 @@ function StyleCompare() {
 export default function AnimaBasicPage() {
   return (
     <>
-      <Header />
-      <main className="article-main anima-basic-page">
-        <article className="article-shell" id="article-top">
-          <header className="article-header">
-            <div className="article-header-copy">
-              <a className="back-link" href="/contents">記事一覧へ戻る</a>
-              <span className="page-kicker">Model</span>
-              <h1>{title}</h1>
-              <p>{description}</p>
-            </div>
-          </header>
-
-          <section className="article-content">
-            <ArticlePublishedDate href="/articles/anima-basic" />
+      <ContentPageShell articleId="article-top">
+        <ContentHero
+          backHref={backHref}
+          backLabel="コンテンツ一覧へ"
+          category={articleCategory}
+          title={title}
+          lead={description}
+          publishedAt={publishedAt}
+          eyecatchSrc={heroImageSrc}
+          eyecatchAlt={title}
+          imagePosition={heroImagePosition}
+          tone="dark"
+        />
+        <ArticleBody>
             <h2 id="intro">はじめに</h2>
             <p>画像生成AIのモデルには、SD1.5系、SDXL系、NovelAI系など、さまざまな系統があります。</p>
             <p>その中で、最近気になったモデルのひとつが <strong>Anima</strong> です。</p>
@@ -199,11 +177,11 @@ export default function AnimaBasicPage() {
             <p>この記事ではAnimaを実際にComfyUIで試してみて、タグ形式と自然文形式の違いや生成速度、使う前に知っておきたい注意点を整理します。</p>
 
             <h2 id="article-summary">この記事でわかること</h2>
-            <LulinaSpeech tone="recommend" label="ルリナ">
+            <p>
               Animaは、タグだけでなく自然文でも指定できるモデルです。<br />
               この記事では、ComfyUIで試したときの使い方の違い、生成速度、ライセンス面の注意点を整理します。<br />
               普段のタグ指定と何が違うのかを確認したい場合の判断材料としても使えます。
-            </LulinaSpeech>
+            </p>
 
             <nav className="toc-box" aria-labelledby="toc-title">
               <h2 id="toc-title">目次</h2>
@@ -254,9 +232,9 @@ export default function AnimaBasicPage() {
             <p>SD系やNovelAI系のイラスト生成では、<code>1girl, long hair, smile</code> のように短いタグを並べる書き方に慣れている人も多いと思います。</p>
             <p>一方でAnimaではタグだけでなく、文章で場面やキャラクター同士の関係性を説明する書き方も想定されています。<br />公式READMEでも、Danbooru風タグ、自然文キャプション、タグと自然文を組み合わせた形式で学習されていると説明されています。</p>
             <p>たとえば、単に</p>
-            <p><code>2girls, blue hair, red hair</code></p>
+            <pre className="prompt-code"><code>2girls, blue hair, red hair</code></pre>
             <p>と並べるだけでなく、</p>
-            <p><code>Two girls are standing side by side. The girl on the left has long blue hair and wears a white dress. The girl on the right has short red hair and wears a black dress.</code></p>
+            <pre className="prompt-code"><code>Two girls are standing side by side. The girl on the left has long blue hair and wears a white dress. The girl on the right has short red hair and wears a black dress.</code></pre>
             <p>のように文章で補足すると、どの要素をどちらのキャラクターに対応させたいのかを伝えやすくなります。</p>
             <p>ただし、自然文にすれば必ず意図通りになるというわけではありません。<br />公式でも、自然文だけで使う場合は具体的に書くことが推奨されており、極端に短いプロンプトでは予想外の結果になることがあると説明されています。</p>
             <ArticleFigure
@@ -269,15 +247,15 @@ export default function AnimaBasicPage() {
             <CompareGrid />
             <p>この画像は、プロンプトの書き方による出力の違いを見るために作成した比較です。</p>
             <p>細かいプロンプトは割愛しますが、共通部分として</p>
-            <p><code>masterpiece, best quality, score_7, safe, anime screenshot</code></p>
+            <pre className="prompt-code"><code>masterpiece, best quality, score_7, safe, anime screenshot</code></pre>
             <p>を固定し、上から順に「人物＋白背景」「人物＋ポーズ＋背景」「人物＋髪型＋背景＋ライティング」「2人＋それぞれの容姿＋背景」というテーマで生成しました。</p>
             <p>試した範囲では「タグのみ」「自然文のみ」「タグ＋自然文」のどの書き方でも一定のクオリティのイラストは生成できています。</p>
             <p>ただ、自然文が絡む生成では文章の書き方によって、結果のまとまり方や要素の伝わり方が変わりそうな印象もありました。</p>
             <p>なお、Animaはベースモデルのため、共通のスタイル指定を入れても絵柄や塗りにはある程度のブレがあります。<br />ここでは絵柄の違いというより、タグや自然文の書き方によってどこまで要素が反映されるかを見る比較として扱っています。</p>
-            <LulinaSpeech>
+            <Callout variant="point">
               タグだけでも画像を生成できます。<br />
               一方で、自然文で場面を補足できるため、従来のタグ指定とは異なる調整がしやすい場面もあります。
-            </LulinaSpeech>
+            </Callout>
 
             <h2 id="section-5">5. スタイル指定はどこまで効く？</h2>
             <p>Animaはベースモデルなので、スタイル指定を入れない場合は絵柄や塗りの方向がモデル側の補完に寄りやすい印象がありました。</p>
@@ -294,10 +272,10 @@ export default function AnimaBasicPage() {
             <p>初回生成では約2倍、モデル読み込み後の2回目以降では約2〜3倍ほど時間がかかる結果でした。</p>
             <p>もちろん、生成時間はPCスペック、ComfyUI環境、使用モデル、ワークフロー、解像度、サンプラーによって変わります。</p>
             <p>それでも、プロンプトを何度も調整しながら生成する用途ではテンポの差を感じやすいと思います。</p>
-            <LulinaSpeech>
+            <Callout variant="note">
               1枚だけ試す場合は大きな差に感じなくても、プロンプトを何度も調整すると生成時間の違いが積み重なります。<br />
               検証や大量生成に使う場合は、生成時間も含めて考える必要があります。
-            </LulinaSpeech>
+            </Callout>
 
             <h2 id="section-7">7. ライセンスと商用利用の注意</h2>
             <p>Animaを使うときは、ライセンスも確認しておきたいポイントです。</p>
@@ -329,28 +307,16 @@ export default function AnimaBasicPage() {
             <p>生成速度はやや重く、ベースモデルらしく絵柄や塗りにもある程度のブレがあるため、使う場面によってはスタイル指定やプロンプト調整を前提にしておくとよさそうです。</p>
             <p>ライセンス面では非商用ライセンスである点にも注意が必要で、販売物や商用利用を考える場合は、公式ページのライセンス本文まで目を通しておくと安心です。</p>
             <p>Animaはいつものタグ指定に自然文での説明を加えられるモデルです。<br />新しい指定方法を試せる選択肢として、今後の展開も含めて見ておきたいモデルだと感じました。</p>
-            <LulinaSpeech tone="recommend">
+            <Callout variant="info">
               Animaはタグだけでも使え、自然文を加えて場面を説明できる点が特徴です。<br />
               特に複数人の描き分けやキャラクター同士の関係を指定したい場合は、活用できる場面が広がる可能性があります。
-            </LulinaSpeech>
-          </section>
-          <ArticleNavigation currentHref="/articles/anima-basic" series="anima" />
-        </article>
-      </main>
-      <Footer />
+            </Callout>
+        </ArticleBody>
+        <ArticleNavigation currentHref="/articles/anima-basic" series="anima" />
+      </ContentPageShell>
 
       <style>{`
-        .anima-basic-page .article-header {
-          background:
-            linear-gradient(90deg, rgba(255, 253, 249, 0.94) 0%, rgba(255, 247, 238, 0.86) 48%, rgba(255, 247, 238, 0.2) 78%),
-            url("${imageBase}anima-basic-02-two-girls.webp") 62% 34% / cover no-repeat;
-        }
-
-        .anima-basic-page .article-content p,
-        .anima-basic-page .article-content li,
-        .anima-basic-page .article-content a,
-        .anima-basic-page .lulina-bubble p,
-        .anima-basic-page .related-article-card strong {
+        .related-article-card strong {
           overflow-wrap: anywhere;
           word-break: normal;
         }
@@ -359,11 +325,17 @@ export default function AnimaBasicPage() {
           display: block;
           margin: 24px 0 28px;
           padding: 18px 20px;
-          border: 1px solid rgba(236, 217, 199, 0.9);
-          border-radius: 18px;
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 247, 238, 0.96));
-          box-shadow: 0 10px 22px rgba(48, 39, 31, 0.05);
+          border: 1px solid #cfe0f7;
+          border-radius: 16px;
+          background: #f7fbff;
+          box-shadow: none;
           text-decoration: none !important;
+          transition: border-color 180ms ease, background-color 180ms ease;
+        }
+
+        .related-article-card:hover {
+          border-color: rgba(21, 101, 255, 0.36);
+          background: #eef6ff;
         }
 
         .related-article-card span {
@@ -371,22 +343,22 @@ export default function AnimaBasicPage() {
           margin-bottom: 8px;
           padding: 5px 10px;
           border-radius: 999px;
-          background: var(--blue);
+          background: var(--content-blue, #1565ff);
           color: #fff;
           font-size: .82rem;
-          font-weight: 900;
+          font-weight: 800;
         }
 
         .related-article-card strong {
           display: block;
-          color: var(--navy);
+          color: var(--content-text, #242a36);
           font-size: 1.04rem;
           line-height: 1.6;
         }
 
         .related-article-card p {
           margin: 6px 0 0;
-          color: #586273;
+          color: var(--content-muted, #5f697b);
           font-size: .94rem;
           line-height: 1.8;
         }
@@ -412,26 +384,26 @@ export default function AnimaBasicPage() {
           width: 100%;
           aspect-ratio: 1;
           object-fit: cover;
-          border: 1px solid rgba(236, 217, 199, 0.95);
+          border: 1px solid #d9e3f0;
           border-radius: 14px;
-          background: #fff;
-          box-shadow: 0 10px 22px rgba(48, 39, 31, 0.08);
+          background: #f7f9fc;
+          box-shadow: 0 8px 22px rgba(37, 77, 140, 0.08);
         }
 
         .anima-compare-item figcaption {
           margin-top: 8px;
-          color: var(--navy);
+          color: var(--content-text, #242a36);
           font-size: .88rem;
-          font-weight: 900;
+          font-weight: 800;
           line-height: 1.45;
           text-align: center;
         }
 
         .anima-compare-caption {
           margin-top: 12px;
-          color: #6d7280;
+          color: var(--content-muted, #5f697b);
           font-size: .9rem;
-          font-weight: 700;
+          font-weight: 600;
           line-height: 1.7;
           text-align: center;
         }
@@ -453,23 +425,6 @@ export default function AnimaBasicPage() {
         }
 
         @media (max-width: 760px) {
-          .anima-basic-page {
-            overflow-x: clip;
-          }
-
-          .anima-basic-page .article-header {
-            background:
-              linear-gradient(180deg, rgba(255, 253, 249, 0.34) 0%, rgba(255, 247, 238, 0.82) 46%, rgba(255, 253, 249, 0.96) 100%),
-              url("${imageBase}anima-basic-02-two-girls.webp") 50% 28% / cover no-repeat;
-          }
-
-          .anima-basic-page .article-header,
-          .anima-basic-page .article-content,
-          .anima-basic-page .toc-box,
-          .anima-basic-page .lulina-bubble {
-            max-width: 100%;
-          }
-
           .anima-compare-grid {
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 8px;
@@ -480,7 +435,13 @@ export default function AnimaBasicPage() {
           }
 
           .anima-compare-item figcaption {
-            font-size: .72rem;
+            font-size: .82rem;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .related-article-card {
+            transition: none;
           }
         }
       `}</style>

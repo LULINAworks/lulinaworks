@@ -1,17 +1,29 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import { ArticleNavigation } from "@/components/ArticleNavigation";
-import { ArticlePublishedDate } from "@/components/ArticlePublishedDate";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { ArticleBody } from "@/components/content/ArticleBody";
+import { Callout } from "@/components/content/Callout";
+import { ContentHero } from "@/components/content/ContentHero";
+import { ContentPageShell } from "@/components/content/ContentPageShell";
+import { contentCategoryLabels } from "@/data/content";
+import { allPublishedContents } from "@/data/contents";
 
 const title = "AIイラストのプロンプトとは？基本の考え方と書き方を整理する";
 const description =
   "AIイラストで使うプロンプトの基本と、要素ごとに分けて考える書き方を整理します。";
 const canonicalUrl = "https://lulinaworks.com/articles/prompt-basic";
+const currentHref = "/articles/prompt-basic";
 const imageBase = "/assets/articles/prompt-basic/";
-const eyecatchImage = "/assets/eyecatch/eyecatch-article-note.png";
 const ogImage = "/assets/og/og-prompt-basic.png";
+const contentRecord = allPublishedContents.find((content) => content.href === currentHref);
+
+if (!contentRecord) {
+  throw new Error(`Published content is missing for ${currentHref}`);
+}
+
+const articleCategory = contentCategoryLabels[contentRecord.primaryCategory];
+const backHref = `/contents?category=${contentRecord.primaryCategory}`;
+const heroImageSrc = contentRecord.cardImage.src;
+const publishedAt = contentRecord.publishedAt;
 
 const toc = [
   "プロンプトとは何か",
@@ -88,45 +100,9 @@ function ArticleFigure({ name, alt, caption }: { name: string; alt: string; capt
   );
 }
 
-function LulinaSpeech({
-  children,
-  tone = "point",
-  label,
-}: {
-  children: ReactNode;
-  tone?: "point" | "recommend" | "warning";
-  label?: string;
-}) {
-  const imageMap = {
-    point: {
-      src: "/assets/character/lulina-speech-point.png",
-      alt: "ワンポイントを話すルリナ",
-    },
-    recommend: {
-      src: "/assets/character/lulina-speech-recommend.png",
-      alt: "おすすめを話すルリナ",
-    },
-    warning: {
-      src: "/assets/character/lulina-speech-warning.png",
-      alt: "注意をうながすルリナ",
-    },
-  } as const;
-  const image = imageMap[tone];
-
-  return (
-    <aside className="lulina-speech" aria-label="ルリナのメモ">
-      <img src={image.src} alt={image.alt} />
-      <div className="lulina-bubble">
-        <span>{label ?? "ルリナ"}</span>
-        <p>{children}</p>
-      </div>
-    </aside>
-  );
-}
-
 function PromptCode({ children }: { children: string }) {
   return (
-    <pre>
+    <pre className="prompt-code">
       <code>{children}</code>
     </pre>
   );
@@ -167,20 +143,21 @@ function RelatedArticleCard() {
 export default function PromptBasicPage() {
   return (
     <>
-      <Header />
-      <main className="article-main prompt-basic-page">
-        <article className="article-shell" id="article-top">
-          <header className="article-header">
-            <div className="article-header-copy">
-              <a className="back-link" href="/contents">記事一覧へ戻る</a>
-              <span className="page-kicker">Prompt</span>
-              <h1>{title}</h1>
-              <p>{description}</p>
-            </div>
-          </header>
+      <ContentPageShell articleId="article-top">
+        <ContentHero
+          backHref={backHref}
+          backLabel="コンテンツ一覧へ"
+          category={articleCategory}
+          title={title}
+          lead={description}
+          publishedAt={publishedAt}
+          eyecatchSrc={heroImageSrc}
+          eyecatchAlt=""
+          imagePosition="center"
+          tone="dark"
+        />
 
-          <section className="article-content">
-            <ArticlePublishedDate href="/articles/prompt-basic" />
+        <ArticleBody>
             <h2 id="intro">はじめに</h2>
             <p>ComfyUIで画像を生成できるようになると、次に迷いやすいのが「プロンプトに何を書くか」です。</p>
             <p>同じモデルや同じワークフローを使っていても、プロンプトの内容によって、キャラクターの見た目、表情、服装、背景、雰囲気は大きく変わります。</p>
@@ -188,9 +165,9 @@ export default function PromptBasicPage() {
             <p>この記事では、AIイラストで使うプロンプトを「長い呪文」として覚えるのではなく、被写体・見た目・表情・構図・背景・画風などの要素に分けて整理する考え方を紹介します。</p>
             <p>今回はSDXL系のイラスト向けモデルを使った作例を中心に載せていますが、基本的な考え方はSD1.5系や他のモデルでも共通して使えます。</p>
 
-            <LulinaSpeech tone="recommend" label="ルリナ">
+            <p>
               プロンプトは、長く書くことよりも「何を変えたいか」を要素ごとに分けて考えることが重要です。この記事では、英語・日本語の違い、positive / negative、タグ形式、髪型や表情などの要素ごとの考え方を整理します。
-            </LulinaSpeech>
+            </p>
 
             <nav className="toc-box" aria-labelledby="toc-title">
               <h2 id="toc-title">目次</h2>
@@ -226,9 +203,9 @@ export default function PromptBasicPage() {
             <PromptCode>{`low quality, blurry, bad hands, text, watermark`}</PromptCode>
             <p>たとえば、画質の低下、手の崩れ、文字、透かしのような要素を避けたいときに使います。</p>
             <p>ただし、negative promptに書いたものが必ず完全に消えるわけではありません。「絶対に禁止する命令」というより、出にくくするための補助として考える方が近いです。</p>
-            <LulinaSpeech>
+            <Callout variant="point">
               negative promptは「絶対に出さない命令」ではなく、避けたい方向を伝える補助として捉えると分かりやすくなります。最初はよく使う基本的なnegativeを入れ、必要に応じて少しずつ調整していけば十分です。
-            </LulinaSpeech>
+            </Callout>
 
             <h2 id="section-3">3. プロンプトは英語で書く？日本語でもいい？</h2>
             <p>プロンプトを書くときに、最初に迷いやすいのが「英語で書くべきか、日本語でもいいのか」という点です。</p>
@@ -242,9 +219,9 @@ export default function PromptBasicPage() {
             <p>AIイラスト制作では、このように英語の単語や短いフレーズをカンマで区切って並べる書き方がよく使われます。</p>
             <p>日本語を絶対に使ってはいけないわけではありません。一部のモデルや環境では、日本語の説明でも反応することがあります。</p>
             <p>それでも、プロンプトを自分で調整したり、他の人のプロンプトを参考にしたり、プロンプト辞書を使ったりするなら、まずは英語のタグや短い英語フレーズに慣れておく方が扱いやすいです。</p>
-            <LulinaSpeech>
+            <Callout variant="point">
               日本語で書いてはいけないわけではありません。ただ、最初は blue hair や smile のような短い英語タグで考えると、あとから調整しやすくなります。辞書や配布プロンプトでも英語表記が多いため、少しずつ慣れておくと扱いやすくなります。
-            </LulinaSpeech>
+            </Callout>
 
             <h2 id="section-4">4. タグ形式と自然文形式の違い</h2>
             <p>英語でプロンプトを書く場合にも、大きく分けてタグ形式と自然文形式があります。</p>
@@ -260,24 +237,24 @@ export default function PromptBasicPage() {
               <table className="prompt-basic-table">
                 <thead>
                   <tr>
-                    <th>書き方</th>
-                    <th>例</th>
-                    <th>向いていること</th>
+                    <th scope="col">書き方</th>
+                    <th scope="col">例</th>
+                    <th scope="col">向いていること</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <th>タグ形式</th>
+                    <th scope="row">タグ形式</th>
                     <td>1girl, blue hair, smile</td>
                     <td>要素を分けて調整しやすい</td>
                   </tr>
                   <tr>
-                    <th>自然文形式</th>
+                    <th scope="row">自然文形式</th>
                     <td>A girl with blue hair is smiling.</td>
                     <td>雰囲気を文章で伝えやすい</td>
                   </tr>
                   <tr>
-                    <th>混合形式</th>
+                    <th scope="row">混合形式</th>
                     <td>1girl, blue hair, smile, standing in a bright garden</td>
                     <td>タグと文章の両方を使える</td>
                   </tr>
@@ -314,29 +291,29 @@ export default function PromptBasicPage() {
               <table className="prompt-basic-table">
                 <thead>
                   <tr>
-                    <th>日本語で言いたいこと</th>
-                    <th>直訳っぽい書き方</th>
-                    <th>プロンプトで使われやすい表現</th>
+                    <th scope="col">日本語で言いたいこと</th>
+                    <th scope="col">直訳っぽい書き方</th>
+                    <th scope="col">プロンプトで使われやすい表現</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <th>こちらを見ている</th>
+                    <th scope="row">こちらを見ている</th>
                     <td>looking this way</td>
                     <td>looking at viewer</td>
                   </tr>
                   <tr>
-                    <th>横顔</th>
+                    <th scope="row">横顔</th>
                     <td>side face</td>
                     <td>profile, side view</td>
                   </tr>
                   <tr>
-                    <th>太ももあたりまでの構図</th>
+                    <th scope="row">太ももあたりまでの構図</th>
                     <td>from head to thighs など</td>
                     <td>cowboy shot</td>
                   </tr>
                   <tr>
-                    <th>猫っぽい口元・むにっとした表情</th>
+                    <th scope="row">猫っぽい口元・むにっとした表情</th>
                     <td>通常の英単語では表しにくい</td>
                     <td>:3</td>
                   </tr>
@@ -351,49 +328,49 @@ export default function PromptBasicPage() {
               <table className="prompt-basic-table">
                 <thead>
                   <tr>
-                    <th>要素</th>
-                    <th>例</th>
+                    <th scope="col">要素</th>
+                    <th scope="col">例</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <th>被写体</th>
+                    <th scope="row">被写体</th>
                     <td>1girl, solo</td>
                   </tr>
                   <tr>
-                    <th>髪型</th>
+                    <th scope="row">髪型</th>
                     <td>short hair, long hair, twin tails</td>
                   </tr>
                   <tr>
-                    <th>髪色</th>
+                    <th scope="row">髪色</th>
                     <td>blue hair, black hair, silver hair</td>
                   </tr>
                   <tr>
-                    <th>目</th>
+                    <th scope="row">目</th>
                     <td>blue eyes, green eyes</td>
                   </tr>
                   <tr>
-                    <th>表情</th>
+                    <th scope="row">表情</th>
                     <td>smile, surprised expression, serious expression</td>
                   </tr>
                   <tr>
-                    <th>服装</th>
+                    <th scope="row">服装</th>
                     <td>white blouse, blue dress, school uniform</td>
                   </tr>
                   <tr>
-                    <th>構図</th>
+                    <th scope="row">構図</th>
                     <td>upper body, full body, looking at viewer</td>
                   </tr>
                   <tr>
-                    <th>背景</th>
+                    <th scope="row">背景</th>
                     <td>simple background, garden, classroom</td>
                   </tr>
                   <tr>
-                    <th>光</th>
+                    <th scope="row">光</th>
                     <td>soft lighting, sunlight, backlight</td>
                   </tr>
                   <tr>
-                    <th>雰囲気</th>
+                    <th scope="row">雰囲気</th>
                     <td>pastel colors, warm atmosphere, clean composition</td>
                   </tr>
                 </tbody>
@@ -427,9 +404,9 @@ simple background, soft lighting,
 clean composition, high quality`}</PromptCode>
             <p>このように並べておくと、「髪型だけ変えたい」「背景だけ変えたい」と思ったときに、変更する場所を見つけやすくなります。</p>
             <p>順番そのものにこだわりすぎるより、まずは自分が見て分かりやすい形に整理しておくことが大切です。</p>
-            <LulinaSpeech>
+            <Callout variant="point">
               プロンプトはあとから修正することが多いため、自分で見返しやすい順番に整理しておくと扱いやすくなります。髪型・表情・背景など、要素ごとに配置を決めておくと差し替え時にも迷いにくくなります。
-            </LulinaSpeech>
+            </Callout>
 
             <h2 id="section-7">7. まず指定したい基本要素</h2>
             <p>最初からすべての要素を細かく指定する必要はありません。</p>
@@ -501,9 +478,9 @@ bright classroom`}</PromptCode>
               items={backgroundExamples}
               caption="背景の指定だけを変えた例です。背景は画像全体の雰囲気に大きく影響します。"
             />
-            <LulinaSpeech>
+            <Callout variant="point">
               比較するときは、一度に多くの要素を変えすぎないことが重要です。髪型を確認したい場合は髪型だけ、背景を確認したい場合は背景だけを変えると、各プロンプトの影響を確認しやすくなります。
-            </LulinaSpeech>
+            </Callout>
 
             <h2 id="section-9">9. 強調指定は最初から使いすぎなくていい</h2>
             <p>プロンプトでは、特定の単語を少し強めるために、次のような書き方を使うことがあります。</p>
@@ -513,9 +490,9 @@ bright classroom`}</PromptCode>
             <p>ただし、強調指定は便利な反面、最初から多用すると分かりにくくなります。</p>
             <p>たとえば、いろいろな単語に強調を入れすぎると、どの指定が効いているのか分かりにくくなったり、絵が不自然になったりする場合があります。</p>
             <p>最初は通常の単語で試して、それでも弱いと感じた部分だけ少し強めるくらいで十分です。</p>
-            <LulinaSpeech>
+            <Callout variant="point">
               強調指定は便利ですが、最初から多用する必要はありません。まずは通常のプロンプトで試し、「ここだけもう少し効かせたい」と感じた部分に限定して使うのがおすすめです。
-            </LulinaSpeech>
+            </Callout>
 
             <h2 id="section-10">10. モデルによってプロンプトの効き方は変わる</h2>
             <p>同じプロンプトを書いても、使うモデルによって結果は変わります。</p>
@@ -551,8 +528,6 @@ looking at viewer
 standing
 upper body`}</PromptCode>
             <p>こうした言葉を毎回ゼロから探すのは、少し大変です。</p>
-            <p>そこで役に立つのが、プロンプト辞書です。</p>
-            <p>プロンプト辞書は、長いプロンプトを丸ごとコピーするためだけのものではありません。むしろ、「髪型を変えたい」「表情を変えたい」「ポーズを変えたい」と思ったときに、使えそうな単語を探す場所として使うと便利です。</p>
             <p>たとえば、基本のプロンプトがある状態で髪型だけ変えたいなら、</p>
             <PromptCode>{`short hair`}</PromptCode>
             <p>を</p>
@@ -560,11 +535,14 @@ upper body`}</PromptCode>
             <p>や</p>
             <PromptCode>{`twin tails`}</PromptCode>
             <p>に差し替えるような使い方ができます。</p>
-            <p>プロンプトを要素ごとに分けて考えられるようになると、辞書の使い方も分かりやすくなります。</p>
-            <p>LULINAworksでも、今後は髪型・表情・ポーズなど、制作に使いやすいプロンプト辞書を少しずつ追加していく予定です。</p>
-            <LulinaSpeech>
-              プロンプト辞書は、長い文章をそのままコピーするためだけのものではありません。髪型・表情・ポーズなど、必要な要素だけを探して差し替えると、自分の画像に合わせて調整しやすくなります。LULINAworksでは、制作時に参照しやすい形でプロンプトを整理しています。
-            </LulinaSpeech>
+            <p>プロンプトを要素ごとに分けて考えられるようになると、必要なタグも探しやすくなります。</p>
+            <p>そこで役に立つのが、当サイトの「プロンプト一覧」です。髪型・表情・ポーズ・構図など、AIイラスト制作で使いやすいプロンプトタグをカテゴリ別に整理しています。</p>
+            <p>長いプロンプトを丸ごとコピーするためだけでなく、「髪型を変えたい」「表情を変えたい」「ポーズを変えたい」といったときに、必要なタグだけを探して差し替える使い方ができます。</p>
+            <a className="related-article-card" href="/dictionary">
+              <span>プロンプト一覧</span>
+              <strong>プロンプト一覧を見る</strong>
+              <p>髪型・表情・ポーズ・構図などのタグを、サンプル画像と一緒に確認できます。</p>
+            </a>
 
             <h2 id="section-12">12. まとめ</h2>
             <p>この記事では、AIイラストで使うプロンプトの基本的な考え方を整理しました。</p>
@@ -586,38 +564,17 @@ upper body`}</PromptCode>
               <li>辞書は必要な要素を探して差し替える場所として使う</li>
             </ul>
             <p>プロンプトは、最初から完璧に書こうとしなくても大丈夫です。まずは短いプロンプトを作り、変えたい部分を少しずつ差し替えながら、自分の作りたい画像に近づけていきましょう。</p>
-            <LulinaSpeech>
+            <Callout variant="point">
               プロンプトは、少しずつ試しながら覚えていけば問題ありません。まずは短いプロンプトを作り、髪型・表情・背景など一部分だけを変えると、どの言葉が画像に影響しているか確認しやすくなります。
-            </LulinaSpeech>
-          </section>
-          <ArticleNavigation currentHref="/articles/prompt-basic" />
-        </article>
-      </main>
-      <Footer />
+            </Callout>
+        </ArticleBody>
+        <ArticleNavigation currentHref={currentHref} />
+      </ContentPageShell>
 
       <style>{`
-        .prompt-basic-page .article-header {
-          background:
-            linear-gradient(90deg, rgba(255, 253, 249, 0.94) 0%, rgba(255, 247, 238, 0.86) 48%, rgba(255, 247, 238, 0.2) 78%),
-            url("${eyecatchImage}") center / cover no-repeat;
-        }
-
-        .prompt-basic-page .article-content h3 {
-          margin: 34px 0 14px;
-          font-family: var(--font-heading), var(--font-body), sans-serif;
-          color: var(--navy);
-          font-size: clamp(1.18rem, 2vw, 1.45rem);
-          line-height: 1.5;
-          font-weight: 900;
-          letter-spacing: 0;
-        }
-
-        .prompt-basic-page .article-content p,
-        .prompt-basic-page .article-content li,
-        .prompt-basic-page .article-content a,
-        .prompt-basic-page .lulina-bubble p,
-        .prompt-basic-page .prompt-basic-table th,
-        .prompt-basic-page .prompt-basic-table td {
+        .prompt-basic-table th,
+        .prompt-basic-table td,
+        .related-article-card strong {
           overflow-wrap: anywhere;
           word-break: normal;
         }
@@ -625,10 +582,10 @@ upper body`}</PromptCode>
         .prompt-basic-table-scroll {
           overflow-x: auto;
           margin: 22px 0 28px;
-          border: 1px solid rgba(236, 217, 199, 0.9);
+          border: 1px solid #d6e3f4;
           border-radius: 16px;
           background: #fff;
-          box-shadow: 0 10px 22px rgba(48, 39, 31, 0.05);
+          box-shadow: none;
         }
 
         .prompt-basic-table {
@@ -640,23 +597,24 @@ upper body`}</PromptCode>
         .prompt-basic-table th,
         .prompt-basic-table td {
           padding: 13px 15px;
-          border-bottom: 1px solid rgba(236, 217, 199, 0.75);
-          color: #344563;
-          font-size: .95rem;
+          border-bottom: 1px solid #dbe6f5;
+          color: var(--content-text, #242a36);
+          font-size: .93rem;
           line-height: 1.75;
           text-align: left;
           vertical-align: top;
         }
 
         .prompt-basic-table thead th {
-          background: #fff7ee;
-          color: var(--navy);
-          font-weight: 900;
+          background: #edf4ff;
+          color: #174784;
+          font-weight: 800;
         }
 
         .prompt-basic-table tbody th {
-          color: var(--navy);
-          font-weight: 900;
+          background: #f8fbff;
+          color: #174784;
+          font-weight: 800;
         }
 
         .prompt-basic-table tr:last-child th,
@@ -684,27 +642,27 @@ upper body`}</PromptCode>
           width: 100%;
           aspect-ratio: 1;
           object-fit: cover;
-          border: 1px solid rgba(236, 217, 199, 0.95);
+          border: 1px solid #d9e3f0;
           border-radius: 14px;
-          background: #fff;
-          box-shadow: 0 10px 22px rgba(48, 39, 31, 0.08);
+          background: #f7f9fc;
+          box-shadow: 0 8px 22px rgb(37 77 140 / 8%);
         }
 
         .prompt-basic-variant-item figcaption {
           margin-top: 8px;
-          color: var(--navy);
+          color: var(--content-text, #242a36);
           font-size: .88rem;
-          font-weight: 900;
+          font-weight: 800;
           line-height: 1.45;
           text-align: center;
         }
 
         .prompt-basic-variant-caption {
           margin-top: 12px;
-          color: #6d7280;
-          font-size: .9rem;
-          font-weight: 700;
-          line-height: 1.7;
+          color: var(--content-muted, #5f697b);
+          font-size: .84rem;
+          font-weight: 600;
+          line-height: 1.65;
           text-align: center;
         }
 
@@ -712,11 +670,17 @@ upper body`}</PromptCode>
           display: block;
           margin: 24px 0 28px;
           padding: 18px 20px;
-          border: 1px solid rgba(236, 217, 199, 0.9);
-          border-radius: 18px;
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 247, 238, 0.96));
-          box-shadow: 0 10px 22px rgba(48, 39, 31, 0.05);
+          border: 1px solid #cfe0f7;
+          border-radius: 16px;
+          background: #f7fbff;
+          box-shadow: none;
           text-decoration: none !important;
+          transition: border-color 180ms ease, background-color 180ms ease;
+        }
+
+        .related-article-card:hover {
+          border-color: rgba(21, 101, 255, 0.36);
+          background: #eef6ff;
         }
 
         .related-article-card span {
@@ -724,44 +688,27 @@ upper body`}</PromptCode>
           margin-bottom: 8px;
           padding: 5px 10px;
           border-radius: 999px;
-          background: var(--blue);
+          background: var(--content-blue, #1565ff);
           color: #fff;
           font-size: .82rem;
-          font-weight: 900;
+          font-weight: 800;
         }
 
         .related-article-card strong {
           display: block;
-          color: var(--navy);
+          color: var(--content-text, #242a36);
           font-size: 1.04rem;
           line-height: 1.6;
         }
 
         .related-article-card p {
           margin: 6px 0 0;
-          color: #586273;
+          color: var(--content-muted, #5f697b);
           font-size: .94rem;
           line-height: 1.8;
         }
 
-        @media (max-width: 760px) {
-          .prompt-basic-page {
-            overflow-x: clip;
-          }
-
-          .prompt-basic-page .article-header {
-            background:
-              linear-gradient(180deg, rgba(255, 253, 249, 0.34) 0%, rgba(255, 247, 238, 0.82) 46%, rgba(255, 253, 249, 0.96) 100%),
-              url("${eyecatchImage}") center top / cover no-repeat;
-          }
-
-          .prompt-basic-page .article-header,
-          .prompt-basic-page .article-content,
-          .prompt-basic-page .toc-box,
-          .prompt-basic-page .lulina-bubble {
-            max-width: 100%;
-          }
-
+        @media (max-width: 700px) {
           .prompt-basic-variant-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 12px;
@@ -769,6 +716,12 @@ upper body`}</PromptCode>
 
           .prompt-basic-variant-item figcaption {
             font-size: .82rem;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .related-article-card {
+            transition: none;
           }
         }
       `}</style>

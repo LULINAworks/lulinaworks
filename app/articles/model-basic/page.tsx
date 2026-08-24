@@ -326,7 +326,7 @@ SDXL系
             <h2 id="section-7">7. 同じようなプロンプトでも結果は変わる</h2>
             <p>ここでは、近い内容のプロンプトを使って、SD1.5系の例とSDXL系の例で生成結果を見比べます。</p>
             <p>比較に使ったプロンプトの例は、次のような内容です。</p>
-            <pre><code>{`Positive:
+            <pre className="prompt-code"><code>{`Positive:
 1girl, short brown hair, gentle smile, white blouse, flower garden, soft natural light, upper body, looking at viewer, soft colors, detailed background, digital illustration, anime-style, soft shading
 
 Negative:

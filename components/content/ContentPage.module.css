@@ -270,6 +270,12 @@
   color: #243754;
 }
 
+.articleBody :global(pre.prompt-code) {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
 .articleBody :global(.toc-box) {
   margin: 38px 0 52px;
   padding: 26px 30px;

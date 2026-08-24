@@ -1,17 +1,33 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import { ArticleNavigation } from "@/components/ArticleNavigation";
-import { ArticlePublishedDate } from "@/components/ArticlePublishedDate";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { ArticleBody } from "@/components/content/ArticleBody";
+import { ContentHero } from "@/components/content/ContentHero";
+import { ContentPageShell } from "@/components/content/ContentPageShell";
+import { contentCategoryLabels } from "@/data/content";
+import { allPublishedContents } from "@/data/contents";
 
 const title = "Animaで使える？プロンプトをタグと自然文で書く方法";
+const heroTitle = (
+  <>
+    Animaで<span style={{ whiteSpace: "nowrap" }}>使える？</span><span style={{ whiteSpace: "nowrap" }}>プロンプト</span>を<span style={{ whiteSpace: "nowrap" }}>タグと自然文</span>で<span style={{ whiteSpace: "nowrap" }}>書く方法</span>
+  </>
+);
 const description =
   "Animaでタグ指定と自然文を組み合わせ、キャラの特徴や複数人シーンを整理して書く方法を紹介します。";
 const canonicalUrl = "https://lulinaworks.com/articles/anima-prompt-writing";
+const currentHref = "/articles/anima-prompt-writing";
 const imageBase = "/assets/articles/anima-prompt-writing/";
-const heroImage = `${imageBase}anima-prompt-writing-eyecatch.png`;
 const ogImage = "/assets/og/ogp-anima-prompt-writing.png";
+const contentRecord = allPublishedContents.find((content) => content.href === currentHref);
+
+if (!contentRecord) {
+  throw new Error(`Published content is missing for ${currentHref}`);
+}
+
+const articleCategory = contentCategoryLabels[contentRecord.primaryCategory];
+const backHref = `/contents?category=${contentRecord.primaryCategory}`;
+const heroImageSrc = contentRecord.cardImage.src;
+const publishedAt = contentRecord.publishedAt;
 
 const toc = [
   "Animaは自然文だけでも使える",
@@ -20,7 +36,7 @@ const toc = [
   "タグ＋自然文で分けると管理しやすい",
   "1人キャラの特徴はタグで整理する",
   "複数人シーンではキャラごとに情報を分ける",
-  "よく使う指定は辞書化しておくと扱いやすい",
+  "よく使う指定はプロンプト一覧から探すと扱いやすい",
   "Animaでタグ＋自然文を書くときの注意点",
   "まとめ",
 ];
@@ -57,7 +73,7 @@ export const metadata: Metadata = {
 
 function PromptCode({ children }: { children: string }) {
   return (
-    <pre>
+    <pre className="prompt-code">
       <code>{children}</code>
     </pre>
   );
@@ -72,94 +88,34 @@ function ArticleFigure({ name, alt, caption }: { name: string; alt: string; capt
   );
 }
 
-function LulinaSpeech({
-  children,
-  tone = "point",
-  label,
-}: {
-  children: ReactNode;
-  tone?: "point" | "recommend" | "warning";
-  label?: string;
-}) {
-  const imageMap = {
-    point: {
-      src: "/assets/character/lulina-speech-point.png",
-      alt: "ワンポイントを話すルリナ",
-    },
-    recommend: {
-      src: "/assets/character/lulina-speech-recommend.png",
-      alt: "おすすめを話すルリナ",
-    },
-    warning: {
-      src: "/assets/character/lulina-speech-warning.png",
-      alt: "注意をうながすルリナ",
-    },
-  } as const;
-  const image = imageMap[tone];
-
+function DictionaryLinkCard() {
   return (
-    <aside className="lulina-speech" aria-label="ルリナのメモ">
-      <img src={image.src} alt={image.alt} />
-      <div className="lulina-bubble">
-        <span>{label ?? "ルリナ"}</span>
-        <p>{children}</p>
-      </div>
-    </aside>
-  );
-}
-
-function DictionaryCards() {
-  const items = [
-    {
-      label: "プロンプト一覧",
-      title: "AIイラスト制作に使えるプロンプト一覧",
-      description: "AIイラスト制作で使いやすいプロンプトを、カテゴリごとにサンプル付きで整理しています。",
-      href: "/dictionary",
-    },
-    {
-      label: "髪型プロンプト",
-      title: "髪型プロンプト一覧",
-      description: "髪の長さ・前髪・ポニーテールなど、髪型に関するプロンプトを探せます。",
-      href: "/dictionary/hairstyle",
-    },
-    {
-      label: "表情プロンプト",
-      title: "表情プロンプト一覧",
-      description: "笑顔・怒り・涙・記号表情など、表情づくりに使いやすいプロンプトを探せます。",
-      href: "/dictionary/expression",
-    },
-  ];
-
-  return (
-    <div className="related-card-grid">
-      {items.map((item) => (
-        <a className="related-article-card" href={item.href} key={item.href}>
-          <span>{item.label}</span>
-          <strong>{item.title}</strong>
-          <p>{item.description}</p>
-        </a>
-      ))}
-    </div>
+    <a className="related-article-card" href="/dictionary">
+      <span>プロンプト一覧</span>
+      <strong>AIイラスト制作に使えるプロンプト一覧</strong>
+      <p>AIイラスト制作で使いやすいプロンプトを、カテゴリごとにサンプル付きで整理しています。</p>
+    </a>
   );
 }
 
 export default function AnimaPromptWritingPage() {
   return (
     <>
-      <Header />
-      <main className="article-main anima-prompt-writing-page">
-        <article className="article-shell" id="article-top">
-          <header className="article-header">
-            <div className="article-header-copy">
-              <a className="back-link" href="/contents">記事一覧へ戻る</a>
-              <span className="page-kicker">Model</span>
-              <h1>{title}</h1>
-              <p>{description}</p>
-            </div>
-          </header>
+      <ContentPageShell articleId="article-top">
+        <ContentHero
+          backHref={backHref}
+          backLabel="コンテンツ一覧へ"
+          category={articleCategory}
+          title={heroTitle}
+          lead={description}
+          publishedAt={publishedAt}
+          eyecatchSrc={heroImageSrc}
+          eyecatchAlt={title}
+          imagePosition="center top"
+          tone="dark"
+        />
 
-          <section className="article-content">
-            <ArticlePublishedDate href="/articles/anima-prompt-writing" />
+        <ArticleBody>
 
             <h2 id="intro">はじめに</h2>
             <p>画像生成AIでイラストを作るとき、プロンプトの書き方にはいくつかの考え方があります。</p>
@@ -179,11 +135,11 @@ export default function AnimaPromptWritingPage() {
             <p>自然文を否定するのではなく、キャラクターの特徴はタグで整理し、シーンや雰囲気は自然文で補う、という使い方を紹介します。</p>
 
             <h2 id="article-summary">この記事でわかること</h2>
-            <LulinaSpeech tone="recommend" label="ルリナ">
+            <p>
               Animaは自然文だけでも使えますが、表情・構図・服装差分やオリジナルキャラクターの特徴づけでは、タグで要素を分けた方が扱いやすい場合もあります。
               <br />
               この記事では、タグ指定と自然文をどのように組み合わせるかを整理します。
-            </LulinaSpeech>
+            </p>
 
             <nav className="toc-box" aria-labelledby="toc-title">
               <h2 id="toc-title">目次</h2>
@@ -411,14 +367,14 @@ Two girls are walking together along a tree-lined path, talking in a relaxed and
 シーン全体：自然文でまとめる`}</PromptCode>
             <p>この形にしておくと、オリジナルキャラ同士の会話シーンや、複数人のグループイラストを作るときにも調整しやすくなります。</p>
 
-            <h2 id="section-7">7. よく使う指定は辞書化しておくと扱いやすい</h2>
+            <h2 id="section-7">7. よく使う指定はプロンプト一覧から探すと扱いやすい</h2>
             <p>タグ＋自然文で書くときに、毎回すべてのタグを思い出すのは少し面倒です。</p>
             <p>
               既存キャラでも、表情・構図・ポーズ・服装差分などは毎回指定することがあります。
               <br />
               オリジナルキャラなら、髪型や目の色、雰囲気まで自分で指定する場面が増えます。
             </p>
-            <p>そのため、よく使う指定を辞書や一覧から探せるようにしておくと便利です。</p>
+            <p>そのため、よく使う指定をプロンプト一覧から探せるようにしておくと便利です。</p>
             <p>たとえば、キャラクターの見た目なら、</p>
             <PromptCode>{`long hair
 bob cut
@@ -440,15 +396,14 @@ looking away
 walking together
 waving one hand`}</PromptCode>
             <p>のような指定があります。</p>
-            <p>こうした言葉を毎回ゼロから考えるより、よく使う指定を辞書や一覧から探せるようにしておくと、プロンプトを組み立てやすくなります。</p>
+            <p>こうした言葉を毎回ゼロから考えるより、よく使う指定をプロンプト一覧から探せるようにしておくと、プロンプトを組み立てやすくなります。</p>
             <p>LULINAworksでは、髪型プロンプト一覧や表情プロンプト一覧などを公開しています。</p>
             <p>髪型や表情は、キャラクターの印象を作るうえで使う機会が多いため、タグ＋自然文の書き方とも相性が良い項目です。</p>
             <p>たとえば、複数人シーンでキャラクターごとに特徴を分ける場合も、</p>
             <PromptCode>{`left side girl: bob cut, calm smile, cool girl
 right side girl: long hair, bright smile, cute girl`}</PromptCode>
             <p>のように、タグ候補を組み合わせて考えやすくなります。</p>
-            <p>今後、服装や背景などのプロンプト一覧が増えれば、同じ考え方でさらに使える範囲が広がります。</p>
-            <p>辞書は、プロンプトを丸暗記するためのものではありません。</p>
+            <p>プロンプト一覧は、タグを丸暗記するためのものではありません。</p>
             <p>
               「この指定は英語でどう書くのか」
               <br />
@@ -457,7 +412,7 @@ right side girl: long hair, bright smile, cute girl`}</PromptCode>
               「キャラごとに特徴を分けるとき、どの言葉を使うと整理しやすいか」
             </p>
             <p>を探すための道具として使うと便利です。</p>
-            <DictionaryCards />
+            <DictionaryLinkCard />
 
             <h2 id="section-8">8. Animaでタグ＋自然文を書くときの注意点</h2>
             <p>タグ＋自然文は便利ですが、書いた内容が必ずそのまま反映されるわけではありません。</p>
@@ -519,71 +474,32 @@ white t-shirt`}</PromptCode>
             </p>
             <p>自然文の強みを活かしつつ、キャラの特徴はタグで整理する。</p>
             <p>この形にすると、Animaのプロンプトはかなり扱いやすくなります。</p>
-            <p>よく使う指定に迷ったときは、辞書や一覧から使いやすいタグを探して、プロンプトに組み込んでみてください。</p>
-          </section>
-          <ArticleNavigation currentHref="/articles/anima-prompt-writing" series="anima" />
-        </article>
-      </main>
-      <Footer />
+            <p>よく使う指定に迷ったときは、プロンプト一覧から使いやすいタグを探して、プロンプトに組み込んでみてください。</p>
+        </ArticleBody>
+        <ArticleNavigation currentHref={currentHref} series="anima" />
+      </ContentPageShell>
 
       <style>{`
-        .anima-prompt-writing-page .article-header {
-          background:
-            linear-gradient(90deg, rgba(255, 253, 249, 0.94) 0%, rgba(255, 247, 238, 0.86) 48%, rgba(255, 247, 238, 0.18) 78%),
-            url("${heroImage}") right 42% / cover no-repeat;
-        }
-
-        .anima-prompt-writing-page .article-content h3 {
-          margin: 34px 0 14px;
-          font-family: var(--font-heading), var(--font-body), sans-serif;
-          color: var(--navy);
-          font-size: clamp(1.18rem, 2vw, 1.45rem);
-          line-height: 1.5;
-          font-weight: 900;
-          letter-spacing: 0;
-        }
-
-        .anima-prompt-writing-page .article-content pre {
-          max-width: 100%;
-          overflow-x: visible;
-          white-space: pre-wrap;
-        }
-
-        .anima-prompt-writing-page .article-content pre code {
-          white-space: pre-wrap;
+        .related-article-card strong {
           overflow-wrap: anywhere;
           word-break: normal;
-        }
-
-        .anima-prompt-writing-page .article-content p,
-        .anima-prompt-writing-page .article-content li,
-        .anima-prompt-writing-page .article-content a,
-        .anima-prompt-writing-page .lulina-bubble p,
-        .anima-prompt-writing-page .related-article-card strong {
-          overflow-wrap: anywhere;
-          word-break: normal;
-        }
-
-        .related-card-grid {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 14px;
-          margin: 24px 0 30px;
-        }
-
-        .related-card-grid .related-article-card {
-          margin: 0;
         }
 
         .related-article-card {
           display: block;
           margin: 24px 0 28px;
           padding: 18px 20px;
-          border: 1px solid rgba(236, 217, 199, 0.9);
-          border-radius: 18px;
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 247, 238, 0.96));
-          box-shadow: 0 10px 22px rgba(48, 39, 31, 0.05);
+          border: 1px solid #cfe0f7;
+          border-radius: 16px;
+          background: #f7fbff;
+          box-shadow: none;
           text-decoration: none !important;
+          transition: border-color 180ms ease, background-color 180ms ease;
+        }
+
+        .related-article-card:hover {
+          border-color: rgba(21, 101, 255, 0.36);
+          background: #eef6ff;
         }
 
         .related-article-card span {
@@ -591,48 +507,29 @@ white t-shirt`}</PromptCode>
           margin-bottom: 8px;
           padding: 5px 10px;
           border-radius: 999px;
-          background: var(--blue);
+          background: var(--content-blue, #1565ff);
           color: #fff;
           font-size: .82rem;
-          font-weight: 900;
+          font-weight: 800;
         }
 
         .related-article-card strong {
           display: block;
-          color: var(--navy);
+          color: var(--content-text, #242a36);
           font-size: 1.04rem;
           line-height: 1.6;
         }
 
         .related-article-card p {
           margin: 6px 0 0;
-          color: #586273;
+          color: var(--content-muted, #5f697b);
           font-size: .94rem;
           line-height: 1.8;
         }
 
-        @media (max-width: 900px) {
-          .related-card-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-
-        @media (max-width: 760px) {
-          .anima-prompt-writing-page {
-            overflow-x: clip;
-          }
-
-          .anima-prompt-writing-page .article-header {
-            background:
-              linear-gradient(180deg, rgba(255, 253, 249, 0.28) 0%, rgba(255, 247, 238, 0.76) 44%, rgba(255, 253, 249, 0.96) 100%),
-              url("${heroImage}") right top / cover no-repeat;
-          }
-
-          .anima-prompt-writing-page .article-header,
-          .anima-prompt-writing-page .article-content,
-          .anima-prompt-writing-page .toc-box,
-          .anima-prompt-writing-page .lulina-bubble {
-            max-width: 100%;
+        @media (prefers-reduced-motion: reduce) {
+          .related-article-card {
+            transition: none;
           }
         }
       `}</style>

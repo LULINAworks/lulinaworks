@@ -7,9 +7,14 @@ import { LinkCard } from "@/components/LinkCard";
 type RelatedDictionariesProps = {
   currentHref: string;
   descriptionsByHref?: Record<string, string>;
+  showEyebrow?: boolean;
 };
 
-export function RelatedDictionaries({ currentHref, descriptionsByHref = {} }: RelatedDictionariesProps) {
+export function RelatedDictionaries({
+  currentHref,
+  descriptionsByHref = {},
+  showEyebrow = true,
+}: RelatedDictionariesProps) {
   const relatedItems = dictionaryItems
     .filter((item) => item.published && item.href !== currentHref)
     .map<CardItem>((item) => ({
@@ -25,7 +30,7 @@ export function RelatedDictionaries({ currentHref, descriptionsByHref = {} }: Re
     <section className="container related-dictionaries-section" aria-labelledby="related-dictionaries-title">
       <div className="dictionary-section-head">
         <div>
-          <span className="page-kicker">Related</span>
+          {showEyebrow ? <span className="page-kicker">Related</span> : null}
           <h2 id="related-dictionaries-title">関連するプロンプト</h2>
         </div>
       </div>

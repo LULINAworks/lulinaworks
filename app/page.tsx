@@ -20,8 +20,7 @@ export default function Home() {
 
         <section className={styles.introduction} aria-label="LULINAworksの紹介">
           <p>
-            LULINAworksでは、AnimaやComfyUI、プロンプト、比較・検証を中心に、
-            AIイラスト制作に役立つ情報をわかりやすく紹介しています。
+            LULINAworksでは、AIイラスト制作に役立つモデルやプロンプト、制作方法などの情報をわかりやすく紹介しています。
           </p>
         </section>
 
@@ -35,12 +34,12 @@ export default function Home() {
           <div className={styles.sectionBand}>
             <div className={styles.sectionInner}>
               <FeatureCompactSection
-                compact={topContentConfig.anima.compact}
-                description="Animaの基本からプロンプト、比較・検証まで、制作に役立つ情報を紹介します。"
-                featured={topContentConfig.anima.featured}
-                href="/contents?category=anima"
-                id="top-category-anima"
-                title="Anima"
+                compact={topContentConfig["ai-model-service"].compact}
+                description="Animaを中心に、AIイラスト生成に使うモデルやサービスの特徴、使い方、アップデート、比較などを紹介します。"
+                featured={topContentConfig["ai-model-service"].featured}
+                href="/contents?category=ai-model-service"
+                id="top-category-ai-model-service"
+                title="AIモデル/サービス"
               />
             </div>
           </div>

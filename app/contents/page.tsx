@@ -77,9 +77,7 @@ export default function ContentsPage() {
           </div>
           <div className={styles.heroCopy}>
             <h1 id="contents-page-title">コンテンツ一覧</h1>
-            <p>
-              AnimaやComfyUI、制作ガイド、プロンプト一覧、制作ツールを、カテゴリからまとめて探せます。
-            </p>
+            <p>カテゴリを選んで、気になるコンテンツを探せます。</p>
           </div>
         </section>
 

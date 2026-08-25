@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { ContentsCard } from "@/components/content/ContentsCard";
 import {
   contentCategoryDefinitions,
-  isContentCategory,
+  normalizeContentCategory,
   type ContentItem,
 } from "@/data/content";
 import styles from "./contents.module.css";
@@ -17,7 +17,7 @@ type ContentsIndexClientProps = {
 export function ContentsIndexClient({ contents }: ContentsIndexClientProps) {
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get("category");
-  const selectedCategory = isContentCategory(categoryParam) ? categoryParam : null;
+  const selectedCategory = normalizeContentCategory(categoryParam);
   const visibleContents = selectedCategory
     ? contents.filter((item) => item.categories.includes(selectedCategory))
     : contents;
@@ -25,7 +25,7 @@ export function ContentsIndexClient({ contents }: ContentsIndexClientProps) {
   return (
     <>
       <nav className={styles.filters} aria-label="コンテンツカテゴリ">
-        <Link className={!selectedCategory ? styles.activeFilter : undefined} href="/contents" aria-current={!selectedCategory ? "page" : undefined}>
+        <Link className={!selectedCategory ? styles.activeFilter : undefined} href="/contents" aria-current={!selectedCategory ? "page" : undefined} scroll={false}>
           すべて
         </Link>
         {contentCategoryDefinitions.map((category) => {
@@ -36,6 +36,7 @@ export function ContentsIndexClient({ contents }: ContentsIndexClientProps) {
               href={category.href}
               aria-current={isActive ? "page" : undefined}
               key={category.id}
+              scroll={false}
             >
               {category.label}
             </Link>

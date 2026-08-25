@@ -3,7 +3,7 @@ import styles from "./Footer.module.css";
 
 const contentLinks = [
   { label: "コンテンツ一覧", href: "/contents" },
-  { label: "Anima", href: "/contents?category=anima" },
+  { label: "AIモデル/サービス", href: "/contents?category=ai-model-service" },
   { label: "プロンプト", href: "/dictionary" },
   { label: "制作ガイド", href: "/contents?category=guide" },
   { label: "ComfyUI", href: "/contents?category=comfyui" },

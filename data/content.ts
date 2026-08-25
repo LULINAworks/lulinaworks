@@ -1,4 +1,4 @@
-export const contentCategoryIds = ["anima", "comfyui", "guide", "prompt", "tools"] as const;
+export const contentCategoryIds = ["ai-model-service", "prompt", "guide", "comfyui", "tools"] as const;
 
 export type ContentCategory = (typeof contentCategoryIds)[number];
 
@@ -38,10 +38,10 @@ export type ContentCategoryDefinition = {
 
 export const contentCategoryDefinitions = [
   {
-    id: "anima",
-    label: "Anima",
-    href: "/contents?category=anima",
-    landingHref: "/contents?category=anima",
+    id: "ai-model-service",
+    label: "AIモデル/サービス",
+    href: "/contents?category=ai-model-service",
+    landingHref: "/contents?category=ai-model-service",
   },
   {
     id: "prompt",
@@ -69,9 +69,13 @@ export const contentCategoryDefinitions = [
   },
 ] as const satisfies readonly ContentCategoryDefinition[];
 
-export const contentCategoryLabels = Object.fromEntries(
-  contentCategoryDefinitions.map((category) => [category.id, category.label])
-) as Record<ContentCategory, string>;
+export const contentCategoryLabels = {
+  "ai-model-service": "AIモデル/サービス",
+  prompt: "プロンプト",
+  guide: "制作ガイド",
+  comfyui: "ComfyUI",
+  tools: "ツール",
+} as const satisfies Record<ContentCategory, string>;
 
 export const contentTypeLabels = {
   article: "記事",
@@ -81,6 +85,14 @@ export const contentTypeLabels = {
 
 export function isContentCategory(value: string | null): value is ContentCategory {
   return value !== null && (contentCategoryIds as readonly string[]).includes(value);
+}
+
+export function normalizeContentCategory(value: string | null): ContentCategory | null {
+  if (value === "anima") {
+    return "ai-model-service";
+  }
+
+  return isContentCategory(value) ? value : null;
 }
 
 export function formatContentDate(date: ContentDate) {

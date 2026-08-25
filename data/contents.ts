@@ -45,24 +45,24 @@ const articleTaxonomyByHref = {
     imagePosition: "center",
   },
   "/articles/anima-basic": {
-    primaryCategory: "anima",
-    categories: ["anima"],
+    primaryCategory: "ai-model-service",
+    categories: ["ai-model-service"],
     contentType: "article",
     cardImageSrc: "/assets/articles/anima-basic/anima-basic-02-two-girls.webp",
     imageFit: "cover",
     imagePosition: "62% 34%",
   },
   "/articles/anima-style-compare": {
-    primaryCategory: "anima",
-    categories: ["anima", "guide"],
+    primaryCategory: "ai-model-service",
+    categories: ["ai-model-service", "guide"],
     contentType: "article",
     cardImageSrc: "/assets/articles/anima-style-compare/anima-style-scene-anime-screenshot.webp",
     imageFit: "cover",
     imagePosition: "58% 42%",
   },
   "/articles/anima-prompt-writing": {
-    primaryCategory: "anima",
-    categories: ["anima", "guide"],
+    primaryCategory: "ai-model-service",
+    categories: ["ai-model-service", "guide"],
     contentType: "article",
     cardImageSrc: "/assets/articles/anima-prompt-writing/anima-prompt-single.webp",
     imageFit: "cover",
@@ -244,7 +244,7 @@ function validatePublishedContents(contents: readonly ContentItem[]) {
   }
 
   const expectedPrimaryCategoryCounts: Record<ContentCategory, number> = {
-    anima: 3,
+    "ai-model-service": 3,
     comfyui: 2,
     guide: 1,
     prompt: 4,

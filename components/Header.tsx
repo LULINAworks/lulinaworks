@@ -7,7 +7,7 @@ import styles from "./Header.module.css";
 const navigationItems = [
   { label: "ホーム", href: "/" },
   { label: "コンテンツ一覧", href: "/contents" },
-  { label: "Anima", href: "/contents?category=anima" },
+  { label: "AIモデル/サービス", href: "/contents?category=ai-model-service" },
   { label: "プロンプト", href: "/dictionary" },
   { label: "制作ガイド", href: "/contents?category=guide" },
   { label: "ComfyUI", href: "/contents?category=comfyui" },

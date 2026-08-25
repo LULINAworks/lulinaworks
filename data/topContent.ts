@@ -2,7 +2,7 @@ import type { ContentHref, ContentItem } from "./content";
 import { allPublishedContents, publishedContentsByDate } from "./contents";
 
 export const topContentHrefConfig = {
-  anima: {
+  "ai-model-service": {
     featured: "/articles/anima-basic",
     compact: [
       "/articles/anima-prompt-writing",
@@ -43,7 +43,7 @@ export const topContentHrefConfig = {
     guide: "/articles/anima-prompt-template-guide",
   },
 } as const satisfies {
-  anima: { featured: ContentHref; compact: readonly ContentHref[] };
+  "ai-model-service": { featured: ContentHref; compact: readonly ContentHref[] };
   comfyui: { featured: ContentHref; medium: ContentHref };
   guide: { featured: ContentHref; compact: readonly ContentHref[] };
   prompt: readonly {
@@ -72,9 +72,9 @@ if (latestTopContents.length !== 4) {
 }
 
 export const topContentConfig = {
-  anima: {
-    featured: getRequiredContent(topContentHrefConfig.anima.featured),
-    compact: topContentHrefConfig.anima.compact.map(getRequiredContent),
+  "ai-model-service": {
+    featured: getRequiredContent(topContentHrefConfig["ai-model-service"].featured),
+    compact: topContentHrefConfig["ai-model-service"].compact.map(getRequiredContent),
   },
   comfyui: {
     featured: getRequiredContent(topContentHrefConfig.comfyui.featured),

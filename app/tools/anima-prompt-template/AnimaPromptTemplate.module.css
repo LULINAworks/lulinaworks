@@ -1,0 +1,637 @@
+.page {
+  --tool-blue: #1565ff;
+  --tool-cyan: #00c6ff;
+  --tool-text: #242a36;
+  --tool-muted: #5f697b;
+  --tool-line: #dbe6f5;
+  --blue: var(--tool-blue);
+  --navy: var(--tool-text);
+  --navy-2: var(--tool-blue);
+  position: relative;
+  z-index: 1;
+  min-height: 70vh;
+  padding: 42px 20px 80px;
+  background: #f6f9fe;
+  color: var(--tool-text);
+  font-family: var(--font-renewal), "M PLUS 1", sans-serif;
+}
+
+.hero {
+  width: min(920px, 100%);
+  margin: 0 auto 48px;
+}
+
+.backNav {
+  margin-bottom: 14px;
+}
+
+.backNav a {
+  display: inline-flex;
+  align-items: center;
+  color: var(--tool-blue);
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.backNav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+}
+
+.heroImage {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  height: clamp(320px, 36vw, 400px);
+  margin: 0;
+  border: 1px solid rgb(21 101 255 / 13%);
+  border-radius: 24px;
+  background: #eaf2ff;
+  box-shadow: 0 14px 36px rgb(37 77 140 / 10%);
+}
+
+.heroImage img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heroBand {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 60%;
+  margin: 0;
+  padding: 24px clamp(24px, 6vw, 68px);
+  background: linear-gradient(
+    180deg,
+    rgb(19 33 58 / 12%) 0%,
+    rgb(19 33 58 / 76%) 18%,
+    rgb(19 33 58 / 92%) 38%,
+    rgb(19 33 58 / 92%) 62%,
+    rgb(19 33 58 / 76%) 82%,
+    rgb(19 33 58 / 12%) 100%
+  );
+  color: #fff;
+  text-align: center;
+  backdrop-filter: blur(2px);
+}
+
+.heroTitle {
+  width: min(820px, 100%);
+  margin: 0;
+  color: inherit;
+  font-size: clamp(1.8rem, 3.8vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.32;
+  letter-spacing: 0.015em;
+  text-wrap: balance;
+}
+
+.noBreak {
+  white-space: nowrap;
+}
+
+.heroLead {
+  width: min(820px, 100%);
+  margin: 0 auto;
+}
+
+.heroLead p {
+  margin: 24px 0 0;
+  color: #4f5b70;
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.9;
+}
+
+.page :global(.anima-tool-section),
+.page :global(.anima-guide-section),
+.page :global(.anima-dictionary-section) {
+  width: min(1040px, 100%);
+  margin-inline: auto;
+}
+
+.page :global(.anima-generator-section) {
+  width: min(1220px, 100%);
+  margin-inline: auto;
+}
+
+.page :global(.tool-info-section),
+.page :global(.tool-guide-pending) {
+  border: 1px solid var(--tool-line);
+  background: #fff;
+  box-shadow: 0 12px 32px rgb(37 77 140 / 7%);
+}
+
+.page :global(.tool-section-head h2),
+.page :global(.tool-builder-head h2),
+.page :global(.tool-guide-pending h2) {
+  color: var(--tool-text);
+  font-family: var(--font-renewal), "M PLUS 1", sans-serif;
+  letter-spacing: 0.01em;
+  overflow-wrap: normal;
+  word-break: normal;
+  line-break: auto;
+}
+
+.page :global(.anima-heading-line) {
+  overflow-wrap: normal;
+  word-break: normal;
+  line-break: auto;
+}
+
+.page :global(.tool-overview-copy),
+.page :global(.tool-overview-side) {
+  border-color: var(--tool-line);
+  background: #f8fbff;
+}
+
+.page :global(.tool-overview-side) {
+  background: #f1f7ff;
+}
+
+.page :global(.tool-overview-side h3) {
+  color: var(--tool-text);
+  font-family: var(--font-renewal), "M PLUS 1", sans-serif;
+}
+
+.page :global(.tool-overview-copy p),
+.page :global(.tool-overview-side p),
+.page :global(.tool-tip-item p),
+.page :global(.tool-guide-pending p),
+.page :global(.tool-dictionary-main p),
+.page :global(.tool-step-note) {
+  color: #475469;
+  overflow-wrap: normal;
+  word-break: normal;
+  line-break: auto;
+}
+
+.page :global(.tool-overview-side .tool-beta-note) {
+  border-color: rgb(21 101 255 / 27%);
+  background: #fff;
+  color: #365783;
+  font-weight: 700;
+}
+
+.page :global(.tool-tip-item) {
+  border-color: var(--tool-line);
+  background: #f8fbff;
+  box-shadow: none;
+}
+
+.page :global(.tool-tip-item::before) {
+  background: linear-gradient(180deg, var(--tool-cyan), var(--tool-blue));
+}
+
+.page :global(.tool-tip-item[open]) {
+  border-color: rgb(21 101 255 / 35%);
+  background: #f2f8ff;
+  box-shadow: none;
+}
+
+.page :global(.tool-tip-item summary) {
+  color: var(--tool-text);
+}
+
+.page :global(.tool-tip-hint) {
+  border-color: rgb(21 101 255 / 14%);
+  background: #fff;
+  color: var(--tool-muted);
+}
+
+.page :global(.tool-tip-item summary::after) {
+  background: rgb(21 101 255 / 11%);
+  color: var(--tool-blue);
+}
+
+.page :global(.tool-tip-item[open] summary::after) {
+  background: var(--tool-blue);
+  color: #fff;
+}
+
+.page :global(.tool-tip-item[open] .tool-tip-hint) {
+  border-color: rgb(0 198 255 / 24%);
+  background: rgb(0 198 255 / 9%);
+  color: #255b88;
+}
+
+.page :global(.tool-guide-pending > a) {
+  border: 1px solid rgb(21 101 255 / 20%);
+  background: #edf5ff;
+  color: var(--tool-blue);
+  box-shadow: none;
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.page :global(.tool-guide-pending > a:hover) {
+  border-color: rgb(21 101 255 / 38%);
+  background: #e3efff;
+  color: #0f54d8;
+  transform: none;
+}
+
+.page :global(.anima-generator-head p),
+.page :global(.tool-builder-head p) {
+  color: var(--tool-muted);
+}
+
+.page :global(.tool-builder-status span) {
+  border-color: var(--tool-line);
+  background: #fff;
+  color: #566176;
+}
+
+.page :global(.tool-sticky-switch) {
+  border-color: #cfddf0;
+  background: rgb(255 255 255 / 92%);
+  box-shadow: 0 8px 22px rgb(37 77 140 / 9%);
+}
+
+.page :global(.tool-sticky-switch button) {
+  color: #566176;
+}
+
+.page :global(.tool-sticky-switch button.is-active) {
+  background: var(--tool-blue);
+  color: #fff;
+  box-shadow: none;
+}
+
+.page :global(.tool-slide-panel) {
+  border-color: #cfddf0;
+  background: #fff;
+  box-shadow: none;
+}
+
+.page :global(.tool-slide-panel.is-inactive) {
+  background: #edf4fc;
+  filter: none;
+}
+
+.page :global(.tool-panel-peek) {
+  background: #e7f1ff;
+  color: var(--tool-blue);
+}
+
+.page :global(.tool-step) {
+  border-color: var(--tool-line);
+  background: #f8fbff;
+  box-shadow: none;
+}
+
+.page :global(.tool-step-label) {
+  background: rgb(0 198 255 / 12%);
+  color: #0d6690;
+}
+
+.page :global(.tool-step h3),
+.page :global(.tool-preview-head strong),
+.page :global(.tool-character-head h4),
+.page :global(.tool-category-group summary) {
+  color: var(--tool-text);
+  font-family: var(--font-renewal), "M PLUS 1", sans-serif;
+}
+
+.page :global(.tool-choice-card),
+.page :global(.tool-segmented-row),
+.page :global(.tool-category-group),
+.page :global(.tool-checkbox-row),
+.page :global(.tool-character-block),
+.page :global(.tool-free-text),
+.page :global(.tool-preview-card) {
+  border-color: var(--tool-line);
+  background: #fff;
+  box-shadow: none;
+}
+
+.page :global(.tool-choice-card.is-active),
+.page :global(.tool-checkbox-row:has(input:checked)) {
+  border-color: rgb(21 101 255 / 55%);
+  background: #edf5ff;
+  box-shadow: none;
+}
+
+.page :global(.tool-choice-card.is-active strong),
+.page :global(.tool-choice-card.is-active span) {
+  color: #164fbb;
+}
+
+.page :global(.tool-segmented-row button.is-active),
+.page :global(.tool-output-switch button.is-active) {
+  background: var(--tool-blue);
+  color: #fff;
+  box-shadow: none;
+}
+
+.page :global(.tool-checkbox-row input) {
+  accent-color: var(--tool-blue);
+}
+
+.page :global(.tool-warning-note) {
+  border-color: #f0cf83;
+  background: #fffaf0;
+  color: #73501b;
+}
+
+.page :global(.tool-warning-note strong),
+.page :global(.tool-warning-note p) {
+  color: #73501b;
+}
+
+.page :global(.tool-warning-note span) {
+  background: #fff1cf;
+  color: #73501b;
+}
+
+.page :global(.tool-free-text:focus) {
+  border-color: var(--tool-blue);
+  outline: 3px solid rgb(21 101 255 / 12%);
+  box-shadow: none;
+}
+
+.page :global(.tool-preview-cta-row) {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.page :global(.tool-preview-cta) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid var(--tool-blue);
+  border-radius: 12px;
+  background: var(--tool-blue);
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.page :global(.tool-preview-cta:hover) {
+  border-color: #0f54d8;
+  background: #0f54d8;
+}
+
+.page :global(.tool-floating-panel-switch) {
+  display: none;
+}
+
+.page :global(.tool-output-switch) {
+  border-color: var(--tool-line);
+  background: #edf4fc;
+}
+
+.page :global(.tool-preview-card pre) {
+  max-height: 420px;
+  overflow: auto;
+  background: #f4f8fd;
+  color: #24344f;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.page :global(.tool-copy-button.primary) {
+  border-color: var(--tool-blue);
+  background: var(--tool-blue);
+  color: #fff;
+  box-shadow: none;
+}
+
+.page :global(.tool-copy-button.secondary) {
+  border-color: rgb(21 101 255 / 24%);
+  background: #eaf3ff;
+  color: #164fbb;
+  box-shadow: none;
+}
+
+.page :global(.tool-copy-button:hover) {
+  transform: translateY(-1px);
+  box-shadow: none;
+}
+
+.page :global(.anima-dictionary-section .tool-section-head) {
+  margin-bottom: 22px;
+}
+
+.page :global(.tool-dictionary-main) {
+  gap: 8px;
+  margin-bottom: 0;
+  border-color: rgb(21 101 255 / 30%);
+  background: #f1f7ff;
+  box-shadow: none;
+  text-decoration: none;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+
+.page :global(.tool-dictionary-main > span) {
+  background: rgb(21 101 255 / 11%);
+  color: var(--tool-blue);
+}
+
+.page :global(.tool-dictionary-main strong) {
+  color: var(--tool-text);
+  font-family: var(--font-renewal), "M PLUS 1", sans-serif;
+}
+
+.page :global(.tool-dictionary-main:hover) {
+  border-color: rgb(21 101 255 / 48%);
+  background: #eaf3ff;
+  box-shadow: none;
+  transform: translateY(-1px);
+}
+
+.backNav a:focus-visible,
+.page :global(a:focus-visible),
+.page :global(button:focus-visible),
+.page :global(summary:focus-visible),
+.page :global(input:focus-visible),
+.page :global(textarea:focus-visible) {
+  outline: 3px solid rgb(0 198 255 / 45%);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1099px) {
+  .page :global(.tool-floating-panel-switch) {
+    position: fixed;
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    z-index: 30;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    max-width: calc(100vw - 32px);
+    min-height: 46px;
+    padding: 10px 18px;
+    border: 1px solid rgb(255 255 255 / 28%);
+    border-radius: 999px;
+    background: var(--tool-blue);
+    color: #fff;
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 800;
+    line-height: 1.2;
+    white-space: nowrap;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgb(21 101 255 / 18%);
+    transition: background 0.18s ease, transform 0.18s ease;
+  }
+
+  .page :global(.tool-floating-panel-switch:hover) {
+    background: #0f54d8;
+    transform: translateY(-1px);
+  }
+}
+
+@media (min-width: 1100px) {
+  .page :global(.tool-sticky-switch),
+  .page :global(.tool-preview-cta-row) {
+    display: none;
+  }
+
+  .page :global(.tool-slide-grid),
+  .page :global(.tool-slide-grid.is-settings),
+  .page :global(.tool-slide-grid.is-preview) {
+    grid-template-columns: minmax(0, 2fr) minmax(360px, 1fr);
+    gap: 24px;
+    transition: none;
+  }
+
+  .page :global(.tool-slide-panel),
+  .page :global(.tool-slide-panel.is-active),
+  .page :global(.tool-slide-panel.is-inactive) {
+    display: block;
+    align-self: start;
+    opacity: 1;
+    transform: none;
+    filter: none;
+    cursor: default;
+    background: #fff;
+  }
+
+  .page :global(.tool-slide-panel:first-child),
+  .page :global(.tool-slide-panel:last-child) {
+    border-radius: 20px;
+  }
+
+  .page :global(.tool-slide-panel.is-inactive .tool-panel-content) {
+    display: grid;
+  }
+
+  .page :global(.tool-panel-peek),
+  .page :global(.tool-slide-panel.is-active .tool-panel-peek),
+  .page :global(.tool-slide-panel.is-inactive .tool-panel-peek) {
+    display: none;
+    pointer-events: none;
+  }
+
+  .page :global(.tool-slide-panel.preview-panel) {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+  }
+}
+
+@media (max-width: 900px) {
+  .page :global(.tool-overview-layout) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding: 28px 14px 64px;
+  }
+
+  .hero {
+    width: 100%;
+    margin-bottom: 36px;
+  }
+
+  .backNav {
+    margin: 0 2px 12px;
+  }
+
+  .heroImage {
+    height: clamp(340px, 94vw, 380px);
+    border-radius: 20px;
+  }
+
+  .heroBand {
+    padding: 22px 16px;
+  }
+
+  .heroTitle {
+    font-size: 1.6rem;
+    line-height: 1.28;
+    text-wrap: wrap;
+  }
+
+  .heroLead p {
+    margin-top: 20px;
+    font-size: 0.98rem;
+    line-height: 1.85;
+  }
+
+  .page :global(.tool-info-section),
+  .page :global(.tool-guide-pending) {
+    padding: 24px 18px;
+  }
+
+  .page :global(.tool-overview-copy),
+  .page :global(.tool-overview-side) {
+    overflow: visible;
+  }
+
+  .page :global(.tool-section-head h2),
+  .page :global(.tool-builder-head h2) {
+    font-size: 1.42rem;
+  }
+
+  .page :global(.tool-guide-pending h2) {
+    font-size: 1.3rem;
+  }
+
+  .page :global(.tool-dictionary-main) {
+    padding: 18px;
+  }
+
+  .page :global(.tool-preview-cta) {
+    width: 100%;
+  }
+}
+
+@media (max-width: 390px) {
+  .page :global(.tool-tip-hint) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page :global(*),
+  .page :global(*::before),
+  .page :global(*::after) {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

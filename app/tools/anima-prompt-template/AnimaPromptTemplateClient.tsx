@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   allCategoryIds,
   categoryGroups,
@@ -364,7 +364,12 @@ function CategoryGroupControls({
 }
 
 export function AnimaPromptTemplateClient() {
+  const generatorRef = useRef<HTMLElement>(null);
+  const previewStartRef = useRef<HTMLDivElement>(null);
+  const settingsScrollYRef = useRef<number | null>(null);
+  const pendingPanelScrollRef = useRef<PanelName | null>(null);
   const [activePanel, setActivePanel] = useState<PanelName>("settings");
+  const [isGeneratorInViewport, setIsGeneratorInViewport] = useState(false);
   const [activeOutput, setActiveOutput] = useState<OutputType>("template");
   const [mode, setMode] = useState<ToolMode>("tag");
   const [peopleMode, setPeopleMode] = useState<PeopleMode>("single");
@@ -403,6 +408,50 @@ export function AnimaPromptTemplateClient() {
 
     setMultipleSelection(makeMultipleSelection(mode, multiplePreset));
   }, [mode, peopleMode, singlePreset, multiplePreset]);
+
+  useEffect(() => {
+    const generator = generatorRef.current;
+    if (!generator || typeof IntersectionObserver === "undefined") {
+      return;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsGeneratorInViewport(entry.isIntersecting);
+    });
+
+    observer.observe(generator);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const pendingPanel = pendingPanelScrollRef.current;
+    if (
+      pendingPanel !== activePanel ||
+      typeof window === "undefined" ||
+      !window.matchMedia("(max-width: 1099px)").matches
+    ) {
+      return;
+    }
+
+    const frameId = window.requestAnimationFrame(() => {
+      if (pendingPanel === "preview") {
+        const previewStart = previewStartRef.current;
+        if (previewStart) {
+          const siteHeader = document.querySelector<HTMLElement>("body > header");
+          const headerOffset =
+            siteHeader && window.getComputedStyle(siteHeader).position === "sticky" ? siteHeader.offsetHeight : 0;
+          const previewTop = previewStart.getBoundingClientRect().top + window.scrollY - headerOffset - 20;
+          window.scrollTo({ top: Math.max(0, previewTop), behavior: "auto" });
+        }
+      } else if (settingsScrollYRef.current !== null) {
+        window.scrollTo({ top: settingsScrollYRef.current, behavior: "auto" });
+      }
+
+      pendingPanelScrollRef.current = null;
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [activePanel]);
 
   const templateText = useMemo(
     () =>
@@ -447,6 +496,23 @@ export function AnimaPromptTemplateClient() {
 
   function handleModeChange(nextMode: ToolMode) {
     setMode(nextMode);
+  }
+
+  function handlePanelChange(nextPanel: PanelName) {
+    if (nextPanel === activePanel) {
+      return;
+    }
+
+    if (window.matchMedia("(max-width: 1099px)").matches) {
+      if (nextPanel === "preview") {
+        settingsScrollYRef.current = window.scrollY;
+      }
+      pendingPanelScrollRef.current = nextPanel;
+    } else {
+      pendingPanelScrollRef.current = null;
+    }
+
+    setActivePanel(nextPanel);
   }
 
   function handlePeopleChange(nextPeopleMode: PeopleMode) {
@@ -546,7 +612,11 @@ export function AnimaPromptTemplateClient() {
   const activeOutputLabel = activeOutput === "template" ? "骨組みプロンプト" : "AI発注書";
 
   return (
-    <section className="container tool-builder-section anima-generator-section" aria-labelledby="tool-builder-title">
+    <section
+      ref={generatorRef}
+      className="container tool-builder-section anima-generator-section"
+      aria-labelledby="tool-builder-title"
+    >
       <div className="tool-builder-head anima-generator-head">
         <div>
           <h2 id="tool-builder-title">プロンプトガイドジェネレーター β</h2>
@@ -564,7 +634,7 @@ export function AnimaPromptTemplateClient() {
           type="button"
           className={activePanel === "settings" ? "is-active" : ""}
           aria-pressed={activePanel === "settings"}
-          onClick={() => setActivePanel("settings")}
+          onClick={() => handlePanelChange("settings")}
         >
           設定
         </button>
@@ -572,7 +642,7 @@ export function AnimaPromptTemplateClient() {
           type="button"
           className={activePanel === "preview" ? "is-active" : ""}
           aria-pressed={activePanel === "preview"}
-          onClick={() => setActivePanel("preview")}
+          onClick={() => handlePanelChange("preview")}
         >
           プレビュー
         </button>
@@ -581,7 +651,7 @@ export function AnimaPromptTemplateClient() {
       <div className={`tool-slide-grid is-${activePanel}`}>
         <section
           className={activePanel === "settings" ? "tool-slide-panel is-active" : "tool-slide-panel is-inactive"}
-          onClick={activePanel === "settings" ? undefined : () => setActivePanel("settings")}
+          onClick={activePanel === "settings" ? undefined : () => handlePanelChange("settings")}
         >
           <button className="tool-panel-peek" type="button" tabIndex={activePanel === "settings" ? -1 : 0}>
             設定
@@ -751,19 +821,24 @@ export function AnimaPromptTemplateClient() {
                 placeholder={sceneDescriptionPlaceholder}
                 rows={6}
               />
+              <div className="tool-preview-cta-row">
+                <button className="tool-preview-cta" type="button" onClick={() => handlePanelChange("preview")}>
+                  プレビューを確認する <span aria-hidden="true">→</span>
+                </button>
+              </div>
             </div>
           </div>
         </section>
 
         <section
           className={activePanel === "preview" ? "tool-slide-panel preview-panel is-active" : "tool-slide-panel preview-panel is-inactive"}
-          onClick={activePanel === "preview" ? undefined : () => setActivePanel("preview")}
+          onClick={activePanel === "preview" ? undefined : () => handlePanelChange("preview")}
         >
           <button className="tool-panel-peek" type="button" tabIndex={activePanel === "preview" ? -1 : 0}>
             プレビュー
           </button>
           <div className="tool-panel-content">
-            <div className="tool-step preview-output">
+            <div ref={previewStartRef} className="tool-step preview-output">
               <span className="tool-step-label">Step6</span>
               <h3>出力</h3>
               <p className="tool-step-note">骨組みのまま使うか、対話型AIに渡すAI発注書として使うかを選べます。</p>
@@ -810,6 +885,24 @@ export function AnimaPromptTemplateClient() {
           </div>
         </section>
       </div>
+
+      {isGeneratorInViewport ? (
+        <button
+          className="tool-floating-panel-switch"
+          type="button"
+          onClick={() => handlePanelChange(activePanel === "settings" ? "preview" : "settings")}
+        >
+          {activePanel === "settings" ? (
+            <>
+              プレビュー <span aria-hidden="true">→</span>
+            </>
+          ) : (
+            <>
+              <span aria-hidden="true">←</span> 設定
+            </>
+          )}
+        </button>
+      ) : null}
     </section>
   );
 }

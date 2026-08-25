@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { dictionaryItems } from "@/data/dictionary";
+import { tools } from "@/data/tools";
 import { AnimaPromptTemplateClient } from "./AnimaPromptTemplateClient";
+import styles from "./AnimaPromptTemplate.module.css";
 
 const pageName = "Animaでも使える!! AI発注書付きプロンプトガイドジェネレーター β";
 const title = `${pageName} | LULINAworks`;
@@ -10,8 +11,11 @@ const description =
   "AnimaやNovelAI・SD系でも使えるAIイラスト生成プロンプトの骨組みを作る補助ツール。AI発注書機能搭載で対話型AIへそのまま投げられます。";
 const canonicalUrl = "https://lulinaworks.com/tools/anima-prompt-template";
 const ogImage = "/assets/og/ogp-tool-anima-prompt-template.png";
-const eyecatchPc = "/assets/eyecatch/eyecatch-tool-anima-prompt-template-pc.webp";
-const eyecatchMobile = "/assets/eyecatch/eyecatch-tool-anima-prompt-template-mobile.webp";
+const heroImage =
+  tools.find((item) => item.href === "/tools/anima-prompt-template")?.cardImage.src ??
+  (() => {
+    throw new Error("Anima prompt template content record was not found.");
+  })();
 
 export const metadata: Metadata = {
   title,
@@ -47,7 +51,7 @@ const tips = [
   {
     title: "1. モードを選ぶ",
     body: [
-      "タグのみは、Anima・NovelAI・SDなど全ての生成ツールで使える汎用形式です。",
+      "タグのみは、Anima・NovelAI・SD系など、タグ形式を使う生成環境で扱いやすい汎用形式です。",
       "タグ+自然文は、タグでキャラクター情報を、自然文でシーンを描写する形式です。",
     ],
   },
@@ -69,40 +73,37 @@ const tips = [
   },
 ];
 
-const dictionaryCards = dictionaryItems.filter((item) => item.published && item.href !== "/dictionary");
-
 export default function AnimaPromptTemplatePage() {
   return (
     <>
       <Header />
-      <main className="subpage-main anima-template-page" id="page-top">
-        <section className="container anima-template-hero" aria-labelledby="anima-template-title">
-          <nav className="breadcrumb" aria-label="パンくず">
-            <a href="/">TOP</a>
-            <span aria-hidden="true">/</span>
-            <span>Tools</span>
-            <span aria-hidden="true">/</span>
-            <span>Animaプロンプトテンプレート β</span>
+      <main className={`subpage-main ${styles.page}`} id="page-top">
+        <header className={styles.hero} aria-labelledby="anima-template-title">
+          <nav className={styles.backNav} aria-label="コンテンツ一覧へ戻る">
+            <a href="/contents?category=tools">← コンテンツ一覧へ</a>
           </nav>
 
-          <picture className="anima-template-hero-picture" aria-hidden="true">
-            <source media="(max-width: 768px)" srcSet={eyecatchMobile} />
-            <img src={eyecatchPc} alt="" />
-          </picture>
+          <figure className={styles.heroImage}>
+            <img
+              src={heroImage}
+              alt=""
+              aria-hidden="true"
+              style={{ objectPosition: "center 52%" }}
+            />
+            <figcaption className={styles.heroBand}>
+              <h1 id="anima-template-title" className={styles.heroTitle}>
+                <span className={styles.noBreak}>Animaでも使える!!</span>{" "}
+                <span className={styles.noBreak}>AI発注書付き</span>
+                <span className={styles.noBreak}>プロンプトガイド</span>
+                <span className={styles.noBreak}>ジェネレーター β</span>
+              </h1>
+            </figcaption>
+          </figure>
 
-          <div className="anima-template-hero-copy">
-            <span className="page-kicker">Animaプロンプトテンプレート β</span>
-            <h1 id="anima-template-title">
-              <span className="anima-title-line">Animaでも使える!!</span>
-              <span className="anima-title-line">AI発注書付き</span>
-              <span className="anima-title-line">
-                <span className="anima-title-chunk">プロンプトガイド</span>
-                <span className="anima-title-chunk">ジェネレーター β</span>
-              </span>
-            </h1>
+          <div className={styles.heroLead}>
             <p>{description}</p>
           </div>
-        </section>
+        </header>
 
         <section className="container tool-info-section anima-tool-section" aria-labelledby="tool-overview-title">
           <div className="tool-section-head">
@@ -130,8 +131,8 @@ export default function AnimaPromptTemplatePage() {
                 対話型AIにそのまま投げて完成プロンプトを生成させることもできます。
               </p>
               <p className="tool-beta-note">
-                ※現在β版です。今後サイト内のプロンプト一覧と連携し、実際のタグを選択して完成プロンプトを
-                そのまま出力できる機能を追加予定です。
+                ※β版のため、仕様や出力形式は変更する場合があります。現在はLULINAworksのプロンプト一覧を参照しながら、
+                必要なタグを骨組みプロンプトへ手動で組み合わせて利用できます。
               </p>
             </aside>
           </div>
@@ -183,19 +184,10 @@ export default function AnimaPromptTemplatePage() {
               <h2 id="tool-dictionary-title">枠を埋めるときに使えるプロンプト一覧</h2>
             </div>
             <a className="tool-dictionary-main" href="/dictionary">
-              <span>プロンプト一覧を見る</span>
-              <strong>AIイラスト用プロンプト一覧</strong>
-              <p>髪型・表情・ポーズ・構図など、公開済みのプロンプト一覧をまとめて確認できます。</p>
+              <span>プロンプト一覧</span>
+              <strong>AIイラスト制作に使えるプロンプト一覧</strong>
+              <p>AIイラスト制作で使いやすいプロンプトを、カテゴリごとにサンプル付きで整理しています。</p>
             </a>
-            <div className="tool-dictionary-grid">
-              {dictionaryCards.map((item) => (
-                <a className="tool-dictionary-card" href={item.href} key={item.href}>
-                  <strong>{item.title}</strong>
-                  <p>{item.description}</p>
-                  {item.status ? <span className="tool-dictionary-status">{item.status}</span> : null}
-                </a>
-              ))}
-            </div>
           </div>
         </section>
       </main>

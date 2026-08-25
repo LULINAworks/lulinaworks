@@ -19,7 +19,7 @@ export const articles: CardItem[] = [
       "プロンプトの骨組みやAI発注書を作れる「プロンプトガイドジェネレーター β」の使い方を解説。タグのみ・タグ＋自然文の違い、ComfyUIでの使い方、ChatGPTなどの対話型AIへ渡す方法を紹介します。",
     topSummary: "ジェネレーターの基本操作やAI発注書・骨組みプロンプトの使い方を紹介します。",
     href: "/articles/anima-prompt-template-guide",
-    thumbnail: "/assets/og/ogp-article-anima-prompt-template-guide.png",
+    thumbnail: "/assets/eyecatch/eyecatch-tool-anima-prompt-template.webp",
     tag: "Prompt",
     readTime: "約12分",
     status: "公開中",

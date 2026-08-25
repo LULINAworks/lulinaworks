@@ -1,18 +1,33 @@
 import type { Metadata } from "next";
-import { Fragment, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { ArticleNavigation } from "@/components/ArticleNavigation";
-import { ArticlePublishedDate } from "@/components/ArticlePublishedDate";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { ArticleBody } from "@/components/content/ArticleBody";
+import { ContentHero } from "@/components/content/ContentHero";
+import { ContentPageShell } from "@/components/content/ContentPageShell";
+import { contentCategoryLabels } from "@/data/content";
+import { allPublishedContents } from "@/data/contents";
 
 const title = "Animaでも使えるプロンプトガイドジェネレーター βの使い方｜AI発注書と骨組みプロンプトの作り方";
+const heroTitle = (
+  <>
+    <span style={{ whiteSpace: "nowrap" }}>Animaでも使える</span><span style={{ whiteSpace: "nowrap" }}>プロンプトガイド</span><span style={{ whiteSpace: "nowrap" }}>ジェネレーター β</span>の使い方｜<span style={{ whiteSpace: "nowrap" }}>AI発注書</span>と<span style={{ whiteSpace: "nowrap" }}>骨組みプロンプト</span>の<span style={{ whiteSpace: "nowrap" }}>作り方</span>
+  </>
+);
 const description =
   "プロンプトの骨組みやAI発注書を作れる「プロンプトガイドジェネレーター β」の使い方を解説。タグのみ・タグ＋自然文の違い、ComfyUIでの使い方、ChatGPTなどの対話型AIへ渡す方法を紹介します。";
 const canonicalUrl = "https://lulinaworks.com/articles/anima-prompt-template-guide";
-const imageBase = "/assets/articles/anima-prompt-template-guide/";
-const eyecatchPc = "/assets/eyecatch/eyecatch-tool-anima-prompt-template-pc.webp";
-const eyecatchMobile = "/assets/eyecatch/eyecatch-tool-anima-prompt-template-mobile.webp";
+const currentHref = "/articles/anima-prompt-template-guide";
 const ogImage = "/assets/og/ogp-article-anima-prompt-template-guide.png";
+const contentRecord = allPublishedContents.find((content) => content.href === currentHref);
+
+if (!contentRecord) {
+  throw new Error(`Published content is missing for ${currentHref}`);
+}
+
+const articleCategory = contentCategoryLabels[contentRecord.primaryCategory];
+const backHref = `/contents?category=${contentRecord.primaryCategory}`;
+const heroImageSrc = contentRecord.cardImage.src;
+const publishedAt = contentRecord.publishedAt;
 
 const toc = [
   "プロンプトガイドジェネレーター βでできること",
@@ -21,7 +36,7 @@ const toc = [
   "AI発注書をChatGPTなどに渡す例",
   "タグのみ / タグ＋自然文の違い",
   "プリセットの使い分け",
-  "LULINAworksの辞書ページと組み合わせる",
+  "LULINAworksのプロンプト一覧と組み合わせる",
   "まとめ",
 ];
 
@@ -54,15 +69,11 @@ const articleBody = String.raw`# Animaでも使えるプロンプトガイドジ
 
 出力された内容は、そのまま使うだけでなく、使用するモデルや生成サービスに合わせて調整してください。
 
-今後、LULINAworks内のプロンプトタグ辞書の対応カテゴリや項目がさらに揃った段階で、辞書内のタグを参照しながらプロンプトを組み立てられる形へ拡張する予定です。
-
 現時点では、骨組みを自分で埋めるか、AI発注書としてChatGPTなどの対話型AIに渡して具体的なタグや自然文へ整えてもらう使い方を想定しています。
 
 ## この記事でわかること
 
-[ルリナ吹き出し]
 このページでは、プロンプトガイドジェネレーター βの基本的な使い方を紹介します。骨組みプロンプトを自分で埋める方法と、AI発注書をChatGPTなどに渡す方法の両方を確認します。
-[/ルリナ吹き出し]
 
 この記事では、以下の内容を解説します。
 
@@ -71,7 +82,7 @@ const articleBody = String.raw`# Animaでも使えるプロンプトガイドジ
 - 1人用・複数人用・版権キャラ用プリセットの考え方
 - 骨組みプロンプトをComfyUIなどで使う方法
 - AI発注書をChatGPTなどの対話型AIに渡す方法
-- LULINAworksの辞書ページと組み合わせる使い方
+- LULINAworksのプロンプト一覧と組み合わせる使い方
 
 ## プロンプトガイドジェネレーター βでできること
 
@@ -214,8 +225,6 @@ ChatGPTなどの対話型AIに整えてもらいたい場合は、AI発注書を
 
 「どの要素を入れるか」を先に整理し、あとから自分で埋めていくための下書きとして使うと便利です。
 
-なお、現在のβ版では角括弧の項目を手動で埋める形ですが、今後はLULINAworks内のプロンプトタグ辞書と連携し、辞書内のタグを参照しながらプロンプトを組み立てられる形へ拡張する予定です。
-
 ## AI発注書をChatGPTなどに渡す例
 
 英語タグや自然文を自分で組み立てるのが難しい場合は、AI発注書を使います。
@@ -315,28 +324,18 @@ Animaのように自然文も扱いやすいモデルでは、シーン全体の
 
 ## LULINAworksのプロンプト一覧と組み合わせる
 
-骨組みプロンプトの角括弧を埋める時は、LULINAworksのプロンプト一覧もあわせて使えます。
+骨組みプロンプトの角括弧を埋めるときは、LULINAworksのプロンプト一覧から必要なタグを探して組み合わせられます。
 
-たとえば、以下のように組み合わせられます。
+たとえば、以下のように探せます。
 
-- [髪型] → 髪型プロンプト一覧
-- [表情] → 表情プロンプト一覧
-- [ポーズ] → ポーズプロンプト一覧
-- [構図] → 構図プロンプト一覧
+- [髪型] → 髪型のタグを探す
+- [表情] → 表情のタグを探す
+- [ポーズ] → ポーズのタグを探す
+- [構図] → 構図のタグを探す
 
-プロンプト一覧：/dictionary
+プロンプト一覧で候補を確認し、使いたいタグを骨組みプロンプトへ入れていく使い方ができます。
 
-髪型プロンプト一覧：/dictionary/hairstyle
-
-表情プロンプト一覧：/dictionary/expression
-
-ポーズプロンプト一覧：/dictionary/pose
-
-構図プロンプト一覧：/dictionary/composition
-
-今後は、一覧内のタグをツール側から直接参照し、選んだ項目をそのまま生成プロンプトへ組み込める形へ拡張する予定です。
-
-現時点では、プロンプト一覧でタグ候補を探し、ツールで作った骨組みに手動で入れていく使い方がおすすめです。
+[プロンプト一覧カード]
 
 ## まとめ
 
@@ -380,18 +379,6 @@ export const metadata: Metadata = {
   },
 };
 
-function LulinaSpeech({ children, label = "ルリナ" }: { children: ReactNode; label?: string }) {
-  return (
-    <aside className="lulina-speech" aria-label="ルリナのメモ">
-      <img src="/assets/character/lulina-speech-recommend.png" alt="おすすめを話すルリナ" />
-      <div className="lulina-bubble">
-        <span>{label}</span>
-        <p>{children}</p>
-      </div>
-    </aside>
-  );
-}
-
 function ArticleFigure({ src, caption }: { src: string; caption: string }) {
   return (
     <figure className="article-figure">
@@ -406,6 +393,16 @@ function ArticleCta({ label, href }: { label: string; href: string }) {
     <a className="article-tool-cta" href={href}>
       <span>Prompt Tool</span>
       <strong>{label}</strong>
+    </a>
+  );
+}
+
+function DictionaryLinkCard() {
+  return (
+    <a className="related-article-card" href="/dictionary">
+      <span>プロンプト一覧</span>
+      <strong>AIイラスト制作に使えるプロンプト一覧</strong>
+      <p>AIイラスト制作で使いやすいプロンプトを、カテゴリごとにサンプル付きで整理しています。</p>
     </a>
   );
 }
@@ -425,20 +422,11 @@ function TocBox() {
   );
 }
 
-function renderTextWithBreaks(lines: string[], keyPrefix: string) {
-  return lines.map((line, index) => (
-    <Fragment key={`${keyPrefix}-${index}`}>
-      {line}
-      {index < lines.length - 1 ? <br /> : null}
-    </Fragment>
-  ));
-}
-
 function isStepHeading(heading: string) {
   return /^Step[1-6]：/.test(heading);
 }
 
-function ArticleBody() {
+function ParsedArticleBody() {
   const elements: ReactNode[] = [];
   const lines = articleBody.split(/\r?\n/);
   let index = 0;
@@ -475,25 +463,15 @@ function ArticleBody() {
       continue;
     }
 
-    if (trimmed === "[ルリナ吹き出し]") {
-      const speechLines: string[] = [];
-      index += 1;
-      while (index < lines.length && lines[index].trim() !== "[/ルリナ吹き出し]") {
-        if (lines[index].trim()) {
-          speechLines.push(lines[index]);
-        }
-        index += 1;
-      }
-      elements.push(
-        <LulinaSpeech key={`speech-${elements.length}`}>{renderTextWithBreaks(speechLines, "speech-line")}</LulinaSpeech>
-      );
+    const ctaMatch = trimmed.match(/^\[CTA: (.+) -> (.+)\]$/);
+    if (ctaMatch) {
+      elements.push(<ArticleCta key={`cta-${elements.length}`} label={ctaMatch[1]} href={ctaMatch[2]} />);
       index += 1;
       continue;
     }
 
-    const ctaMatch = trimmed.match(/^\[CTA: (.+) -> (.+)\]$/);
-    if (ctaMatch) {
-      elements.push(<ArticleCta key={`cta-${elements.length}`} label={ctaMatch[1]} href={ctaMatch[2]} />);
+    if (trimmed === "[プロンプト一覧カード]") {
+      elements.push(<DictionaryLinkCard key={`dictionary-${elements.length}`} />);
       index += 1;
       continue;
     }
@@ -581,145 +559,71 @@ function ArticleBody() {
 export default function AnimaPromptTemplateGuidePage() {
   return (
     <>
-      <Header />
-      <main className="article-main anima-prompt-template-guide-page">
-        <article className="article-shell" id="article-top">
-          <header className="article-header">
-            <picture className="article-eyecatch-picture" aria-hidden="true">
-              <source media="(max-width: 760px)" srcSet={eyecatchMobile} />
-              <img src={eyecatchPc} alt="" />
-            </picture>
-            <div className="article-header-copy">
-              <a className="back-link" href="/contents">記事一覧へ戻る</a>
-              <span className="page-kicker">Prompt Tool</span>
-              <h1>
-                <span className="article-title-part">Animaでも使える</span>
-                <span className="article-title-part">プロンプトガイド</span>
-                <span className="article-title-part">ジェネレーター βの使い方</span>
-                <span className="article-title-separator">｜</span>
-                <span className="article-title-part">AI発注書と</span>
-                <span className="article-title-part">骨組みプロンプトの作り方</span>
-              </h1>
-              <p>{description}</p>
-            </div>
-          </header>
+      <ContentPageShell articleId="article-top">
+        <ContentHero
+          className="anima-prompt-template-guide-hero"
+          backHref={backHref}
+          backLabel="コンテンツ一覧へ"
+          category={articleCategory}
+          title={heroTitle}
+          lead={description}
+          publishedAt={publishedAt}
+          eyecatchSrc={heroImageSrc}
+          eyecatchAlt={title}
+          imagePosition="center 52%"
+          tone="dark"
+        />
 
-          <section className="article-content">
-            <ArticlePublishedDate href="/articles/anima-prompt-template-guide" />
-            <ArticleBody />
-          </section>
-          <ArticleNavigation currentHref="/articles/anima-prompt-template-guide" series="anima" />
-        </article>
-      </main>
-      <Footer />
+        <ArticleBody>
+          <ParsedArticleBody />
+        </ArticleBody>
+        <ArticleNavigation currentHref={currentHref} series="anima" />
+      </ContentPageShell>
 
       <style>{`
-        .anima-prompt-template-guide-page {
-          overflow-x: clip;
+        .anima-prompt-template-guide-hero h1 {
+          font-size: clamp(1.8rem, 3.8vw, 2.6rem);
+          line-height: 1.32;
         }
 
-        .anima-prompt-template-guide-page .article-header {
-          isolation: isolate;
-          min-height: 360px;
-          padding: clamp(30px, 5vw, 58px);
-          background: #fff7ee;
-        }
-
-        .anima-prompt-template-guide-page .article-header::after {
-          z-index: 1;
-          background:
-            linear-gradient(90deg, rgba(255, 253, 249, 0.96) 0%, rgba(255, 247, 238, 0.86) 46%, rgba(255, 247, 238, 0.18) 78%),
-            radial-gradient(circle at 54% 46%, rgba(255, 255, 255, 0.7), transparent 36%);
-        }
-
-        .anima-prompt-template-guide-page .article-eyecatch-picture,
-        .anima-prompt-template-guide-page .article-eyecatch-picture img {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-        }
-
-        .anima-prompt-template-guide-page .article-eyecatch-picture img {
-          object-fit: cover;
-          object-position: center center;
-        }
-
-        .anima-prompt-template-guide-page .article-header-copy {
-          z-index: 3;
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          gap: 10px 12px;
-          width: min(58%, 560px);
-          min-width: 0;
-        }
-
-        .anima-prompt-template-guide-page .article-header-copy > * {
-          min-width: 0;
-        }
-
-        .anima-prompt-template-guide-page .article-header h1 {
-          flex-basis: 100%;
-          margin-top: 8px;
-          font-size: clamp(1.34rem, 2.2vw, 1.82rem);
-          line-height: 1.48;
-          overflow-wrap: break-word;
-          word-break: normal;
-          line-break: strict;
-        }
-
-        .anima-prompt-template-guide-page .article-title-part,
-        .anima-prompt-template-guide-page .article-title-separator {
-          display: inline;
-        }
-
-        .anima-prompt-template-guide-page .article-header p {
-          flex-basis: 100%;
-          max-width: 34em;
-        }
-
-        .anima-prompt-template-guide-page .article-content .article-step-heading {
+        .article-step-heading {
           margin: 34px 0 16px;
           padding: 12px 16px 12px 18px;
-          border-left: 5px solid #f2a46f;
+          border: 1px solid #d8e5f7;
+          border-left: 5px solid var(--content-blue, #1565ff);
           border-radius: 0 14px 14px 0;
-          background: rgba(255, 247, 238, 0.78);
-          font-family: var(--font-heading), var(--font-body), sans-serif;
-          color: var(--navy);
+          background: #f3f7ff;
+          color: var(--content-text, #242a36);
           font-size: clamp(1.08rem, 1.8vw, 1.28rem);
           line-height: 1.5;
-          font-weight: 900;
+          font-weight: 800;
           letter-spacing: 0;
         }
 
-        .anima-prompt-template-guide-page .article-content .article-subheading,
-        .anima-prompt-template-guide-page .article-content h4 {
-          margin: 28px 0 12px;
-          color: #24406d;
+        .article-subheading {
+          margin: 30px 0 12px;
+          color: #174784;
           font-size: 1.05rem;
-          font-weight: 900;
+          font-weight: 800;
           line-height: 1.6;
         }
 
-        .anima-prompt-template-guide-page .article-content p,
-        .anima-prompt-template-guide-page .article-content li,
-        .anima-prompt-template-guide-page .article-content a,
-        .anima-prompt-template-guide-page .lulina-bubble p {
-          overflow-wrap: break-word;
+        .article-tool-cta strong,
+        .related-article-card strong {
+          overflow-wrap: anywhere;
           word-break: normal;
-          line-break: strict;
         }
 
         .article-tool-cta {
           display: block;
           margin: 24px 0 30px;
           padding: 20px 22px;
-          border: 1px solid rgba(94, 134, 200, 0.24);
-          border-radius: 18px;
-          background: linear-gradient(135deg, rgba(238, 245, 255, 0.96), rgba(255, 247, 238, 0.96));
-          box-shadow: 0 10px 22px rgba(48, 39, 31, 0.05);
+          border: 1px solid #bfd5f5;
+          border-radius: 16px;
+          background: #f3f8ff;
+          box-shadow: none;
           text-decoration: none !important;
+          transition: border-color 180ms ease, background-color 180ms ease;
         }
 
         .article-tool-cta span {
@@ -727,74 +631,93 @@ export default function AnimaPromptTemplateGuidePage() {
           margin-bottom: 8px;
           padding: 5px 10px;
           border-radius: 999px;
-          background: var(--blue);
+          background: var(--content-blue, #1565ff);
           color: #fff;
           font-size: .82rem;
-          font-weight: 900;
+          font-weight: 800;
         }
 
         .article-tool-cta strong {
           display: block;
-          color: var(--navy);
+          color: var(--content-text, #242a36);
           font-size: 1.08rem;
           line-height: 1.6;
-          font-weight: 900;
+          font-weight: 800;
         }
 
         .article-tool-cta:hover {
-          transform: translateY(-1px);
-          box-shadow: 0 14px 26px rgba(48, 39, 31, 0.08);
+          border-color: rgba(21, 101, 255, 0.42);
+          background: #eaf3ff;
         }
 
-        @media (max-width: 760px) {
-          .anima-prompt-template-guide-page .article-header {
-            min-height: 0;
-            align-items: flex-start;
-            padding: 210px 20px 24px;
+        .related-article-card {
+          display: block;
+          margin: 24px 0 28px;
+          padding: 18px 20px;
+          border: 1px solid #cfe0f7;
+          border-radius: 16px;
+          background: #f7fbff;
+          box-shadow: none;
+          text-decoration: none !important;
+          transition: border-color 180ms ease, background-color 180ms ease;
+        }
+
+        .related-article-card:hover {
+          border-color: rgba(21, 101, 255, 0.36);
+          background: #eef6ff;
+        }
+
+        .related-article-card span {
+          display: inline-flex;
+          margin-bottom: 8px;
+          padding: 5px 10px;
+          border-radius: 999px;
+          background: var(--content-blue, #1565ff);
+          color: #fff;
+          font-size: .82rem;
+          font-weight: 800;
+        }
+
+        .related-article-card strong {
+          display: block;
+          color: var(--content-text, #242a36);
+          font-size: 1.04rem;
+          line-height: 1.6;
+        }
+
+        .related-article-card p {
+          margin: 6px 0 0;
+          color: var(--content-muted, #5f697b);
+          font-size: .94rem;
+          line-height: 1.8;
+        }
+
+        @media (max-width: 700px) {
+          .anima-prompt-template-guide-hero h1 {
+            font-size: 1.6rem;
+            line-height: 1.28;
           }
 
-          .anima-prompt-template-guide-page .article-header::after {
-            background:
-              linear-gradient(180deg, rgba(255, 253, 249, 0.18) 0%, rgba(255, 247, 238, 0.7) 42%, rgba(255, 253, 249, 0.98) 72%),
-              radial-gradient(circle at 50% 32%, rgba(255, 255, 255, 0.72), transparent 40%);
-          }
-
-          .anima-prompt-template-guide-page .article-header-copy {
-            width: 100%;
-            gap: 8px 10px;
-          }
-
-          .anima-prompt-template-guide-page .article-header h1 {
-            margin-top: 10px;
-            font-size: clamp(1.08rem, 4.8vw, 1.28rem);
-            line-height: 1.55;
-          }
-
-          .anima-prompt-template-guide-page .article-title-part {
-            display: block;
-          }
-
-          .anima-prompt-template-guide-page .article-title-separator {
-            display: none;
-          }
-
-          .anima-prompt-template-guide-page .article-header p {
-            font-size: .9rem;
-            line-height: 1.85;
-            overflow-wrap: anywhere;
-          }
-
-          .anima-prompt-template-guide-page .article-content .article-step-heading {
+          .article-step-heading {
             margin-top: 30px;
             padding: 10px 13px;
             font-size: 1.04rem;
           }
 
-          .anima-prompt-template-guide-page .article-header,
-          .anima-prompt-template-guide-page .article-content,
-          .anima-prompt-template-guide-page .toc-box,
-          .anima-prompt-template-guide-page .lulina-bubble {
-            max-width: 100%;
+          .article-subheading {
+            font-size: 1rem;
+          }
+
+          .article-tool-cta,
+          .related-article-card {
+            padding: 17px 18px;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .article-tool-cta,
+          .related-article-card {
+            transition: none;
           }
         }
       `}</style>

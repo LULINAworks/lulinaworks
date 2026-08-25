@@ -72,7 +72,6 @@ const articleTaxonomyByHref = {
     primaryCategory: "tools",
     categories: ["tools", "guide"],
     contentType: "article",
-    cardImageSrc: "/assets/og/ogp-article-anima-prompt-template-guide.png",
     imageFit: "cover",
     imagePosition: "center",
     sameDayPriority: 90,

@@ -3,7 +3,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "ogp:generate:test": "node tools/ogp/generate-test.mjs"
   },
   "dependencies": {
     "next": "latest",
@@ -16,6 +17,8 @@
     "@types/react-dom": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
+    "playwright-core": "^1.62.1",
+    "sharp": "^0.34.5",
     "typescript": "latest"
   }
 }

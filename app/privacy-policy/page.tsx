@@ -18,7 +18,6 @@ export const metadata: Metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <StaticPageShell
-      label="Policy"
       title="プライバシーポリシー"
       lead="LULINAworksをご利用いただく際の情報の取り扱いについてまとめています。"
     >

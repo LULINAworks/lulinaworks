@@ -17,11 +17,10 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <StaticPageShell
-      label="About"
       title="LULINAworksについて"
       lead="LULINAworksは、AIイラスト制作に役立つ情報を、試しやすく・探しやすい形で整理しているサイトです。"
     >
-      <h2>1. LULINAworksについて</h2>
+      <h2>1. 当サイトについて</h2>
       <p>
         LULINAworksでは、AnimaやComfyUI、プロンプト、AIイラスト制作の基礎や実践に役立つ情報を紹介しています。使い方を調べたいときや、新しい制作方法を試したいときに参考にできるサイトを目指しています。
       </p>

@@ -28,16 +28,6 @@
   box-shadow: 0 10px 28px rgb(37 77 140 / 5%);
 }
 
-.label {
-  display: block;
-  margin-bottom: 10px;
-  color: var(--static-blue);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
 .header h1 {
   margin: 0;
   color: var(--static-text);
@@ -119,11 +109,6 @@
   .header {
     padding: 29px 22px 31px;
     border-radius: 18px;
-  }
-
-  .label {
-    margin-bottom: 8px;
-    font-size: 0.73rem;
   }
 
   .header h1 {

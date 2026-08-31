@@ -17,7 +17,6 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <StaticPageShell
-      label="Contact"
       title="お問い合わせ"
       lead="LULINAworksへのご連絡先と、お問い合わせ時の注意事項をまとめています。"
     >

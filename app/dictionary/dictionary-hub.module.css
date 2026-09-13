@@ -41,7 +41,7 @@
 .heroCopy h1 {
   margin: 0 0 12px;
   color: #26344d;
-  font-size: clamp(1.75rem, 3.2vw, 2.4rem);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
   font-weight: 800;
   line-height: 1.4;
   letter-spacing: 0.025em;
@@ -81,7 +81,7 @@
 
   .heroCopy h1 {
     margin-bottom: 9px;
-    font-size: 1.55rem;
+    font-size: 1rem;
   }
 
   .heroCopy p {

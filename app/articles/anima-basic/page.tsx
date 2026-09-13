@@ -312,7 +312,7 @@ export default function AnimaBasicPage() {
               特に複数人の描き分けやキャラクター同士の関係を指定したい場合は、活用できる場面が広がる可能性があります。
             </Callout>
         </ArticleBody>
-        <ArticleNavigation currentHref="/articles/anima-basic" series="anima" />
+        <ArticleNavigation currentHref="/articles/anima-basic" />
       </ContentPageShell>
 
       <style>{`

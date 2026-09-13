@@ -568,7 +568,7 @@ export default function AnimaPromptTemplateGuidePage() {
         <ArticleBody>
           <ParsedArticleBody />
         </ArticleBody>
-        <ArticleNavigation currentHref={currentHref} series="anima" />
+        <ArticleNavigation currentHref={currentHref} />
       </ContentPageShell>
 
       <style>{`

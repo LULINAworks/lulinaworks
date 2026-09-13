@@ -511,7 +511,7 @@ cute, clean composition, detailed eyes,
             <DictionaryLinkCard />
             <p>今回の比較を目安にしつつ、作りたい絵柄やシーンに合わせて、気になるタグを試してみるのがよさそうです。</p>
         </ArticleBody>
-        <ArticleNavigation currentHref={currentHref} series="anima" />
+        <ArticleNavigation currentHref={currentHref} />
       </ContentPageShell>
 
       <style>{`

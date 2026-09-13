@@ -476,7 +476,7 @@ white t-shirt`}</PromptCode>
             <p>この形にすると、Animaのプロンプトはかなり扱いやすくなります。</p>
             <p>よく使う指定に迷ったときは、プロンプト一覧から使いやすいタグを探して、プロンプトに組み込んでみてください。</p>
         </ArticleBody>
-        <ArticleNavigation currentHref={currentHref} series="anima" />
+        <ArticleNavigation currentHref={currentHref} />
       </ContentPageShell>
 
       <style>{`

@@ -14,6 +14,19 @@ export type CardItem = {
 
 export const articles: CardItem[] = [
   {
+    title: "ChatGPT Images 2.5はAIイラスト制作でどう使える？ 生成・編集・絵柄変更を試してみた",
+    description:
+      "ChatGPT Images 2.5をAIイラスト制作で実際に使用。日本語からの生成、表情・服装・背景・人物の変更、絵柄変更、Anima画像の編集を作例付きで紹介します。",
+    topSummary: "ChatGPT Images 2.5で生成・部分編集・人物差し替え・絵柄変更を実際の作例で試します。",
+    href: "/articles/chatgpt-images-2-5",
+    thumbnail: "/assets/articles/chatgpt-images-2-5/hero.webp",
+    tag: "Model",
+    status: "公開中",
+    featured: true,
+    published: true,
+    date: "2026-09-13",
+  },
+  {
     title: "Animaでも使えるプロンプトガイドジェネレーター βの使い方｜AI発注書と骨組みプロンプトの作り方",
     description:
       "プロンプトの骨組みやAI発注書を作れる「プロンプトガイドジェネレーター β」の使い方を解説。タグのみ・タグ＋自然文の違い、ComfyUIでの使い方、ChatGPTなどの対話型AIへ渡す方法を紹介します。",

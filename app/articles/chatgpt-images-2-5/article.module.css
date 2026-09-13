@@ -1,0 +1,54 @@
+.articleHero > figure h1 {
+  font-size: clamp(2rem, 4.4vw, 2.75rem);
+}
+
+.heroTitleLine {
+  display: block;
+  white-space: nowrap;
+}
+
+.mobileTitleBreak {
+  display: none;
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+  margin: 32px 0 40px;
+}
+
+.threeImages {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.threeImages > figure:global(.article-figure) img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.comparison > figure:global(.article-figure) {
+  min-width: 0;
+  margin: 0;
+}
+
+.comparison figcaption {
+  font-weight: 800;
+}
+
+@media (max-width: 760px) {
+  .articleHero > figure h1 {
+    font-size: clamp(1rem, 5vw, 1.5rem);
+  }
+
+  .mobileTitleBreak {
+    display: inline;
+  }
+
+  .comparison {
+    grid-template-columns: 1fr;
+    margin: 26px 0 34px;
+  }
+}

@@ -157,6 +157,7 @@ export function renderOgpHtml(pageConfig) {
         letter-spacing: 0.025em;
         white-space: nowrap;
         text-shadow: 0 1px 0 rgb(255 255 255 / 90%);
+        transform: translateX(-24px);
       }
 
       .direct-prompt-list {

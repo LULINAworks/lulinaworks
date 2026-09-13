@@ -1,28 +1,24 @@
-import { articleAnimaOrderHrefs, articleGuideOrderHrefs, articles } from "@/data/articles";
+import { allPublishedContents } from "@/data/contents";
 
 type ArticleNavigationProps = {
   currentHref: string;
-  series?: "guide" | "anima";
 };
 
-function findPublishedArticle(href: string | undefined) {
-  if (!href) {
-    return undefined;
-  }
+const chronologicalArticles = allPublishedContents
+  .filter((item) => item.contentType === "article")
+  .sort((a, b) =>
+    a.publishedAt.localeCompare(b.publishedAt) || a.href.localeCompare(b.href),
+  );
 
-  return articles.find((item) => item.href === href && item.published);
-}
-
-export function ArticleNavigation({ currentHref, series = "guide" }: ArticleNavigationProps) {
-  const orderHrefs = series === "anima" ? articleAnimaOrderHrefs : articleGuideOrderHrefs;
-  const currentIndex = orderHrefs.indexOf(currentHref);
+export function ArticleNavigation({ currentHref }: ArticleNavigationProps) {
+  const currentIndex = chronologicalArticles.findIndex((item) => item.href === currentHref);
 
   if (currentIndex < 0) {
     return null;
   }
 
-  const previousArticle = findPublishedArticle(orderHrefs[currentIndex - 1]);
-  const nextArticle = findPublishedArticle(orderHrefs[currentIndex + 1]);
+  const previousArticle = chronologicalArticles[currentIndex - 1];
+  const nextArticle = chronologicalArticles[currentIndex + 1];
 
   if (!previousArticle && !nextArticle) {
     return null;

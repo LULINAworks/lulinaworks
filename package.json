@@ -7,7 +7,7 @@
     "ogp:generate:test": "node tools/ogp/generate-test.mjs"
   },
   "dependencies": {
-    "next": "latest",
+    "next": "16.3.5",
     "react": "latest",
     "react-dom": "latest"
   },
@@ -16,9 +16,9 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "eslint": "latest",
-    "eslint-config-next": "latest",
+    "eslint-config-next": "16.3.5",
     "playwright-core": "^1.62.1",
-    "sharp": "^0.34.5",
+    "sharp": "0.35.4",
     "typescript": "latest"
   }
 }

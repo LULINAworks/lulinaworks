@@ -107,6 +107,16 @@ function RelatedArticleCard() {
   );
 }
 
+function LatestReviewCard() {
+  return (
+    <a className="related-article-card" href="/articles/anima-3month-review">
+      <span>最新レビュー</span>
+      <strong>Animaは3ヶ月でどう変わった？ モデル・Turbo・プロンプトを使い続けて感じたこと</strong>
+      <p>Animaを約3ヶ月使い続けて感じた、モデル・Turbo・プロンプトの変化をまとめています。</p>
+    </a>
+  );
+}
+
 function DictionaryLinkCard() {
   return (
     <a className="related-article-card" href="/dictionary">
@@ -170,6 +180,7 @@ export default function AnimaBasicPage() {
           tone="dark"
         />
         <ArticleBody>
+            <LatestReviewCard />
             <h2 id="intro">はじめに</h2>
             <p>画像生成AIのモデルには、SD1.5系、SDXL系、NovelAI系など、さまざまな系統があります。</p>
             <p>その中で、最近気になったモデルのひとつが <strong>Anima</strong> です。</p>

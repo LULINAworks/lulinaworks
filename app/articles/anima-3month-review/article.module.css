@@ -1,0 +1,113 @@
+.articleHero > div > p {
+  white-space: pre-line;
+}
+
+.articleHero > figure h1 {
+  width: min(760px, 100%);
+  font-size: clamp(2rem, 3.4vw, 2.5rem);
+  line-height: 1.42;
+  letter-spacing: 0;
+}
+
+.heroTitleText {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.mobileTitleBreak {
+  display: none;
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+  margin: 32px 0 40px;
+}
+
+.threeImages {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.comparison > figure:global(.article-figure) {
+  min-width: 0;
+  margin: 0;
+}
+
+.comparison figcaption {
+  font-weight: 800;
+}
+
+:global(.related-article-card) {
+  display: block;
+  margin: 24px 0 28px;
+  padding: 18px 20px;
+  border: 1px solid #cfe0f7;
+  border-radius: 16px;
+  background: #f7fbff;
+  box-shadow: none;
+  text-decoration: none !important;
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+:global(.related-article-card:hover) {
+  border-color: rgba(21, 101, 255, 0.36);
+  background: #eef6ff;
+}
+
+:global(.related-article-card span) {
+  display: inline-flex;
+  margin-bottom: 8px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--content-blue, #1565ff);
+  color: #fff;
+  font-size: .82rem;
+  font-weight: 800;
+}
+
+:global(.related-article-card strong) {
+  display: block;
+  overflow-wrap: anywhere;
+  color: var(--content-text, #242a36);
+  font-size: 1.04rem;
+  font-weight: 800;
+  line-height: 1.6;
+  word-break: normal;
+}
+
+:global(.related-article-card p) {
+  margin: 6px 0 0;
+  color: var(--content-muted, #5f697b);
+  font-size: .94rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 760px) {
+  .articleHero > figure > figcaption {
+    box-sizing: border-box;
+    padding: 12px 14px;
+  }
+
+  .articleHero > figure h1 {
+    font-size: clamp(1.25rem, 6vw, 1.55rem);
+    line-height: 1.36;
+  }
+
+  .mobileTitleBreak {
+    display: inline;
+  }
+
+  .comparison,
+  .threeImages {
+    grid-template-columns: 1fr;
+    margin: 26px 0 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(.related-article-card) {
+    transition: none;
+  }
+}

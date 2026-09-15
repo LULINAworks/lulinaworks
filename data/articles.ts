@@ -14,6 +14,19 @@ export type CardItem = {
 
 export const articles: CardItem[] = [
   {
+    title: "Animaは3ヶ月でどう変わった？ モデル・Turbo・プロンプトを使い続けて感じたこと",
+    description:
+      "Animaを約3ヶ月使い続けて感じた変化を、派生モデル、Turbo、プロンプトの使い方を中心に紹介。Anima-Aesthetic、Q-ANIMA、WAI-ANIMA、Illustriousとの比較も行います。",
+    topSummary: "Animaを3ヶ月使って感じた、モデル・Turbo・プロンプトの変化を振り返ります。",
+    href: "/articles/anima-3month-review",
+    thumbnail: "/assets/articles/anima-3month-review/hero.webp",
+    tag: "Model",
+    status: "公開中",
+    featured: true,
+    published: true,
+    date: "2026-09-15",
+  },
+  {
     title: "ChatGPT Images 2.5はAIイラスト制作でどう使える？ 生成・編集・絵柄変更を試してみた",
     description:
       "ChatGPT Images 2.5をAIイラスト制作で実際に使用。日本語からの生成、表情・服装・背景・人物の変更、絵柄変更、Anima画像の編集を作例付きで紹介します。",

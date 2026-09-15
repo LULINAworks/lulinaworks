@@ -3,9 +3,9 @@ import { allPublishedContents, publishedContentsByDate } from "./contents";
 
 export const topContentHrefConfig = {
   "ai-model-service": {
-    featured: "/articles/anima-basic",
+    featured: "/articles/anima-3month-review",
     compact: [
-      "/articles/anima-prompt-writing",
+      "/articles/chatgpt-images-2-5",
       "/articles/anima-style-compare",
     ],
   },
@@ -17,7 +17,7 @@ export const topContentHrefConfig = {
     featured: "/articles/prompt-basic",
     compact: [
       "/articles/anima-prompt-writing",
-      "/articles/anima-style-compare",
+      "/articles/anima-prompt-template-guide",
     ],
   },
   prompt: [

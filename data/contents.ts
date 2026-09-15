@@ -23,6 +23,14 @@ type ContentTaxonomy = {
 };
 
 const articleTaxonomyByHref = {
+  "/articles/anima-3month-review": {
+    primaryCategory: "ai-model-service",
+    categories: ["ai-model-service", "guide"],
+    contentType: "article",
+    cardImageSrc: "/assets/articles/anima-3month-review/hero.webp",
+    imageFit: "cover",
+    imagePosition: "center",
+  },
   "/articles/chatgpt-images-2-5": {
     primaryCategory: "ai-model-service",
     categories: ["ai-model-service", "guide"],
@@ -242,17 +250,17 @@ function validatePublishedContents(contents: readonly ContentItem[]) {
     }
   }
 
-  if (contents.length !== 13) {
-    errors.push(`Expected 13 published contents, received ${contents.length}`);
+  if (contents.length !== 14) {
+    errors.push(`Expected 14 published contents, received ${contents.length}`);
   }
-  if (typeCounts.article !== 8 || typeCounts.dictionary !== 4 || typeCounts.tool !== 1) {
+  if (typeCounts.article !== 9 || typeCounts.dictionary !== 4 || typeCounts.tool !== 1) {
     errors.push(
       `Unexpected content type counts: article=${typeCounts.article}, dictionary=${typeCounts.dictionary}, tool=${typeCounts.tool}`
     );
   }
 
   const expectedPrimaryCategoryCounts: Record<ContentCategory, number> = {
-    "ai-model-service": 4,
+    "ai-model-service": 5,
     comfyui: 2,
     guide: 1,
     prompt: 4,
@@ -268,6 +276,7 @@ function validatePublishedContents(contents: readonly ContentItem[]) {
 
   const expectedCategoryHrefs = {
     guide: [
+      "/articles/anima-3month-review",
       "/articles/chatgpt-images-2-5",
       "/articles/anima-prompt-template-guide",
       "/articles/anima-prompt-writing",

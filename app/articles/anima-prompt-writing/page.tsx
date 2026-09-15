@@ -98,6 +98,16 @@ function DictionaryLinkCard() {
   );
 }
 
+function LatestReviewCard() {
+  return (
+    <a className="related-article-card" href="/articles/anima-3month-review">
+      <span>最新レビュー</span>
+      <strong>Animaは3ヶ月でどう変わった？ モデル・Turbo・プロンプトを使い続けて感じたこと</strong>
+      <p>Animaを約3ヶ月使い続けて感じた、モデル・Turbo・プロンプトの変化をまとめています。</p>
+    </a>
+  );
+}
+
 export default function AnimaPromptWritingPage() {
   return (
     <>
@@ -117,6 +127,7 @@ export default function AnimaPromptWritingPage() {
 
         <ArticleBody>
 
+            <LatestReviewCard />
             <h2 id="intro">はじめに</h2>
             <p>画像生成AIでイラストを作るとき、プロンプトの書き方にはいくつかの考え方があります。</p>
             <p>カンマで区切ったタグを並べる書き方もあれば、英語の文章でシーンを説明する書き方もあります。</p>
